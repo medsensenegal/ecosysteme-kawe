@@ -424,40 +424,11 @@
     }
     .demo-screen {
       aspect-ratio: 16/10;
-      position: relative; overflow: hidden;
+      overflow: hidden;
+      background: var(--gray-100);
     }
-    .demo-screen-inner {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-    }
-    /* Mini app mockups */
-    .mock-topbar {
-      height: 28px; display: flex; align-items: center;
-      padding: 0 10px; gap: 5px;
-    }
-    .mock-dot { width: 6px; height: 6px; border-radius: 50%; }
-    .mock-sidebar {
-      position: absolute; left: 0; top: 28px; bottom: 0;
-      width: 50px;
-    }
-    .mock-sidebar-item {
-      width: 28px; height: 4px; border-radius: 2px;
-      margin: 8px auto 0; opacity: .4;
-    }
-    .mock-content {
-      position: absolute; left: 50px; top: 28px; right: 0; bottom: 0;
-      padding: 10px;
-    }
-    .mock-card-row { display: flex; gap: 6px; margin-bottom: 8px; }
-    .mock-kpi {
-      flex: 1; height: 32px; border-radius: 6px; opacity: .6;
-    }
-    .mock-table {
-      width: 100%; height: 40px; border-radius: 6px; opacity: .25;
-    }
-    .mock-chart {
-      width: 100%; height: 50px; border-radius: 6px; opacity: .15;
-      margin-top: 6px;
+    .demo-screen img {
+      display: block;
     }
 
     .demo-card-body { padding: 20px; }
@@ -895,7 +866,7 @@
           </li>
           <li>
             <span class="constat-icon icon-good">🛡️</span>
-            <span><strong>ndawProtect</strong> centralise tous les signalements.
+            <span><strong>NdawProtect</strong> centralise tous les signalements.
             Travailleurs sociaux, référents communautaires et juges voient l'historique complet
             et interviennent de façon coordonnée.</span>
           </li>
@@ -1010,7 +981,7 @@
         </div>
       </div>
 
-      <!-- ndawProtect -->
+      <!-- NdawProtect -->
       <div class="app-card">
         <div class="app-card-accent" style="background: linear-gradient(90deg, #065f46, #059669, #10b981)"></div>
         <div class="app-card-body">
@@ -1018,7 +989,7 @@
             <div class="app-icon" style="background: linear-gradient(135deg, #065f46, #059669)">🛡️</div>
             <div class="app-meta">
               <div class="app-pillar">Protection</div>
-              <div class="app-name" style="color: #065f46">ndawProtect</div>
+              <div class="app-name" style="color: #065f46">NdawProtect</div>
             </div>
           </div>
           <div class="app-tagline" style="color: #059669">Le bouclier communautaire de l'enfant</div>
@@ -1233,7 +1204,7 @@
 
           <!-- Protection (left) -->
           <rect x="30" y="185" width="180" height="65" rx="14" fill="rgba(6,95,70,.05)" stroke="#065f46" stroke-width="1.5"/>
-          <text x="120" y="212" text-anchor="middle" fill="#065f46" font-size="13" font-weight="800">🛡️ ndawProtect</text>
+          <text x="120" y="212" text-anchor="middle" fill="#065f46" font-size="13" font-weight="800">🛡️ NdawProtect</text>
           <text x="120" y="230" text-anchor="middle" fill="var(--gray-400)" font-size="10">Protection</text>
           <!-- Line to hub -->
           <line x1="210" y1="215" x2="345" y2="210" stroke="var(--gray-300)" stroke-width="1.5" stroke-dasharray="5 4"/>
@@ -1327,7 +1298,7 @@
             </li>
             <li>
               <span class="flux-step-num" style="background:#065f46">2</span>
-              <span><strong>ndawProtect</strong> reçoit l'alerte, un travailleur social est assigné pour visiter la famille.</span>
+              <span><strong>NdawProtect</strong> reçoit l'alerte, un travailleur social est assigné pour visiter la famille.</span>
             </li>
             <li>
               <span class="flux-step-num" style="background:#b45309">3</span>
@@ -1353,7 +1324,7 @@
           <ol class="flux-steps">
             <li>
               <span class="flux-step-num" style="background:#065f46">1</span>
-              <span>Un référent communautaire signale un enfant non scolarisé via <strong>ndawProtect</strong>.</span>
+              <span>Un référent communautaire signale un enfant non scolarisé via <strong>NdawProtect</strong>.</span>
             </li>
             <li>
               <span class="flux-step-num" style="background:#0d9488">2</span>
@@ -1391,7 +1362,7 @@
             </li>
             <li>
               <span class="flux-step-num" style="background:#065f46">3</span>
-              <span><strong>ndawProtect</strong> ouvre un dossier de suivi pour s'assurer que l'enfant est pris en charge.</span>
+              <span><strong>NdawProtect</strong> ouvre un dossier de suivi pour s'assurer que l'enfant est pris en charge.</span>
             </li>
           </ol>
           <div class="flux-apps">
@@ -1420,226 +1391,75 @@
 
     <div class="demo-grid">
 
-      <!-- MedSen demo -->
+      <!-- MedSen -->
       <div class="demo-card">
         <div class="demo-screen">
-          <div class="demo-screen-inner" style="background: #f8faf8;">
-            <div class="mock-topbar" style="background: #1A7C3E;">
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-            </div>
-            <div class="mock-sidebar" style="background: #15532e;">
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.5); width:32px;"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.2)"></div>
-            </div>
-            <div class="mock-content">
-              <div class="mock-card-row">
-                <div class="mock-kpi" style="background:#d4edda;"></div>
-                <div class="mock-kpi" style="background:#fff3cd;"></div>
-                <div class="mock-kpi" style="background:#d1ecf1;"></div>
-              </div>
-              <div class="mock-table" style="background:#1A7C3E;"></div>
-              <div class="mock-chart" style="background:#1A7C3E;"></div>
-            </div>
-          </div>
+          <img src="screenshots/medsen.png" alt="MedSen - Page d'accueil" style="width:100%; height:100%; object-fit:cover; object-position:top;">
         </div>
         <div class="demo-card-body">
           <div class="demo-card-name" style="color:#1A7C3E">MedSen</div>
           <div class="demo-card-desc">Tableau de bord santé scolaire, campagnes, dépistages, suivi élèves.</div>
           <div class="demo-card-roles"><strong>Rôles :</strong> Admin MedSen, Admin IME, Infirmier, Directeur</div>
-          <div>
-            <a class="demo-btn" style="background:#1A7C3E" href="http://localhost:3000" target="_blank">Ouvrir</a>
-            <a class="demo-login" href="http://localhost:3000/login" target="_blank">Connexion</a>
-          </div>
         </div>
       </div>
 
-      <!-- ndawProtect demo -->
+      <!-- NdawProtect -->
       <div class="demo-card">
         <div class="demo-screen">
-          <div class="demo-screen-inner" style="background: #f0fdf4;">
-            <div class="mock-topbar" style="background: #065f46;">
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-            </div>
-            <div class="mock-sidebar" style="background: #064e3b;">
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.5); width:32px;"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-            </div>
-            <div class="mock-content">
-              <div class="mock-card-row">
-                <div class="mock-kpi" style="background:#d1fae5;"></div>
-                <div class="mock-kpi" style="background:#fef3c7;"></div>
-                <div class="mock-kpi" style="background:#fce7f3;"></div>
-              </div>
-              <div class="mock-table" style="background:#065f46;"></div>
-              <div class="mock-chart" style="background:#065f46;"></div>
-            </div>
-          </div>
+          <img src="screenshots/protection.png" alt="NdawProtect - Page d'accueil" style="width:100%; height:100%; object-fit:cover; object-position:top;">
         </div>
         <div class="demo-card-body">
-          <div class="demo-card-name" style="color:#065f46">ndawProtect</div>
+          <div class="demo-card-name" style="color:#065f46">NdawProtect</div>
           <div class="demo-card-desc">Signalements, gestion des cas, visites terrain, réseau de vigilance.</div>
           <div class="demo-card-roles"><strong>Rôles :</strong> Coordinateur, Travailleur social, Référent, Juge</div>
-          <div>
-            <a class="demo-btn" style="background:#065f46" href="http://localhost:3005" target="_blank">Ouvrir</a>
-            <a class="demo-login" href="http://localhost:3005/login" target="_blank">Connexion</a>
-          </div>
         </div>
       </div>
 
-      <!-- SunuDroits demo -->
+      <!-- SunuDroits -->
       <div class="demo-card">
         <div class="demo-screen">
-          <div class="demo-screen-inner" style="background: #fffbeb;">
-            <div class="mock-topbar" style="background: #78350f;">
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-            </div>
-            <div class="mock-sidebar" style="background: #451a03;">
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.5); width:32px;"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-            </div>
-            <div class="mock-content">
-              <div class="mock-card-row">
-                <div class="mock-kpi" style="background:#fef3c7;"></div>
-                <div class="mock-kpi" style="background:#fed7aa;"></div>
-                <div class="mock-kpi" style="background:#dbeafe;"></div>
-              </div>
-              <div class="mock-table" style="background:#b45309;"></div>
-              <div class="mock-chart" style="background:#b45309;"></div>
-            </div>
-          </div>
+          <img src="screenshots/droits.png" alt="SunuDroits - Page d'accueil" style="width:100%; height:100%; object-fit:cover; object-position:top;">
         </div>
         <div class="demo-card-body">
           <div class="demo-card-name" style="color:#92400e">SunuDroits</div>
           <div class="demo-card-desc">Bourses, aides sociales, couverture maladie, logement, loisirs.</div>
           <div class="demo-card-roles"><strong>Rôles :</strong> Admin, Gestionnaire, Agent état civil, ONG, Famille</div>
-          <div>
-            <a class="demo-btn" style="background:#b45309" href="http://localhost:3007" target="_blank">Ouvrir</a>
-            <a class="demo-login" href="http://localhost:3007/login" target="_blank">Connexion</a>
-          </div>
         </div>
       </div>
 
-      <!-- SunuEtatCivil demo -->
+      <!-- SunuEtatCivil -->
       <div class="demo-card">
         <div class="demo-screen">
-          <div class="demo-screen-inner" style="background: #f0fdfa;">
-            <div class="mock-topbar" style="background: #00853F;">
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-            </div>
-            <div class="mock-sidebar" style="background: #064e3b;">
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.5); width:32px;"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.2)"></div>
-            </div>
-            <div class="mock-content">
-              <div class="mock-card-row">
-                <div class="mock-kpi" style="background:#ccfbf1;"></div>
-                <div class="mock-kpi" style="background:#d1fae5;"></div>
-                <div class="mock-kpi" style="background:#fef3c7;"></div>
-              </div>
-              <div class="mock-table" style="background:#0d9488;"></div>
-              <div class="mock-chart" style="background:#0d9488;"></div>
-            </div>
-          </div>
+          <img src="screenshots/etatcivil.png" alt="SunuEtatCivil - Page d'accueil" style="width:100%; height:100%; object-fit:cover; object-position:top;">
         </div>
         <div class="demo-card-body">
           <div class="demo-card-name" style="color:#0d9488">SunuEtatCivil</div>
           <div class="demo-card-desc">Naissances, mariages, décès, filiation, livrets de famille, citoyens.</div>
           <div class="demo-card-roles"><strong>Rôles :</strong> Admin, Officier, Agent, Superviseur, Juge, Citoyen</div>
-          <div>
-            <a class="demo-btn" style="background:#0d9488" href="http://localhost:3011" target="_blank">Ouvrir</a>
-            <a class="demo-login" href="http://localhost:3011/login" target="_blank">Connexion</a>
-          </div>
         </div>
       </div>
 
-      <!-- LeerEducation demo -->
+      <!-- LeerEducation -->
       <div class="demo-card">
         <div class="demo-screen">
-          <div class="demo-screen-inner" style="background: #eff6ff;">
-            <div class="mock-topbar" style="background: #1e40af;">
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-            </div>
-            <div class="mock-sidebar" style="background: #1e3a8a;">
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.5); width:32px;"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-            </div>
-            <div class="mock-content">
-              <div class="mock-card-row">
-                <div class="mock-kpi" style="background:#dbeafe;"></div>
-                <div class="mock-kpi" style="background:#ede9fe;"></div>
-                <div class="mock-kpi" style="background:#fef3c7;"></div>
-              </div>
-              <div class="mock-table" style="background:#1e40af;"></div>
-              <div class="mock-chart" style="background:#7c3aed;"></div>
-            </div>
-          </div>
+          <img src="screenshots/education.png" alt="LeerEducation - Page d'accueil" style="width:100%; height:100%; object-fit:cover; object-position:top;">
         </div>
         <div class="demo-card-body">
           <div class="demo-card-name" style="color:#1e40af">LeerEducation</div>
           <div class="demo-card-desc">Gestion scolaire complète, pédagogie par la conscience, examens.</div>
           <div class="demo-card-roles"><strong>Rôles :</strong> Ministère, Inspection, Directeur, Enseignant, Élève, Parent</div>
-          <div>
-            <a class="demo-btn" style="background:#1e40af" href="http://localhost:3003" target="_blank">Ouvrir</a>
-            <a class="demo-login" href="http://localhost:3003/login" target="_blank">Connexion</a>
-          </div>
         </div>
       </div>
 
-      <!-- Referentiel demo -->
+      <!-- Referentiel -->
       <div class="demo-card">
         <div class="demo-screen">
-          <div class="demo-screen-inner" style="background: #f0f9ff;">
-            <div class="mock-topbar" style="background: #1e3a5f;">
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-dot" style="background:rgba(255,255,255,.3)"></div>
-            </div>
-            <div class="mock-sidebar" style="background: #172554;">
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.5); width:32px;"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-              <div class="mock-sidebar-item" style="background:rgba(255,255,255,.3)"></div>
-            </div>
-            <div class="mock-content">
-              <div class="mock-card-row">
-                <div class="mock-kpi" style="background:#dbeafe;"></div>
-                <div class="mock-kpi" style="background:#e0e7ff;"></div>
-                <div class="mock-kpi" style="background:#f0f9ff;"></div>
-              </div>
-              <div class="mock-table" style="background:#3b82f6;"></div>
-              <div class="mock-chart" style="background:#3b82f6;"></div>
-            </div>
-          </div>
+          <img src="screenshots/referentiel.png" alt="Référentiel Commun - Tableau de bord" style="width:100%; height:100%; object-fit:cover; object-position:top;">
         </div>
         <div class="demo-card-body">
           <div class="demo-card-name" style="color:#1e3a5f">Référentiel Commun</div>
           <div class="demo-card-desc">Régions, départements, communes, établissements, niveaux scolaires.</div>
           <div class="demo-card-roles"><strong>Rôle :</strong> Administrateur national</div>
-          <div>
-            <a class="demo-btn" style="background:#1e3a5f" href="http://localhost:3009" target="_blank">Ouvrir</a>
-            <a class="demo-login" href="http://localhost:3008/api/referentiel/v1/docs" target="_blank">API</a>
-          </div>
         </div>
       </div>
 
@@ -1731,6 +1551,7 @@
       </a>
       <div class="contact-or">ou</div>
       <div class="contact-details">
+        +221 78 563 64 28<br>
         Dakar, Sénégal<br>
         Projet open source · Prêt pour un déploiement pilote
       </div>
