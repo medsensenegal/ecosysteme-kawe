@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kawé · Écosystème numérique pour l'enfance au Sénégal</title>
+  <meta name="description" content="Six applications interconnectées pour garantir la santé, l'éducation, la protection et les droits de chaque enfant sénégalais." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #00853F;
+      --gold: #FDEF42;
+      --red: #E31B23;
+      --dark: #0f172a;
+      --dark-2: #1e293b;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-900: #0f172a;
+      --blue: #3b82f6;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--gray-50);
+      color: var(--dark-2);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ═══════════ TRICOLOR BAR ═══════════ */
+    .tricolor {
+      display: flex; height: 5px;
+    }
+    .tricolor span { flex: 1; }
+    .tricolor .t-green { background: var(--green); }
+    .tricolor .t-gold { background: var(--gold); }
+    .tricolor .t-red { background: var(--red); }
+
+    /* ═══════════ NAV ═══════════ */
+    .nav {
+      background: var(--dark);
+      padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--green), #10b981);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 900; color: white;
+      letter-spacing: -1px;
+    }
+    .nav-name { font-size: 18px; font-weight: 800; color: white; letter-spacing: -.3px; }
+    .nav-name span { color: var(--gold); }
+    .nav-links { display: flex; gap: 6px; }
+    .nav-links a {
+      color: rgba(255,255,255,.55); font-size: 13px; font-weight: 600;
+      text-decoration: none; padding: 8px 14px; border-radius: 8px;
+      transition: all .15s;
+    }
+    .nav-links a:hover { color: white; background: rgba(255,255,255,.08); }
+    .nav-flag {
+      display: flex; gap: 3px; align-items: center;
+    }
+    .nav-flag div { width: 4px; height: 18px; border-radius: 2px; }
+
+    /* ═══════════ HERO ═══════════ */
+    .hero {
+      background: linear-gradient(160deg, #0a1628 0%, #132847 40%, #1a365d 70%, #0f2340 100%);
+      padding: 80px 48px 72px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -30%; right: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,133,63,.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -20%; left: 10%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(253,239,66,.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      padding: 6px 16px; border-radius: 24px;
+      margin-bottom: 24px;
+    }
+    .hero-badge-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34,197,94,.5);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .5; }
+    }
+    .hero-badge span {
+      font-size: 12px; font-weight: 600; color: rgba(255,255,255,.6);
+      letter-spacing: .5px; text-transform: uppercase;
+    }
+    .hero-title {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 900; line-height: 1.08;
+      color: white; letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+    .hero-title em { font-style: normal; color: var(--gold); }
+    .hero-subtitle {
+      font-size: 18px; color: rgba(255,255,255,.55);
+      line-height: 1.7; max-width: 520px; margin-bottom: 32px;
+    }
+    .hero-cta {
+      display: flex; gap: 12px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px;
+      font-size: 15px; font-weight: 700; color: var(--dark);
+      background: var(--gold); text-decoration: none;
+      border: none; cursor: pointer;
+      transition: all .2s;
+      box-shadow: 0 4px 20px rgba(253,239,66,.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(253,239,66,.35); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px;
+      font-size: 15px; font-weight: 700; color: white;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      text-decoration: none; cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,.14); }
+
+    /* Hero visual — SVG schema */
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+    }
+
+    /* ═══════════ STATS BAR ═══════════ */
+    .stats-bar {
+      background: white;
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0 48px;
+    }
+    .stats-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+    }
+    .stat-item {
+      padding: 28px 20px; text-align: center;
+      border-right: 1px solid var(--gray-100);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-val {
+      font-size: 32px; font-weight: 900; color: var(--dark);
+      letter-spacing: -1px; line-height: 1;
+    }
+    .stat-val span { font-size: 20px; }
+    .stat-label {
+      font-size: 12px; font-weight: 600; color: var(--gray-400);
+      margin-top: 6px; text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    /* ═══════════ SECTION SHARED ═══════════ */
+    .section { max-width: 1200px; margin: 0 auto; padding: 80px 48px; }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-eyebrow {
+      font-size: 12px; font-weight: 700; color: var(--green);
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 900; color: var(--dark);
+      letter-spacing: -1px; line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 17px; color: var(--gray-500);
+      line-height: 1.7; max-width: 680px; margin: 0 auto;
+    }
+
+    /* ═══════════ PROBLEM / SOLUTION ═══════════ */
+    .problem-section {
+      background: white;
+      border-top: 1px solid var(--gray-200);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .problem-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      align-items: start;
+    }
+    .problem-col h3 {
+      font-size: 20px; font-weight: 800; margin-bottom: 24px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .problem-list { list-style: none; }
+    .problem-list li {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 15px; color: var(--gray-600);
+      line-height: 1.6;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-icon {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; margin-top: 2px;
+    }
+    .problem-icon.bad { background: #fef2f2; }
+    .problem-icon.good { background: #f0fdf4; }
+
+    /* ═══════════ APPS GRID ═══════════ */
+    .apps-section { background: var(--gray-50); }
+    .apps-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-bottom: 24px;
+    }
+    .app-card {
+      background: white; border-radius: 20px;
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+      display: flex; flex-direction: column;
+    }
+    .app-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 64px rgba(0,0,0,.08);
+    }
+    .app-card-accent { height: 5px; }
+    .app-card-body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
+    .app-card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .app-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    }
+    .app-meta { flex: 1; }
+    .app-pillar {
+      font-size: 10px; font-weight: 700; color: var(--gray-400);
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
+    .app-name { font-size: 20px; font-weight: 900; letter-spacing: -.3px; }
+    .app-tagline {
+      font-size: 13px; font-weight: 600; margin-bottom: 14px;
+    }
+    .app-desc {
+      font-size: 14px; color: var(--gray-600);
+      line-height: 1.7; flex: 1; margin-bottom: 18px;
+    }
+    .app-desc strong { color: var(--dark-2); }
+    .app-features {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 18px;
+    }
+    .feature {
+      font-size: 11px; font-weight: 600;
+      padding: 4px 10px; border-radius: 6px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      color: var(--gray-600);
+    }
+    .app-impact {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .app-impact-label {
+      font-size: 9px; font-weight: 700; color: var(--gray-400);
+      text-transform: uppercase; letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+    .app-impact-text {
+      font-size: 13px; color: var(--gray-700);
+      font-style: italic; line-height: 1.55;
+    }
+
+    /* Referentiel card — full width */
+    .ref-card {
+      background: linear-gradient(135deg, var(--dark) 0%, #1a2744 100%);
+      border-radius: 20px; padding: 36px 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+      align-items: center; color: white;
+    }
+    .ref-card h3 {
+      font-size: 24px; font-weight: 900; margin-bottom: 8px;
+      letter-spacing: -.5px;
+    }
+    .ref-card h3 span { color: var(--gold); }
+    .ref-card .ref-sub {
+      font-size: 14px; color: rgba(255,255,255,.5);
+      margin-bottom: 16px;
+    }
+    .ref-card p {
+      font-size: 15px; color: rgba(255,255,255,.7);
+      line-height: 1.7;
+    }
+    .ref-data-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .ref-data-item {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px; padding: 16px; text-align: center;
+    }
+    .ref-data-val {
+      font-size: 24px; font-weight: 900; color: white;
+    }
+    .ref-data-label {
+      font-size: 11px; color: rgba(255,255,255,.4);
+      margin-top: 4px; text-transform: uppercase; letter-spacing: .5px;
+    }
+
+    /* ═══════════ ARCHITECTURE SCHEMA ═══════════ */
+    .arch-section {
+      background: white;
+      border-top: 1px solid var(--gray-200);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .arch-diagram {
+      background: linear-gradient(160deg, #0f172a, #1e293b);
+      border-radius: 24px; padding: 48px;
+      position: relative; overflow: hidden;
+    }
+    .arch-diagram::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='%23ffffff06' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .arch-content { position: relative; z-index: 1; }
+    .arch-title {
+      text-align: center; color: white;
+      font-size: 20px; font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .arch-subtitle {
+      text-align: center; color: rgba(255,255,255,.4);
+      font-size: 13px; margin-bottom: 40px;
+    }
+
+    /* ═══════════ SCHEMA SVG ═══════════ */
+    .schema-container {
+      width: 100%; max-width: 900px; margin: 0 auto;
+    }
+    .schema-container svg { width: 100%; height: auto; }
+
+    /* ═══════════ FLOWS ═══════════ */
+    .flows-section { background: var(--gray-50); }
+    .flows-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .flow-card {
+      background: white; border-radius: 16px;
+      border: 1px solid var(--gray-200);
+      padding: 28px;
+      transition: transform .2s;
+    }
+    .flow-card:hover { transform: translateY(-3px); }
+    .flow-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px;
+    }
+    .flow-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .flow-title { font-size: 16px; font-weight: 800; color: var(--dark); }
+    .flow-subtitle { font-size: 12px; color: var(--gray-400); font-weight: 600; }
+    .flow-steps { list-style: none; }
+    .flow-steps li {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--gray-100);
+      font-size: 14px; color: var(--gray-600); line-height: 1.5;
+    }
+    .flow-steps li:last-child { border-bottom: none; }
+    .flow-step-num {
+      flex-shrink: 0;
+      width: 24px; height: 24px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; color: white;
+      margin-top: 1px;
+    }
+    .flow-apps {
+      display: flex; gap: 4px; margin-top: 12px; flex-wrap: wrap;
+    }
+    .flow-app-tag {
+      font-size: 10px; font-weight: 700; padding: 3px 8px;
+      border-radius: 4px; color: white;
+      text-transform: uppercase; letter-spacing: .5px;
+    }
+
+    /* ═══════════ VISION FINALE ═══════════ */
+    .vision-section {
+      background: linear-gradient(160deg, #0a1628 0%, #132847 60%, #1a365d 100%);
+      padding: 80px 48px;
+      color: white;
+    }
+    .vision-inner { max-width: 1200px; margin: 0 auto; }
+    .vision-header { text-align: center; margin-bottom: 48px; }
+    .vision-eyebrow {
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .vision-title {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 900; letter-spacing: -1px; line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .vision-desc {
+      font-size: 17px; color: rgba(255,255,255,.55);
+      line-height: 1.7; max-width: 680px; margin: 0 auto;
+    }
+    .vision-quote {
+      max-width: 800px; margin: 0 auto 48px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 16px 16px 0;
+      padding: 28px 32px;
+    }
+    .vision-quote p {
+      font-size: 18px; font-style: italic;
+      color: rgba(255,255,255,.8); line-height: 1.7;
+    }
+    .vision-quote cite {
+      display: block; margin-top: 12px;
+      font-size: 13px; color: rgba(255,255,255,.4);
+      font-style: normal;
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .pillar {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px; padding: 24px;
+      text-align: center;
+      transition: background .2s;
+    }
+    .pillar:hover { background: rgba(255,255,255,.08); }
+    .pillar-emoji { font-size: 32px; margin-bottom: 12px; }
+    .pillar-name { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+    .pillar-sub { font-size: 13px; color: rgba(255,255,255,.4); }
+
+    /* ═══════════ FOOTER ═══════════ */
+    footer {
+      background: var(--dark);
+      padding: 32px 48px;
+      color: rgba(255,255,255,.3);
+      text-align: center;
+      font-size: 13px;
+    }
+    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    footer a:hover { color: white; }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-flag {
+      display: flex; gap: 3px;
+    }
+    .footer-flag div { width: 16px; height: 4px; border-radius: 2px; }
+
+    /* ═══════════ RESPONSIVE ═══════════ */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .apps-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-inner { grid-template-columns: repeat(3, 1fr); }
+      .stat-item:nth-child(4), .stat-item:nth-child(5) { display: none; }
+    }
+    @media (max-width: 768px) {
+      .nav, .section, .hero, .vision-section, footer { padding-left: 20px; padding-right: 20px; }
+      .apps-grid { grid-template-columns: 1fr; }
+      .flows-grid { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+      .problem-grid { grid-template-columns: 1fr; }
+      .ref-card { grid-template-columns: 1fr; }
+      .ref-data-grid { grid-template-columns: repeat(3, 1fr); }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+      .arch-diagram { padding: 24px; }
+    }
+    @media (max-width: 480px) {
+      .pillars-grid { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: 1fr; }
+      .ref-data-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════ TRICOLOR ═══════ -->
+<div class="tricolor">
+  <span class="t-green"></span>
+  <span class="t-gold"></span>
+  <span class="t-red"></span>
+</div>
+
+<!-- ═══════ NAV ═══════ -->
+<nav class="nav">
+  <a class="nav-brand" href="#">
+    <div class="nav-logo">K</div>
+    <div class="nav-name">Kaw<span>é</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="#probleme">Le problème</a>
+    <a href="#applications">Applications</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#flux">Flux</a>
+    <a href="#vision">Vision</a>
+  </div>
+  <div class="nav-flag">
+    <div style="background: var(--green)"></div>
+    <div style="background: var(--gold)"></div>
+    <div style="background: var(--red)"></div>
+  </div>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <span>Écosystème opérationnel · Sénégal 2026</span>
+      </div>
+      <h1 class="hero-title">
+        Chaque enfant mérite<br>
+        d'être <em>vu, soigné,<br>instruit et protégé.</em>
+      </h1>
+      <p class="hero-subtitle">
+        Six applications interconnectées forment un système national intégré
+        pour garantir les droits fondamentaux de chaque enfant sénégalais —
+        de sa naissance jusqu'à son entrée dans la vie active.
+      </p>
+      <div class="hero-cta">
+        <a href="#applications" class="btn-primary">Découvrir l'écosystème</a>
+        <a href="#architecture" class="btn-secondary">Voir l'architecture</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- SVG mini-schema illustratif -->
+      <svg viewBox="0 0 420 380" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:420px;">
+        <!-- Centre — Enfant -->
+        <circle cx="210" cy="190" r="50" fill="url(#cg)" stroke="rgba(253,239,66,.3)" stroke-width="2"/>
+        <text x="210" y="180" text-anchor="middle" fill="white" font-size="28">👶</text>
+        <text x="210" y="202" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="10" font-weight="700">ENFANT</text>
+        <text x="210" y="214" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="8">enfant_id</text>
+        <!-- Apps orbiting -->
+        <!-- MedSen - top -->
+        <line x1="210" y1="140" x2="210" y2="68" stroke="rgba(26,124,62,.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <circle cx="210" cy="50" r="32" fill="rgba(26,124,62,.15)" stroke="rgba(26,124,62,.4)" stroke-width="1.5"/>
+        <text x="210" y="46" text-anchor="middle" fill="white" font-size="16">🩺</text>
+        <text x="210" y="62" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="7" font-weight="700">MedSen</text>
+        <!-- Education - top right -->
+        <line x1="250" y1="155" x2="325" y2="95" stroke="rgba(30,64,175,.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <circle cx="340" cy="80" r="32" fill="rgba(30,64,175,.15)" stroke="rgba(30,64,175,.4)" stroke-width="1.5"/>
+        <text x="340" y="76" text-anchor="middle" fill="white" font-size="16">🎓</text>
+        <text x="340" y="92" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="7" font-weight="700">Education</text>
+        <!-- Protection - right -->
+        <line x1="260" y1="190" x2="340" y2="190" stroke="rgba(6,95,70,.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <circle cx="370" cy="190" r="32" fill="rgba(6,95,70,.15)" stroke="rgba(6,95,70,.4)" stroke-width="1.5"/>
+        <text x="370" y="186" text-anchor="middle" fill="white" font-size="16">🛡️</text>
+        <text x="370" y="202" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="6" font-weight="700">ndawProtect</text>
+        <!-- Droits - bottom right -->
+        <line x1="250" y1="225" x2="325" y2="285" stroke="rgba(180,83,9,.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <circle cx="340" cy="300" r="32" fill="rgba(180,83,9,.15)" stroke="rgba(180,83,9,.4)" stroke-width="1.5"/>
+        <text x="340" y="296" text-anchor="middle" fill="white" font-size="16">⚖️</text>
+        <text x="340" y="312" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="7" font-weight="700">SunuDroits</text>
+        <!-- EtatCivil - bottom left -->
+        <line x1="170" y1="225" x2="95" y2="285" stroke="rgba(13,148,136,.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <circle cx="80" cy="300" r="32" fill="rgba(13,148,136,.15)" stroke="rgba(13,148,136,.4)" stroke-width="1.5"/>
+        <text x="80" y="296" text-anchor="middle" fill="white" font-size="16">📜</text>
+        <text x="80" y="312" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="6" font-weight="700">SunuEtatCivil</text>
+        <!-- Referentiel - left -->
+        <line x1="160" y1="190" x2="80" y2="190" stroke="rgba(59,130,246,.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <circle cx="50" cy="190" r="32" fill="rgba(59,130,246,.1)" stroke="rgba(59,130,246,.3)" stroke-width="1.5"/>
+        <text x="50" y="186" text-anchor="middle" fill="white" font-size="16">🗄️</text>
+        <text x="50" y="202" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="6" font-weight="700">Référentiel</text>
+        <!-- Referentiel to all — thin connecting arcs -->
+        <path d="M 75 162 Q 130 50 210 22" stroke="rgba(59,130,246,.15)" stroke-width="1" fill="none"/>
+        <path d="M 80 162 Q 200 20 340 52" stroke="rgba(59,130,246,.15)" stroke-width="1" fill="none"/>
+        <path d="M 82 190 Q 210 350 370 190" stroke="rgba(59,130,246,.08)" stroke-width="1" fill="none"/>
+        <!-- Gradient -->
+        <defs>
+          <radialGradient id="cg" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="rgba(253,239,66,.15)"/>
+            <stop offset="100%" stop-color="rgba(253,239,66,.03)"/>
+          </radialGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ STATS BAR ═══════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-val">6</div>
+      <div class="stat-label">Applications</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">14</div>
+      <div class="stat-label">Régions couvertes</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">1</div>
+      <div class="stat-label">enfant_id unifié</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">30<span>+</span></div>
+      <div class="stat-label">Types d'acteurs</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">100<span>%</span></div>
+      <div class="stat-label">Open source</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ LE PROBLEME ═══════ -->
+<section class="problem-section" id="probleme">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Le constat</div>
+      <h2 class="section-title">Pourquoi cet écosystème est nécessaire</h2>
+      <p class="section-desc">
+        Au Sénégal, comme dans beaucoup de pays, les systèmes qui touchent l'enfant
+        fonctionnent en silos. Les conséquences sont réelles et mesurables.
+      </p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-col">
+        <h3><span class="problem-icon bad">❌</span> Aujourd'hui — les silos</h3>
+        <ul class="problem-list">
+          <li>
+            <span class="problem-icon bad">📋</span>
+            <span>Les carnets de vaccination papier se perdent. Un enfant vacciné
+            à Tambacounda est revacciné à Dakar faute de traçabilité.</span>
+          </li>
+          <li>
+            <span class="problem-icon bad">👁️</span>
+            <span>Un enfant avec un problème de vision passe toute sa scolarité
+            sans dépistage. Personne ne sait, personne ne voit.</span>
+          </li>
+          <li>
+            <span class="problem-icon bad">🚸</span>
+            <span>Un enfant maltraité peut être signalé à la mairie, à l'école
+            et au commissariat — trois signalements isolés, aucune coordination.</span>
+          </li>
+          <li>
+            <span class="problem-icon bad">📄</span>
+            <span>Sans acte de naissance, un enfant n'existe pas officiellement.
+            Pas d'inscription scolaire, pas de bourse, pas de soins gratuits.</span>
+          </li>
+          <li>
+            <span class="problem-icon bad">💰</span>
+            <span>Les bourses et aides sociales arrivent trop tard, ou pas du tout,
+            car la famille ne sait pas qu'elle y a droit.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="problem-col">
+        <h3><span class="problem-icon good">✅</span> Avec Kawé — la coordination</h3>
+        <ul class="problem-list">
+          <li>
+            <span class="problem-icon good">💉</span>
+            <span><strong>MedSen</strong> sait exactement quels enfants ne sont pas vaccinés
+            dans chaque école. Les campagnes ciblent, les résultats remontent.</span>
+          </li>
+          <li>
+            <span class="problem-icon good">🎓</span>
+            <span><strong>LeerEducation</strong> détecte les difficultés scolaires tôt.
+            L'enseignant sait si l'enfant a un problème de santé ou familial qui explique ses notes.</span>
+          </li>
+          <li>
+            <span class="problem-icon good">🛡️</span>
+            <span><strong>ndawProtect</strong> centralise les signalements. Le travailleur social
+            voit l'historique complet : santé, scolarité, famille. L'intervention est rapide et coordonnée.</span>
+          </li>
+          <li>
+            <span class="problem-icon good">📜</span>
+            <span><strong>SunuEtatCivil</strong> donne une identité officielle à chaque enfant
+            dès la naissance. L'acte de naissance ouvre automatiquement l'accès à tous les services.</span>
+          </li>
+          <li>
+            <span class="problem-icon good">⚖️</span>
+            <span><strong>SunuDroits</strong> identifie automatiquement les familles éligibles
+            et pousse les aides avant même qu'elles ne soient demandées.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ LES 6 APPLICATIONS ═══════ -->
+<section class="apps-section" id="applications">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Les 6 briques de l'écosystème</div>
+      <h2 class="section-title">Cinq piliers, un socle commun</h2>
+      <p class="section-desc">
+        Chaque application s'adresse à un domaine précis du bien-être de l'enfant.
+        Elles partagent un identifiant unique — l'<strong>enfant_id</strong> —
+        pour offrir une vue complète et coordonnée à chaque acteur.
+      </p>
+    </div>
+
+    <div class="apps-grid">
+
+      <!-- MedSen -->
+      <div class="app-card">
+        <div class="app-card-accent" style="background: linear-gradient(90deg, #1A7C3E, #5FAD2D, #8DC63F)"></div>
+        <div class="app-card-body">
+          <div class="app-card-header">
+            <div class="app-icon" style="background: linear-gradient(135deg, #1A7C3E, #5FAD2D)">🩺</div>
+            <div class="app-meta">
+              <div class="app-pillar">Pilier 1 · Santé scolaire</div>
+              <div class="app-name" style="color: #1A7C3E">MedSen</div>
+            </div>
+          </div>
+          <div class="app-tagline" style="color: #5FAD2D">La santé scolaire numérisée</div>
+          <p class="app-desc">
+            Connecte les <strong>Inspections Médicales des Écoles (IME)</strong> avec chaque
+            établissement scolaire. Les infirmiers gèrent vaccinations, dépistages visuels
+            et auditifs, pathologies chroniques. Fini les carnets papier perdus.
+          </p>
+          <div class="app-features">
+            <span class="feature">Campagnes vaccination</span>
+            <span class="feature">Dépistage visuel</span>
+            <span class="feature">Gestion IME</span>
+            <span class="feature">Suivi par élève</span>
+            <span class="feature">Alertes pathologies</span>
+          </div>
+          <div class="app-impact">
+            <div class="app-impact-label">Impact</div>
+            <div class="app-impact-text">
+              « Un directeur sait en 30 secondes quels enfants de sa classe
+              n'ont pas encore été vaccinés cette année. »
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LeerEducation -->
+      <div class="app-card">
+        <div class="app-card-accent" style="background: linear-gradient(90deg, #1e40af, #6d28d9, #8b5cf6)"></div>
+        <div class="app-card-body">
+          <div class="app-card-header">
+            <div class="app-icon" style="background: linear-gradient(135deg, #1e40af, #7c3aed)">🎓</div>
+            <div class="app-meta">
+              <div class="app-pillar">Pilier 2 · Éducation</div>
+              <div class="app-name" style="color: #1e40af">LeerEducation</div>
+            </div>
+          </div>
+          <div class="app-tagline" style="color: #7c3aed">Éveiller chaque enfant à sa propre lumière</div>
+          <p class="app-desc">
+            <em>Leer</em> = « lumière » en wolof. Gestion éducative complète du ministère
+            à la salle de classe, fondée sur la <strong>pédagogie par la conscience</strong> :
+            pensée critique, connaissance de soi, créativité, mentorat communautaire.
+          </p>
+          <div class="app-features">
+            <span class="feature">Pilotage ministériel</span>
+            <span class="feature">Pensée critique</span>
+            <span class="feature">Journal émotionnel</span>
+            <span class="feature">Mentorat</span>
+            <span class="feature">CFEE · BFEM · BAC</span>
+          </div>
+          <div class="app-impact">
+            <div class="app-impact-label">Philosophie</div>
+            <div class="app-impact-text">
+              « Concepts avant faits. Coopération avant compétition.
+              Conscience avant performance. »
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ndawProtect -->
+      <div class="app-card">
+        <div class="app-card-accent" style="background: linear-gradient(90deg, #065f46, #059669, #10b981)"></div>
+        <div class="app-card-body">
+          <div class="app-card-header">
+            <div class="app-icon" style="background: linear-gradient(135deg, #065f46, #059669)">🛡️</div>
+            <div class="app-meta">
+              <div class="app-pillar">Pilier 3 · Protection</div>
+              <div class="app-name" style="color: #065f46">ndawProtect</div>
+            </div>
+          </div>
+          <div class="app-tagline" style="color: #059669">Le bouclier communautaire de l'enfant</div>
+          <p class="app-desc">
+            <em>Ndaw</em> = « enfant » en wolof. Système d'alerte et d'intervention
+            pour chaque enfant en danger : maltraitance, travail des enfants, mendicité forcée.
+            Travailleurs sociaux, référents et juges agissent <strong>ensemble, en temps réel</strong>.
+          </p>
+          <div class="app-features">
+            <span class="feature">Signalements urgents</span>
+            <span class="feature">Gestion des cas</span>
+            <span class="feature">Visites terrain</span>
+            <span class="feature">Ordonnances judiciaires</span>
+            <span class="feature">Réseau d'alertes</span>
+          </div>
+          <div class="app-impact">
+            <div class="app-impact-label">Impact</div>
+            <div class="app-impact-text">
+              « Un référent signale un enfant en danger à 9h.
+              Un travailleur social est assigné à 9h05. La famille est visitée dans la journée. »
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SunuEtatCivil -->
+      <div class="app-card">
+        <div class="app-card-accent" style="background: linear-gradient(90deg, #0d9488, #14b8a6, #2dd4bf)"></div>
+        <div class="app-card-body">
+          <div class="app-card-header">
+            <div class="app-icon" style="background: linear-gradient(135deg, #0d9488, #14b8a6)">📜</div>
+            <div class="app-meta">
+              <div class="app-pillar">Pilier 4 · État civil</div>
+              <div class="app-name" style="color: #0d9488">SunuEtatCivil</div>
+            </div>
+          </div>
+          <div class="app-tagline" style="color: #14b8a6">Le registre national numérisé</div>
+          <p class="app-desc">
+            Registre d'état civil pour toutes les mairies du Sénégal.
+            Naissances, mariages, décès, reconnaissances, adoptions, livrets de famille.
+            C'est ici que l'<strong>enfant_id</strong> naît — le premier acte qui donne
+            à un enfant une <strong>existence officielle</strong>.
+          </p>
+          <div class="app-features">
+            <span class="feature">Actes de naissance</span>
+            <span class="feature">Mariages & décès</span>
+            <span class="feature">Filiation complète</span>
+            <span class="feature">Livrets de famille</span>
+            <span class="feature">Numérisation archives</span>
+          </div>
+          <div class="app-impact">
+            <div class="app-impact-label">Impact</div>
+            <div class="app-impact-text">
+              « Un officier d'état civil enregistre une naissance. En une seconde,
+              l'enfant existe dans tout l'écosystème. »
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SunuDroits -->
+      <div class="app-card">
+        <div class="app-card-accent" style="background: linear-gradient(90deg, #78350f, #b45309, #d97706)"></div>
+        <div class="app-card-body">
+          <div class="app-card-header">
+            <div class="app-icon" style="background: linear-gradient(135deg, #78350f, #d97706)">⚖️</div>
+            <div class="app-meta">
+              <div class="app-pillar">Pilier 5 · Droits</div>
+              <div class="app-name" style="color: #92400e">SunuDroits</div>
+            </div>
+          </div>
+          <div class="app-tagline" style="color: #b45309">Chaque droit accessible à chaque enfant</div>
+          <p class="app-desc">
+            <em>Sunu</em> = « notre » en wolof. Registre national des droits de l'enfant :
+            bourses scolaires, aides alimentaires, couverture maladie universelle (CMU),
+            logement social, accès aux loisirs. Les <strong>aides trouvent les familles</strong>,
+            pas l'inverse.
+          </p>
+          <div class="app-features">
+            <span class="feature">Bourses scolaires</span>
+            <span class="feature">Aides alimentaires</span>
+            <span class="feature">Couverture CMU</span>
+            <span class="feature">Logement social</span>
+            <span class="feature">Loisirs & culture</span>
+          </div>
+          <div class="app-impact">
+            <div class="app-impact-label">Impact</div>
+            <div class="app-impact-text">
+              « Une famille des Parcelles Assainies soumet une demande de bourse
+              et reçoit une notification dès qu'elle est accordée — sans file d'attente. »
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Placeholder for alignment -->
+      <div></div>
+
+    </div>
+
+    <!-- Referentiel Commun — full width -->
+    <div class="ref-card">
+      <div>
+        <h3>🗄️ Référentiel <span>Commun</span></h3>
+        <div class="ref-sub">Le socle de données partagées — source unique de vérité</div>
+        <p>
+          Le Référentiel Commun est le <strong>sixième service</strong> de l'écosystème.
+          Il n'a pas de frontend utilisateur — c'est un service technique qui centralise
+          toutes les données de référence : régions, départements, communes, établissements
+          scolaires, niveaux d'enseignement, années scolaires.
+          <br><br>
+          Chaque modification est propagée en temps réel par <strong>webhooks signés (HMAC-SHA256)</strong>
+          aux cinq applications. Aucune donnée géographique ou éducative n'est dupliquée —
+          tout vient d'une seule source.
+        </p>
+      </div>
+      <div class="ref-data-grid">
+        <div class="ref-data-item">
+          <div class="ref-data-val">14</div>
+          <div class="ref-data-label">Régions</div>
+        </div>
+        <div class="ref-data-item">
+          <div class="ref-data-val">45</div>
+          <div class="ref-data-label">Départements</div>
+        </div>
+        <div class="ref-data-item">
+          <div class="ref-data-val">557</div>
+          <div class="ref-data-label">Communes</div>
+        </div>
+        <div class="ref-data-item">
+          <div class="ref-data-val">16</div>
+          <div class="ref-data-label">Niveaux scolaires</div>
+        </div>
+        <div class="ref-data-item">
+          <div class="ref-data-val">5</div>
+          <div class="ref-data-label">Cycles</div>
+        </div>
+        <div class="ref-data-item">
+          <div class="ref-data-val">5</div>
+          <div class="ref-data-label">Apps connectées</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ ARCHITECTURE ═══════ -->
+<section class="arch-section" id="architecture">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Architecture technique</div>
+      <h2 class="section-title">Comment tout se connecte</h2>
+      <p class="section-desc">
+        Chaque application est indépendante (sa propre base de données, son propre déploiement)
+        mais communique avec les autres via des APIs REST et des webhooks signés.
+      </p>
+    </div>
+
+    <div class="arch-diagram">
+      <div class="arch-content">
+        <div class="arch-title">Schéma de l'écosystème Kawé</div>
+        <div class="arch-subtitle">APIs REST + Webhooks HMAC-SHA256 · Bases de données séparées · Keycloak partagé</div>
+
+        <div class="schema-container">
+          <svg viewBox="0 0 860 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+            <!-- ═══ REFERENTIEL (top center) ═══ -->
+            <rect x="310" y="10" width="240" height="80" rx="16" fill="rgba(59,130,246,.1)" stroke="rgba(59,130,246,.4)" stroke-width="1.5"/>
+            <text x="430" y="38" text-anchor="middle" fill="white" font-size="14" font-weight="800">🗄️  Référentiel Commun</text>
+            <text x="430" y="55" text-anchor="middle" fill="rgba(255,255,255,.45)" font-size="10">Source unique · Port 3008</text>
+            <text x="430" y="70" text-anchor="middle" fill="rgba(59,130,246,.7)" font-size="9">Régions · Départements · Communes · Niveaux</text>
+
+            <!-- Webhooks lines from Referentiel to all apps -->
+            <line x1="350" y1="90" x2="140" y2="165" stroke="rgba(59,130,246,.2)" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="400" y1="90" x2="330" y2="165" stroke="rgba(59,130,246,.2)" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="460" y1="90" x2="530" y2="165" stroke="rgba(59,130,246,.2)" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="510" y1="90" x2="720" y2="165" stroke="rgba(59,130,246,.2)" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="430" y1="90" x2="430" y2="165" stroke="rgba(59,130,246,.2)" stroke-width="1" stroke-dasharray="3 3"/>
+
+            <!-- Webhook label -->
+            <rect x="340" y="118" width="180" height="20" rx="4" fill="rgba(59,130,246,.1)"/>
+            <text x="430" y="132" text-anchor="middle" fill="rgba(59,130,246,.7)" font-size="8" font-weight="700">WEBHOOKS HMAC-SHA256</text>
+
+            <!-- ═══ ROW OF APPS ═══ -->
+
+            <!-- MedSen -->
+            <rect x="30" y="165" width="180" height="100" rx="14" fill="rgba(26,124,62,.08)" stroke="rgba(26,124,62,.35)" stroke-width="1.5"/>
+            <rect x="30" y="165" width="180" height="5" rx="3" fill="rgba(26,124,62,.6)"/>
+            <text x="120" y="198" text-anchor="middle" fill="white" font-size="13" font-weight="800">🩺  MedSen</text>
+            <text x="120" y="213" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="9">Santé scolaire</text>
+            <text x="120" y="228" text-anchor="middle" fill="rgba(255,255,255,.3)" font-size="8">Port 3000/3001</text>
+            <text x="120" y="248" text-anchor="middle" fill="rgba(26,124,62,.6)" font-size="8">sante_db</text>
+
+            <!-- Education -->
+            <rect x="230" y="165" width="180" height="100" rx="14" fill="rgba(30,64,175,.08)" stroke="rgba(30,64,175,.35)" stroke-width="1.5"/>
+            <rect x="230" y="165" width="180" height="5" rx="3" fill="rgba(109,40,217,.6)"/>
+            <text x="320" y="198" text-anchor="middle" fill="white" font-size="13" font-weight="800">🎓  LeerEducation</text>
+            <text x="320" y="213" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="9">Éducation</text>
+            <text x="320" y="228" text-anchor="middle" fill="rgba(255,255,255,.3)" font-size="8">Port 3002/3003</text>
+            <text x="320" y="248" text-anchor="middle" fill="rgba(109,40,217,.6)" font-size="8">education_db</text>
+
+            <!-- ndawProtect -->
+            <rect x="430" y="165" width="180" height="100" rx="14" fill="rgba(6,95,70,.08)" stroke="rgba(6,95,70,.35)" stroke-width="1.5"/>
+            <rect x="430" y="165" width="180" height="5" rx="3" fill="rgba(5,150,105,.6)"/>
+            <text x="520" y="198" text-anchor="middle" fill="white" font-size="13" font-weight="800">🛡️  ndawProtect</text>
+            <text x="520" y="213" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="9">Protection</text>
+            <text x="520" y="228" text-anchor="middle" fill="rgba(255,255,255,.3)" font-size="8">Port 3004/3005</text>
+            <text x="520" y="248" text-anchor="middle" fill="rgba(5,150,105,.6)" font-size="8">protection_db</text>
+
+            <!-- SunuDroits -->
+            <rect x="630" y="165" width="180" height="100" rx="14" fill="rgba(180,83,9,.08)" stroke="rgba(180,83,9,.35)" stroke-width="1.5"/>
+            <rect x="630" y="165" width="180" height="5" rx="3" fill="rgba(217,119,6,.6)"/>
+            <text x="720" y="198" text-anchor="middle" fill="white" font-size="13" font-weight="800">⚖️  SunuDroits</text>
+            <text x="720" y="213" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="9">Droits de l'enfant</text>
+            <text x="720" y="228" text-anchor="middle" fill="rgba(255,255,255,.3)" font-size="8">Port 3006/3007</text>
+            <text x="720" y="248" text-anchor="middle" fill="rgba(217,119,6,.6)" font-size="8">droits_db</text>
+
+            <!-- ═══ ETAT CIVIL (center bottom — SOURCE) ═══ -->
+            <rect x="270" y="340" width="320" height="110" rx="18" fill="rgba(13,148,136,.08)" stroke="rgba(13,148,136,.5)" stroke-width="2"/>
+            <rect x="270" y="340" width="320" height="6" rx="3" fill="rgba(13,148,136,.7)"/>
+            <text x="430" y="373" text-anchor="middle" fill="white" font-size="15" font-weight="900">📜  SunuEtatCivil</text>
+            <text x="430" y="392" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="10">Registre national d'état civil · Port 3010/3011</text>
+            <text x="430" y="410" text-anchor="middle" fill="rgba(13,148,136,.8)" font-size="10" font-weight="700">SOURCE DE VÉRITÉ : enfant_id</text>
+            <text x="430" y="428" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="9">Naissances · Mariages · Décès · Filiation · NIN</text>
+            <text x="430" y="440" text-anchor="middle" fill="rgba(13,148,136,.6)" font-size="8">etatcivil_db</text>
+
+            <!-- enfant_id label — golden star -->
+            <circle cx="430" cy="310" r="22" fill="rgba(253,239,66,.1)" stroke="rgba(253,239,66,.35)" stroke-width="1.5"/>
+            <text x="430" y="306" text-anchor="middle" fill="var(--gold)" font-size="9" font-weight="800">enfant</text>
+            <text x="430" y="318" text-anchor="middle" fill="var(--gold)" font-size="9" font-weight="800">_id</text>
+
+            <!-- Lines from EtatCivil to enfant_id hub -->
+            <line x1="430" y1="340" x2="430" y2="332" stroke="rgba(13,148,136,.5)" stroke-width="2"/>
+
+            <!-- Lines from enfant_id to apps -->
+            <line x1="408" y1="310" x2="140" y2="265" stroke="rgba(253,239,66,.2)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <line x1="418" y1="295" x2="320" y2="265" stroke="rgba(253,239,66,.2)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <line x1="442" y1="295" x2="520" y2="265" stroke="rgba(253,239,66,.2)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <line x1="452" y1="310" x2="720" y2="265" stroke="rgba(253,239,66,.2)" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+            <!-- Arrows from EtatCivil to Droits (special link) -->
+            <path d="M 590 395 Q 650 370 630 265" stroke="rgba(217,119,6,.4)" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowOrange)"/>
+            <text x="645" y="330" fill="rgba(217,119,6,.7)" font-size="8" font-weight="600" transform="rotate(-75 645 330)">webhook naissance</text>
+
+            <!-- Inter-app communication arrows -->
+            <!-- MedSen <-> Protection -->
+            <path d="M 210 230 L 430 230" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+            <!-- Education <-> Protection -->
+            <path d="M 410 215 L 430 215" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+
+            <!-- ═══ KEYCLOAK (bottom left) ═══ -->
+            <rect x="30" y="380" width="180" height="70" rx="12" fill="rgba(239,68,68,.06)" stroke="rgba(239,68,68,.25)" stroke-width="1"/>
+            <text x="120" y="408" text-anchor="middle" fill="rgba(239,68,68,.8)" font-size="12" font-weight="800">🔐  Keycloak</text>
+            <text x="120" y="424" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="9">Realm unique : medsen</text>
+            <text x="120" y="438" text-anchor="middle" fill="rgba(255,255,255,.25)" font-size="8">Port 8080 · SSO · JWT</text>
+
+            <!-- Keycloak lines to all -->
+            <line x1="120" y1="380" x2="120" y2="265" stroke="rgba(239,68,68,.12)" stroke-width="1" stroke-dasharray="2 3"/>
+            <line x1="210" y1="395" x2="270" y2="395" stroke="rgba(239,68,68,.12)" stroke-width="1" stroke-dasharray="2 3"/>
+
+            <!-- ═══ POSTGRESQL (bottom right) ═══ -->
+            <rect x="650" y="380" width="180" height="70" rx="12" fill="rgba(59,130,246,.06)" stroke="rgba(59,130,246,.2)" stroke-width="1"/>
+            <text x="740" y="408" text-anchor="middle" fill="rgba(59,130,246,.8)" font-size="12" font-weight="800">🐘  PostgreSQL</text>
+            <text x="740" y="424" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="9">6 bases séparées</text>
+            <text x="740" y="438" text-anchor="middle" fill="rgba(255,255,255,.25)" font-size="8">Port 5432 · Prisma ORM</text>
+
+            <!-- LEGEND -->
+            <rect x="30" y="480" width="800" height="30" rx="6" fill="rgba(255,255,255,.03)"/>
+            <line x1="60" y1="495" x2="90" y2="495" stroke="rgba(59,130,246,.5)" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="95" y="499" fill="rgba(255,255,255,.4)" font-size="9">Webhooks référentiel</text>
+            <line x1="240" y1="495" x2="270" y2="495" stroke="rgba(253,239,66,.5)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="275" y="499" fill="rgba(255,255,255,.4)" font-size="9">Partage enfant_id</text>
+            <line x1="420" y1="495" x2="450" y2="495" stroke="rgba(217,119,6,.5)" stroke-width="1.5" stroke-dasharray="5 3"/>
+            <text x="455" y="499" fill="rgba(255,255,255,.4)" font-size="9">Webhooks inter-apps</text>
+            <circle cx="620" cy="495" r="4" fill="rgba(239,68,68,.5)"/>
+            <text x="630" y="499" fill="rgba(255,255,255,.4)" font-size="9">Authentification Keycloak</text>
+
+            <!-- Arrow markers -->
+            <defs>
+              <marker id="arrowOrange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <path d="M 0 0 L 8 3 L 0 6 Z" fill="rgba(217,119,6,.5)"/>
+              </marker>
+            </defs>
+
+          </svg>
+        </div>
+
+        <!-- Tech stack summary -->
+        <div style="display:flex; gap:12px; justify-content:center; margin-top:32px; flex-wrap:wrap;">
+          <div style="background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:8px 16px; display:flex; align-items:center; gap:8px;">
+            <span style="font-size:14px;">⚡</span>
+            <span style="font-size:12px; color:rgba(255,255,255,.6); font-weight:600;">NestJS 11</span>
+          </div>
+          <div style="background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:8px 16px; display:flex; align-items:center; gap:8px;">
+            <span style="font-size:14px;">⚛️</span>
+            <span style="font-size:12px; color:rgba(255,255,255,.6); font-weight:600;">Next.js 15/16</span>
+          </div>
+          <div style="background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:8px 16px; display:flex; align-items:center; gap:8px;">
+            <span style="font-size:14px;">🔷</span>
+            <span style="font-size:12px; color:rgba(255,255,255,.6); font-weight:600;">TypeScript</span>
+          </div>
+          <div style="background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:8px 16px; display:flex; align-items:center; gap:8px;">
+            <span style="font-size:14px;">🐘</span>
+            <span style="font-size:12px; color:rgba(255,255,255,.6); font-weight:600;">PostgreSQL</span>
+          </div>
+          <div style="background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:8px 16px; display:flex; align-items:center; gap:8px;">
+            <span style="font-size:14px;">🔺</span>
+            <span style="font-size:12px; color:rgba(255,255,255,.6); font-weight:600;">Prisma ORM</span>
+          </div>
+          <div style="background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:8px 16px; display:flex; align-items:center; gap:8px;">
+            <span style="font-size:14px;">🔐</span>
+            <span style="font-size:12px; color:rgba(255,255,255,.6); font-weight:600;">Keycloak SSO</span>
+          </div>
+          <div style="background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:8px 16px; display:flex; align-items:center; gap:8px;">
+            <span style="font-size:14px;">🎨</span>
+            <span style="font-size:12px; color:rgba(255,255,255,.6); font-weight:600;">Tailwind CSS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FLUX INTER-APPS ═══════ -->
+<section class="flows-section" id="flux">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Flux de données</div>
+      <h2 class="section-title">Des scénarios concrets, de bout en bout</h2>
+      <p class="section-desc">
+        L'écosystème prend tout son sens quand les applications communiquent.
+        Voici quatre flux réels qui montrent comment un événement dans une app
+        déclenche des actions dans les autres.
+      </p>
+    </div>
+
+    <div class="flows-grid">
+
+      <!-- Flux 1 : Naissance -->
+      <div class="flow-card">
+        <div class="flow-header">
+          <div class="flow-icon" style="background: rgba(13,148,136,.1);">📜</div>
+          <div>
+            <div class="flow-title">Naissance enregistrée</div>
+            <div class="flow-subtitle">L'enfant entre dans l'écosystème</div>
+          </div>
+        </div>
+        <ol class="flow-steps">
+          <li>
+            <span class="flow-step-num" style="background:#0d9488">1</span>
+            <span>L'officier d'état civil enregistre la naissance dans <strong>SunuEtatCivil</strong>. Un <strong>enfant_id</strong> (UUID) est généré.</span>
+          </li>
+          <li>
+            <span class="flow-step-num" style="background:#b45309">2</span>
+            <span>Un webhook notifie <strong>SunuDroits</strong> qui crée automatiquement le profil enfant et vérifie l'éligibilité aux aides.</span>
+          </li>
+          <li>
+            <span class="flow-step-num" style="background:#1A7C3E">3</span>
+            <span>Quand l'enfant est inscrit à l'école, <strong>MedSen</strong> reçoit l'enfant_id et planifie les vaccinations obligatoires.</span>
+          </li>
+          <li>
+            <span class="flow-step-num" style="background:#1e40af">4</span>
+            <span><strong>LeerEducation</strong> crée le dossier scolaire de l'élève, lié au même identifiant.</span>
+          </li>
+        </ol>
+        <div class="flow-apps">
+          <span class="flow-app-tag" style="background:#0d9488">EtatCivil</span>
+          <span class="flow-app-tag" style="background:#b45309">Droits</span>
+          <span class="flow-app-tag" style="background:#1A7C3E">MedSen</span>
+          <span class="flow-app-tag" style="background:#1e40af">Education</span>
+        </div>
+      </div>
+
+      <!-- Flux 2 : Malnutrition -->
+      <div class="flow-card">
+        <div class="flow-header">
+          <div class="flow-icon" style="background: rgba(26,124,62,.1);">🩺</div>
+          <div>
+            <div class="flow-title">Malnutrition détectée</div>
+            <div class="flow-subtitle">Du médical au social</div>
+          </div>
+        </div>
+        <ol class="flow-steps">
+          <li>
+            <span class="flow-step-num" style="background:#1A7C3E">1</span>
+            <span>L'infirmier scolaire détecte une malnutrition lors d'un bilan dans <strong>MedSen</strong>.</span>
+          </li>
+          <li>
+            <span class="flow-step-num" style="background:#065f46">2</span>
+            <span><strong>ndawProtect</strong> reçoit l'alerte et ouvre un cas de suivi. Un travailleur social est assigné.</span>
+          </li>
+          <li>
+            <span class="flow-step-num" style="background:#b45309">3</span>
+            <span><strong>SunuDroits</strong> vérifie si la famille bénéficie déjà d'une aide alimentaire. Si non, une demande est pré-remplie.</span>
+          </li>
+          <li>
+            <span class="flow-step-num" style="background:#1e40af">4</span>
+            <span><strong>LeerEducation</strong> adapte le suivi pédagogique : l'enseignant est informé (sans détails médicaux) de la situation.</span>
+          </li>
+        </ol>
+        <div class="flow-apps">
+          <span class="flow-app-tag" style="background:#1A7C3E">MedSen</span>
+          <span class="flow-app-tag" style="background:#065f46">Protection</span>
+          <span class="flow-app-tag" style="background:#b45309">Droits</span>
+          <span class="flow-app-tag" style="background:#1e40af">Education</span>
+        </div>
+      </div>
+
+      <!-- Flux 3 : Enfant non scolarisé -->
+      <div class="flow-card">
+        <div class="flow-header">
+          <div class="flow-icon" style="background: rgba(30,64,175,.1);">🎓</div>
+          <div>
+            <div class="flow-title">Enfant non scolarisé détecté</div>
+            <div class="flow-subtitle">De l'alerte à la réinsertion</div>
+          </div>
+        </div>
+        <ol class="flow-steps">
+          <li>
+            <span class="flow-step-num" style="background:#065f46">1</span>
+            <span>Un référent communautaire signale un enfant non scolarisé via <strong>ndawProtect</strong>.</span>
+          </li>
+          <li>
+            <span class="flow-step-num" style="background:#0d9488">2</span>
+            <span><strong>SunuEtatCivil</strong> est consulté : l'enfant a-t-il un acte de naissance ? Si non, un jugement supplétif est initié.</span>
+          </li>
+          <li>
+            <span class="flow-step-num" style="background:#b45309">3</span>
+            <span><strong>SunuDroits</strong> identifie les aides disponibles : bourse, kit scolaire, allocation familiale.</span>
+          </li>
+          <li>
+            <span class="flow-step-num" style="background:#1e40af">4</span>
+            <span><strong>LeerEducation</strong> procède à l'inscription dans l'établissement le plus proche avec le programme adapté.</span>
+          </li>
+        </ol>
+        <div class="flow-apps">
+          <span class="flow-app-tag" style="background:#065f46">Protection</span>
+          <span class="flow-app-tag" style="background:#0d9488">EtatCivil</span>
+          <span class="flow-app-tag" style="background:#b45309">Droits</span>
+          <span class="flow-app-tag" style="background:#1e40af">Education</span>
+        </div>
+      </div>
+
+      <!-- Flux 4 : Décès -->
+      <div class="flow-card">
+        <div class="flow-header">
+          <div class="flow-icon" style="background: rgba(239,68,68,.1);">⚫</div>
+          <div>
+            <div class="flow-title">Décès d'un parent</div>
+            <div class="flow-subtitle">Protection automatique de l'orphelin</div>
+          </div>
+        </div>
+        <ol class="flow-steps">
+          <li>
+            <span class="flow-step-num" style="background:#0d9488">1</span>
+            <span>Un décès parental est enregistré dans <strong>SunuEtatCivil</strong>. Les enfants du défunt sont identifiés via la filiation.</span>
+          </li>
+          <li>
+            <span class="flow-step-num" style="background:#b45309">2</span>
+            <span><strong>SunuDroits</strong> déclenche automatiquement l'éligibilité aux allocations orphelin et à la CMU gratuite.</span>
+          </li>
+          <li>
+            <span class="flow-step-num" style="background:#065f46">3</span>
+            <span><strong>ndawProtect</strong> ouvre un dossier de suivi pour s'assurer que l'enfant est bien pris en charge (tutelle, hébergement).</span>
+          </li>
+          <li>
+            <span class="flow-step-num" style="background:#1e40af">4</span>
+            <span><strong>LeerEducation</strong> signale la situation à l'enseignant pour un accompagnement pédagogique adapté.</span>
+          </li>
+        </ol>
+        <div class="flow-apps">
+          <span class="flow-app-tag" style="background:#0d9488">EtatCivil</span>
+          <span class="flow-app-tag" style="background:#b45309">Droits</span>
+          <span class="flow-app-tag" style="background:#065f46">Protection</span>
+          <span class="flow-app-tag" style="background:#1e40af">Education</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ VISION FINALE ═══════ -->
+<section class="vision-section" id="vision">
+  <div class="vision-inner">
+    <div class="vision-header">
+      <div class="vision-eyebrow">La vision fondatrice</div>
+      <h2 class="vision-title">Un enfant, un identifiant,<br>une vie protégée</h2>
+      <p class="vision-desc">
+        L'objectif ultime de Kawé est simple : qu'aucun enfant ne passe
+        à travers les mailles du filet — ni sans acte de naissance,
+        ni sans soins, ni sans école, ni sans protection.
+      </p>
+    </div>
+
+    <div class="vision-quote">
+      <p>
+        « Il faut un village pour élever un enfant. Kawé est ce village — numérisé,
+        coordonné, vigilant. Ce que le médecin découvre éclaire l'enseignant.
+        Ce que l'enseignant observe protège l'enfant. Ce que le travailleur social
+        signale débloque une aide. Ce que l'officier d'état civil enregistre
+        ouvre toutes les portes. »
+      </p>
+      <cite>— Vision de l'écosystème Kawé, Sénégal 2026</cite>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="pillar-emoji">👶</div>
+        <div class="pillar-name">Exister</div>
+        <div class="pillar-sub">Acte de naissance · Identité officielle</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-emoji">🩺</div>
+        <div class="pillar-name">Être en bonne santé</div>
+        <div class="pillar-sub">Vaccins · Dépistages · Suivi médical</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-emoji">🎓</div>
+        <div class="pillar-name">Apprendre</div>
+        <div class="pillar-sub">École · Conscience · Créativité</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-emoji">🛡️</div>
+        <div class="pillar-name">Être protégé</div>
+        <div class="pillar-sub">Vigilance · Intervention · Justice</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-emoji">⚖️</div>
+        <div class="pillar-name">Avoir ses droits</div>
+        <div class="pillar-sub">Bourses · Aides · CMU · Logement</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-emoji">🤝</div>
+        <div class="pillar-name">Grandir dignement</div>
+        <div class="pillar-sub">Famille · Communauté · Avenir</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ TRICOLOR BOTTOM ═══════ -->
+<div class="tricolor">
+  <span class="t-green"></span>
+  <span class="t-gold"></span>
+  <span class="t-red"></span>
+</div>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="footer-inner">
+    <p>Kawé · Écosystème numérique pour l'enfance · République du Sénégal · 2026</p>
+    <div class="footer-flag">
+      <div style="background: var(--green)"></div>
+      <div style="background: var(--gold)"></div>
+      <div style="background: var(--red)"></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Smooth scroll -->
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>
