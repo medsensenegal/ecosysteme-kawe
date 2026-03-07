@@ -578,7 +578,8 @@
     /* ═══════════ RESPONSIVE ═══════════ */
     @media (max-width: 1024px) {
       .hero-inner { grid-template-columns: 1fr; }
-      .hero-visual { display: none; }
+      .hero-visual { justify-content: center; }
+      .hero-illustration { max-width: 320px; }
       .apps-grid, .demo-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
@@ -593,6 +594,7 @@
     @media (max-width: 480px) {
       .pillars-grid { grid-template-columns: 1fr; }
       .stats-inner { grid-template-columns: 1fr; }
+      .hero-illustration { max-width: 260px; }
     }
   </style>
 </head>
