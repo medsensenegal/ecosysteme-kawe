@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sénégal Kawé · L'écosystème numérique qui élève le Sénégal</title>
-  <meta name="description" content="Six applications pour transformer la santé scolaire, l'éducation, la protection de l'enfance, l'état civil et les droits sociaux au Sénégal." />
+  <title>Senegal Kawe · The digital ecosystem that elevates Senegal</title>
+  <meta name="description" content="Six applications to transform school health, education, child protection, civil registry and social rights in Senegal." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,6 +85,15 @@
       transition: all .15s; border: none; cursor: pointer;
     }
     .nav-cta:hover { background: var(--green-light); }
+    .lang-switch {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 6px 12px; border-radius: 8px;
+      font-size: 12px; font-weight: 700; color: var(--gray-500);
+      background: var(--gray-100); border: 1px solid var(--gray-200);
+      text-decoration: none; margin-right: 8px;
+      transition: all .15s;
+    }
+    .lang-switch:hover { border-color: var(--green); color: var(--green); }
 
     /* ═══════════ HERO ═══════════ */
     .hero {
@@ -606,7 +615,6 @@
 <!-- ═══════ NAV ═══════ -->
 <nav class="nav">
   <a class="nav-brand" href="#">
-    <!-- Logo SVG : soleil levant + silhouette qui s'élève -->
     <svg class="nav-logo-svg" viewBox="0 0 40 40" fill="none">
       <circle cx="20" cy="14" r="9" fill="url(#sunGrad)" opacity=".9"/>
       <line x1="20" y1="2" x2="20" y2="5" stroke="#FDEF42" stroke-width="2" stroke-linecap="round"/>
@@ -622,18 +630,18 @@
         <radialGradient id="sunGrad"><stop offset="0%" stop-color="#FDEF42"/><stop offset="100%" stop-color="#f5c542"/></radialGradient>
       </defs>
     </svg>
-    <div class="nav-name">Sénégal Kaw<span>é</span></div>
+    <div class="nav-name">Senegal Kaw<span>e</span></div>
   </a>
   <div class="nav-links">
-    <a href="#constat">Le constat</a>
+    <a href="#challenge">The challenge</a>
     <a href="#applications">Applications</a>
-    <a href="#comment">Comment ça marche</a>
-    <a href="#demo">Démo</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#demo">Demo</a>
     <a href="#contact">Contact</a>
   </div>
   <div style="display:flex;align-items:center;gap:8px;">
-    <a href="en.html" style="display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:700;color:var(--gray-500);background:var(--gray-100);border:1px solid var(--gray-200);text-decoration:none;transition:all .15s;" onmouseover="this.style.borderColor='var(--green)';this.style.color='var(--green)'" onmouseout="this.style.borderColor='var(--gray-200)';this.style.color='var(--gray-500)'">EN</a>
-    <a href="#demo" class="nav-cta">Voir la démo</a>
+    <a href="index.html" class="lang-switch">FR</a>
+    <a href="#demo" class="nav-cta">View demo</a>
   </div>
 </nav>
 
@@ -643,37 +651,32 @@
     <div>
       <div class="hero-badge">
         <div class="hero-badge-dot"></div>
-        <span>Prêt pour le déploiement pilote</span>
+        <span>Ready for pilot deployment</span>
       </div>
       <h1 class="hero-title">
-        <em>Sénégal Kawé</em><br>
-        L'écosystème qui élève<br>
-        le Sénégal.
+        <em>Senegal Kawe</em><br>
+        The ecosystem that<br>
+        elevates Senegal.
       </h1>
       <p class="hero-subtitle">
-        Six applications interconnectées pour transformer
-        la santé scolaire, l'éducation, la protection de l'enfance,
-        l'état civil et les droits sociaux de chaque Sénégalais.
+        Six interconnected applications to transform
+        school health, education, child protection,
+        civil registry and social rights for every Senegalese citizen.
       </p>
       <p class="hero-meaning">
-        <strong>Kawé</strong> signifie « ce qui est élevé » en wolof.
-        C'est l'idée d'un Sénégal qui s'élève — par ses enfants en bonne santé,
-        ses citoyens identifiés, ses familles accompagnées.
+        <strong>Kawe</strong> means "that which is elevated" in Wolof.
+        It embodies the idea of a Senegal that rises — through healthy children,
+        identified citizens, and supported families.
       </p>
       <div class="hero-cta">
-        <a href="#demo" class="btn-primary">Tester les applications</a>
-        <a href="#applications" class="btn-secondary">Découvrir l'écosystème</a>
+        <a href="#demo" class="btn-primary">Try the applications</a>
+        <a href="#applications" class="btn-secondary">Discover the ecosystem</a>
       </div>
     </div>
     <div class="hero-visual">
-      <!-- Illustration : enfants africains épanouis sous un soleil levant -->
       <svg class="hero-illustration" viewBox="0 0 480 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Sky gradient -->
         <rect width="480" height="400" rx="24" fill="url(#skyGrad)"/>
-
-        <!-- Sun -->
         <circle cx="240" cy="120" r="60" fill="url(#sunBig)" opacity=".9"/>
-        <!-- Sun rays -->
         <g stroke="#FDEF42" stroke-width="2.5" stroke-linecap="round" opacity=".6">
           <line x1="240" y1="42" x2="240" y2="52"/>
           <line x1="290" y1="55" x2="285" y2="63"/>
@@ -685,24 +688,16 @@
           <line x1="316" y1="150" x2="308" y2="145"/>
           <line x1="164" y1="150" x2="172" y2="145"/>
         </g>
-
-        <!-- Ground / landscape -->
         <ellipse cx="240" cy="360" rx="260" ry="80" fill="#2d8a4e" opacity=".25"/>
         <ellipse cx="240" cy="375" rx="230" ry="50" fill="#2d8a4e" opacity=".15"/>
-
-        <!-- Baobab silhouette left -->
         <g opacity=".12">
           <rect x="68" y="240" width="12" height="90" rx="5" fill="#1a5c2e"/>
           <ellipse cx="74" cy="240" rx="35" ry="28" fill="#1a5c2e"/>
         </g>
-
-        <!-- Baobab silhouette right -->
         <g opacity=".1">
           <rect x="385" y="250" width="10" height="80" rx="4" fill="#1a5c2e"/>
           <ellipse cx="390" cy="250" rx="30" ry="24" fill="#1a5c2e"/>
         </g>
-
-        <!-- Child 1 (girl, left) — raised arms -->
         <g transform="translate(120, 230)">
           <circle cx="0" cy="0" r="12" fill="#8B6914"/>
           <ellipse cx="0" cy="30" rx="10" ry="16" fill="var(--red)" opacity=".85"/>
@@ -710,12 +705,9 @@
           <line x1="0" y1="46" x2="6" y2="72" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/>
           <line x1="-10" y1="28" x2="-20" y2="10" stroke="#8B6914" stroke-width="2.5" stroke-linecap="round"/>
           <line x1="10" y1="28" x2="20" y2="10" stroke="#8B6914" stroke-width="2.5" stroke-linecap="round"/>
-          <!-- Hair puffs -->
           <circle cx="-8" cy="-10" r="5" fill="#2c1810"/>
           <circle cx="8" cy="-10" r="5" fill="#2c1810"/>
         </g>
-
-        <!-- Child 2 (boy, center-left) — jumping -->
         <g transform="translate(190, 222)">
           <circle cx="0" cy="0" r="11" fill="#a0752e"/>
           <ellipse cx="0" cy="28" rx="9" ry="15" fill="var(--green)" opacity=".85"/>
@@ -725,8 +717,6 @@
           <line x1="9" y1="26" x2="22" y2="8" stroke="#a0752e" stroke-width="2.5" stroke-linecap="round"/>
           <ellipse cx="0" cy="-8" rx="5" ry="4" fill="#1a1008"/>
         </g>
-
-        <!-- Child 3 (girl, center) — tallest, arms out wide -->
         <g transform="translate(250, 215)">
           <circle cx="0" cy="0" r="13" fill="#7a5a18"/>
           <ellipse cx="0" cy="32" rx="11" ry="18" fill="#FDEF42" opacity=".75"/>
@@ -736,8 +726,6 @@
           <line x1="11" y1="30" x2="28" y2="16" stroke="#7a5a18" stroke-width="2.5" stroke-linecap="round"/>
           <path d="M -10 -8 Q 0 -20 10 -8" fill="#1a1008"/>
         </g>
-
-        <!-- Child 4 (boy, center-right) -->
         <g transform="translate(310, 228)">
           <circle cx="0" cy="0" r="11" fill="#6b4e14"/>
           <ellipse cx="0" cy="27" rx="9" ry="14" fill="#3b82f6" opacity=".75"/>
@@ -747,8 +735,6 @@
           <line x1="9" y1="25" x2="20" y2="12" stroke="#6b4e14" stroke-width="2.5" stroke-linecap="round"/>
           <ellipse cx="0" cy="-7" rx="6" ry="4" fill="#1a1008"/>
         </g>
-
-        <!-- Child 5 (girl, right) — smaller -->
         <g transform="translate(365, 238)">
           <circle cx="0" cy="0" r="10" fill="#9a6e20"/>
           <ellipse cx="0" cy="24" rx="8" ry="13" fill="#e879a0" opacity=".7"/>
@@ -759,8 +745,6 @@
           <circle cx="-6" cy="-8" r="4" fill="#1a1008"/>
           <circle cx="6" cy="-8" r="4" fill="#1a1008"/>
         </g>
-
-        <!-- Stars / sparkles -->
         <g fill="var(--gold)" opacity=".5">
           <circle cx="80" cy="60" r="2"/>
           <circle cx="400" cy="50" r="2.5"/>
@@ -769,10 +753,7 @@
           <circle cx="440" cy="100" r="1.5"/>
           <circle cx="45" cy="110" r="2"/>
         </g>
-
-        <!-- Text at bottom -->
-        <text x="240" y="365" text-anchor="middle" fill="var(--green)" font-size="14" font-weight="800" opacity=".6">Un Sénégal qui s'élève</text>
-
+        <text x="240" y="365" text-anchor="middle" fill="var(--green)" font-size="14" font-weight="800" opacity=".6">A Senegal that rises</text>
         <defs>
           <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#fef9e7"/>
@@ -800,106 +781,106 @@
     </div>
     <div class="stat-item">
       <div class="stat-val">14</div>
-      <div class="stat-label">Régions du Sénégal</div>
+      <div class="stat-label">Regions of Senegal</div>
     </div>
     <div class="stat-item">
       <div class="stat-val">30+</div>
-      <div class="stat-label">Types d'acteurs</div>
+      <div class="stat-label">Types of users</div>
     </div>
     <div class="stat-item">
       <div class="stat-val">100%</div>
-      <div class="stat-label">Conçu au Sénégal</div>
+      <div class="stat-label">Designed in Senegal</div>
     </div>
   </div>
 </div>
 
-<!-- ═══════ LE CONSTAT ═══════ -->
-<section class="constat-section" id="constat">
+<!-- ═══════ THE CHALLENGE ═══════ -->
+<section class="constat-section" id="challenge">
   <div class="section">
     <div class="section-header">
-      <div class="section-eyebrow">Le constat</div>
-      <h2 class="section-title">Une promesse faite aux enfants.<br>Il est temps de la tenir.</h2>
+      <div class="section-eyebrow">The challenge</div>
+      <h2 class="section-title">A promise made to children.<br>It is time to keep it.</h2>
       <p class="section-desc" style="max-width:780px">
-        En <strong>1990</strong>, le Sénégal a ratifié la <strong>Convention Internationale des Droits de l'Enfant (CIDE)</strong>.
-        Il s'est engagé devant le monde à garantir à chaque enfant le droit à la santé, à l'éducation,
-        à la protection, à une identité et à un niveau de vie décent.<br><br>
-        Plus de trente ans après, des progrès ont été faits. Mais la réalité quotidienne
-        de trop d'enfants sénégalais reste en décalage avec cette promesse.
+        In <strong>1990</strong>, Senegal ratified the <strong>Convention on the Rights of the Child (CRC)</strong>.
+        It committed before the world to guarantee every child the right to health, education,
+        protection, identity and a decent standard of living.<br><br>
+        More than thirty years later, progress has been made. But the daily reality
+        of too many Senegalese children remains at odds with that promise.
       </p>
     </div>
     <div class="constat-grid">
       <div class="constat-col">
-        <h3><span class="constat-icon icon-bad">❌</span> La réalité, aujourd'hui</h3>
+        <h3><span class="constat-icon icon-bad">&#10060;</span> The reality, today</h3>
         <ul class="constat-list">
           <li>
-            <span class="constat-icon icon-bad">🏥</span>
-            <span>Des enfants ne sont <strong>jamais vus par un médecin</strong> pendant toute leur scolarité.
-            Des problèmes de vision, d'audition ou de nutrition passent inaperçus pendant des années,
-            faute de suivi organisé.</span>
+            <span class="constat-icon icon-bad">&#127973;</span>
+            <span>Children are <strong>never seen by a doctor</strong> throughout their entire schooling.
+            Vision, hearing or nutrition problems go undetected for years
+            due to the lack of organized follow-up.</span>
           </li>
           <li>
-            <span class="constat-icon icon-bad">📚</span>
-            <span>Des enfants sont <strong>dans la rue au lieu d'être à l'école</strong>.
-            Des talibés mendient au quotidien. D'autres décrochent faute d'accompagnement.
-            Le droit à l'éducation reste un privilège pour beaucoup.</span>
+            <span class="constat-icon icon-bad">&#128218;</span>
+            <span>Children are <strong>on the streets instead of in school</strong>.
+            Talibes beg on a daily basis. Others drop out for lack of support.
+            The right to education remains a privilege for many.</span>
           </li>
           <li>
-            <span class="constat-icon icon-bad">🚸</span>
-            <span>Des enfants sont <strong>maltraités, exploités, livrés à eux-mêmes</strong>.
-            Quand un signalement est fait, il se perd entre les services.
-            Aucune coordination, aucune visibilité d'ensemble.</span>
+            <span class="constat-icon icon-bad">&#128696;</span>
+            <span>Children are <strong>abused, exploited, left to fend for themselves</strong>.
+            When a report is made, it gets lost between services.
+            No coordination, no overall visibility.</span>
           </li>
           <li>
-            <span class="constat-icon icon-bad">📄</span>
-            <span>Des millions de Sénégalais <strong>n'ont pas d'acte de naissance</strong>.
-            Sans identité officielle, pas d'inscription à l'école, pas d'accès aux soins,
-            pas de droits. Ces enfants sont invisibles.</span>
+            <span class="constat-icon icon-bad">&#128196;</span>
+            <span>Millions of Senegalese <strong>do not have a birth certificate</strong>.
+            Without an official identity, no school enrollment, no access to healthcare,
+            no rights. These children are invisible.</span>
           </li>
           <li>
-            <span class="constat-icon icon-bad">🍚</span>
-            <span>Des familles éligibles aux aides sociales <strong>ne savent même pas
-            qu'elles y ont droit</strong>. Des enfants ne mangent pas à leur faim,
-            n'ont aucun loisir, aucune aide — alors que des programmes existent.</span>
+            <span class="constat-icon icon-bad">&#127834;</span>
+            <span>Families eligible for social benefits <strong>do not even know
+            they are entitled to them</strong>. Children go hungry,
+            have no leisure activities, no assistance — even though programs exist.</span>
           </li>
         </ul>
       </div>
       <div class="constat-col">
-        <h3><span class="constat-icon icon-good">✅</span> Avec Sénégal Kawé</h3>
+        <h3><span class="constat-icon icon-good">&#9989;</span> With Senegal Kawe</h3>
         <p style="font-size:0.95rem; color:#555; margin-bottom:1.2rem; line-height:1.6">
-          Chaque application répond à un droit fondamental de la CIDE.
-          Ensemble, elles donnent au Sénégal les outils pour <strong>honorer concrètement
-          ses engagements</strong> envers chaque enfant.
+          Each application addresses a fundamental right from the CRC.
+          Together, they give Senegal the tools to <strong>concretely honor
+          its commitments</strong> to every child.
         </p>
         <ul class="constat-list">
           <li>
             <span class="constat-icon icon-good" style="padding:2px;overflow:hidden"><img src="logos/medsen.jpg" alt="MedSen" style="width:100%;height:100%;object-fit:cover;border-radius:6px"></span>
-            <span><strong>MedSen</strong> — <em>Droit à la santé (art. 24)</em><br>
-            Suivi médical complet de chaque élève : bilans, vaccinations, dépistages,
-            nutrition, pathologies, urgences. Plus aucun enfant oublié.</span>
+            <span><strong>MedSen</strong> — <em>Right to health (Art. 24)</em><br>
+            Complete medical follow-up for every student: check-ups, vaccinations, screenings,
+            nutrition, chronic conditions, emergencies. No child left behind.</span>
           </li>
           <li>
-            <span class="constat-icon icon-good">🎓</span>
-            <span><strong>LeerEducation</strong> — <em>Droit à l'éducation (art. 28-29)</em><br>
-            Gestion complète du système éducatif, du ministère à la salle de classe.
-            Chaque enfant inscrit, suivi, accompagné vers la réussite.</span>
+            <span class="constat-icon icon-good">&#127891;</span>
+            <span><strong>LeerEducation</strong> — <em>Right to education (Art. 28-29)</em><br>
+            Complete management of the education system, from the ministry to the classroom.
+            Every child enrolled, monitored, and guided toward success.</span>
           </li>
           <li>
-            <span class="constat-icon icon-good">🛡️</span>
-            <span><strong>NdawProtect</strong> — <em>Droit à la protection (art. 19)</em><br>
-            Signalements centralisés, suivi coordonné. Travailleurs sociaux,
-            référents et juges interviennent ensemble, sans faille.</span>
+            <span class="constat-icon icon-good">&#128737;&#65039;</span>
+            <span><strong>NdawProtect</strong> — <em>Right to protection (Art. 19)</em><br>
+            Centralized reporting, coordinated follow-up. Social workers,
+            community referents and judges work together, seamlessly.</span>
           </li>
           <li>
-            <span class="constat-icon icon-good">📜</span>
-            <span><strong>SunuEtatCivil</strong> — <em>Droit à une identité (art. 7-8)</em><br>
-            État civil numérisé pour toutes les mairies. Chaque naissance enregistrée,
-            chaque citoyen reconnu. L'identité numérique de tout un pays.</span>
+            <span class="constat-icon icon-good">&#128220;</span>
+            <span><strong>SunuEtatCivil</strong> — <em>Right to an identity (Art. 7-8)</em><br>
+            Digitized civil registry for all municipalities. Every birth registered,
+            every citizen recognized. The digital identity of an entire country.</span>
           </li>
           <li>
-            <span class="constat-icon icon-good">⚖️</span>
-            <span><strong>SunuDroits</strong> — <em>Droit à un niveau de vie décent (art. 26-27)</em><br>
-            Bourses, aides, couverture maladie, loisirs. Les aides trouvent les familles,
-            pas l'inverse. Plus aucun droit ne reste lettre morte.</span>
+            <span class="constat-icon icon-good">&#9878;&#65039;</span>
+            <span><strong>SunuDroits</strong> — <em>Right to a decent standard of living (Art. 26-27)</em><br>
+            Scholarships, aid, health coverage, leisure. Benefits find families,
+            not the other way around. No right goes unfulfilled.</span>
           </li>
         </ul>
       </div>
@@ -907,16 +888,16 @@
   </div>
 </section>
 
-<!-- ═══════ LES APPLICATIONS ═══════ -->
+<!-- ═══════ THE APPLICATIONS ═══════ -->
 <section class="apps-section" id="applications">
   <div class="section">
     <div class="section-header">
-      <div class="section-eyebrow">L'écosystème complet</div>
-      <h2 class="section-title">Cinq applications, un socle commun</h2>
+      <div class="section-eyebrow">The complete ecosystem</div>
+      <h2 class="section-title">Five applications, one shared foundation</h2>
       <p class="section-desc">
-        Chaque application couvre un domaine fondamental. Ensemble, elles forment
-        un système national intégré — connectées par un identifiant unique
-        qui suit chaque citoyen tout au long de sa vie.
+        Each application covers a fundamental domain. Together, they form
+        an integrated national system — connected by a unique identifier
+        that follows every citizen throughout their life.
       </p>
     </div>
 
@@ -929,34 +910,34 @@
           <div class="app-card-header">
             <div class="app-icon" style="background: #fff; padding: 4px; overflow: hidden"><img src="logos/medsen.jpg" alt="MedSen" style="width:100%; height:100%; object-fit:cover; border-radius:10px"></div>
             <div class="app-meta">
-              <div class="app-pillar">Santé scolaire</div>
+              <div class="app-pillar">School health</div>
               <div class="app-name" style="color: #1A7C3E">MedSen</div>
             </div>
           </div>
-          <div class="app-tagline" style="color: #5FAD2D">La santé de chaque élève, suivie et protégée</div>
+          <div class="app-tagline" style="color: #5FAD2D">Every student's health, monitored and protected</div>
           <p class="app-desc">
-            MedSen connecte les <strong>Inspections Médicales des Écoles (IME)</strong> avec chaque
-            établissement scolaire du Sénégal. Suivi médical complet de chaque élève :
-            bilans de santé, campagnes de vaccination, dépistages visuels et auditifs,
-            suivi nutritionnel, gestion des pathologies chroniques, consultations,
-            urgences et certificats médicaux.
+            MedSen connects the <strong>School Medical Inspections (IME)</strong> with every
+            school in Senegal. Complete medical follow-up for every student:
+            health check-ups, vaccination campaigns, visual and hearing screenings,
+            nutritional monitoring, chronic condition management, consultations,
+            emergencies and medical certificates.
           </p>
           <div class="app-features">
-            <span class="feature">Bilans de santé</span>
+            <span class="feature">Health check-ups</span>
             <span class="feature">Vaccinations</span>
-            <span class="feature">Dépistages</span>
+            <span class="feature">Screenings</span>
             <span class="feature">Nutrition</span>
-            <span class="feature">Pathologies</span>
+            <span class="feature">Chronic conditions</span>
             <span class="feature">Consultations</span>
-            <span class="feature">Certificats</span>
-            <span class="feature">Statistiques IME</span>
+            <span class="feature">Certificates</span>
+            <span class="feature">IME Statistics</span>
           </div>
           <div class="app-impact">
-            <div class="app-impact-label">En pratique</div>
+            <div class="app-impact-label">In practice</div>
             <div class="app-impact-text">
-              « L'infirmier scolaire gère le dossier médical de chaque élève.
-              Le directeur d'école voit le bilan santé de son établissement en temps réel.
-              L'IME pilote les campagnes sur toute la région. »
+              "The school nurse manages each student's medical record.
+              The principal sees the school's health dashboard in real time.
+              The IME oversees campaigns across the entire region."
             </div>
           </div>
         </div>
@@ -967,34 +948,34 @@
         <div class="app-card-accent" style="background: linear-gradient(90deg, #1e40af, #6d28d9, #8b5cf6)"></div>
         <div class="app-card-body">
           <div class="app-card-header">
-            <div class="app-icon" style="background: linear-gradient(135deg, #1e40af, #7c3aed)">🎓</div>
+            <div class="app-icon" style="background: linear-gradient(135deg, #1e40af, #7c3aed)">&#127891;</div>
             <div class="app-meta">
-              <div class="app-pillar">Éducation</div>
+              <div class="app-pillar">Education</div>
               <div class="app-name" style="color: #1e40af">LeerEducation</div>
             </div>
           </div>
-          <div class="app-tagline" style="color: #7c3aed">Éveiller chaque enfant à sa propre lumière</div>
+          <div class="app-tagline" style="color: #7c3aed">Awakening every child to their own light</div>
           <p class="app-desc">
-            <em>Leer</em> signifie « lumière » en wolof. C'est un système éducatif complet
-            repensé, du ministère jusqu'à la salle de classe.
-            Gestion institutionnelle (inscriptions, emplois du temps, examens nationaux)
-            et <strong>pédagogie par la conscience</strong> : pensée critique,
-            connaissance de soi, créativité, mentorat communautaire.
+            <em>Leer</em> means "light" in Wolof. It is a complete education system
+            reimagined, from the ministry to the classroom.
+            Institutional management (enrollment, schedules, national exams)
+            and <strong>consciousness-based pedagogy</strong>: critical thinking,
+            self-awareness, creativity, community mentoring.
           </p>
           <div class="app-features">
-            <span class="feature">Gestion scolaire</span>
-            <span class="feature">Pensée critique</span>
-            <span class="feature">Journal émotionnel</span>
-            <span class="feature">Mentorat</span>
-            <span class="feature">CFEE · BFEM · BAC</span>
-            <span class="feature">Emplois du temps</span>
+            <span class="feature">School management</span>
+            <span class="feature">Critical thinking</span>
+            <span class="feature">Emotional journal</span>
+            <span class="feature">Mentoring</span>
+            <span class="feature">CFEE &middot; BFEM &middot; BAC</span>
+            <span class="feature">Schedules</span>
           </div>
           <div class="app-impact">
-            <div class="app-impact-label">Philosophie</div>
+            <div class="app-impact-label">Philosophy</div>
             <div class="app-impact-text">
-              « On n'enseigne pas des faits, on apprend à penser, à ressentir, à créer.
-              Concepts avant faits. Coopération avant compétition.
-              Conscience avant performance. »
+              "We don't teach facts, we teach how to think, to feel, to create.
+              Concepts before facts. Cooperation before competition.
+              Consciousness before performance."
             </div>
           </div>
         </div>
@@ -1005,34 +986,34 @@
         <div class="app-card-accent" style="background: linear-gradient(90deg, #065f46, #059669, #10b981)"></div>
         <div class="app-card-body">
           <div class="app-card-header">
-            <div class="app-icon" style="background: linear-gradient(135deg, #065f46, #059669)">🛡️</div>
+            <div class="app-icon" style="background: linear-gradient(135deg, #065f46, #059669)">&#128737;&#65039;</div>
             <div class="app-meta">
               <div class="app-pillar">Protection</div>
               <div class="app-name" style="color: #065f46">NdawProtect</div>
             </div>
           </div>
-          <div class="app-tagline" style="color: #059669">Le bouclier communautaire de l'enfant</div>
+          <div class="app-tagline" style="color: #059669">The community shield for every child</div>
           <p class="app-desc">
-            <em>Ndaw</em> signifie « enfant » en wolof.
-            Système d'alerte et d'intervention pour chaque enfant en danger :
-            maltraitance, travail des enfants, mendicité forcée, enfants non scolarisés.
-            Travailleurs sociaux, référents communautaires et autorités judiciaires
-            agissent <strong>ensemble, en temps réel</strong>.
+            <em>Ndaw</em> means "child" in Wolof.
+            An alert and intervention system for every child in danger:
+            abuse, child labor, forced begging, out-of-school children.
+            Social workers, community referents and judicial authorities
+            act <strong>together, in real time</strong>.
           </p>
           <div class="app-features">
-            <span class="feature">Signalements urgents</span>
-            <span class="feature">Gestion des cas</span>
-            <span class="feature">Visites terrain</span>
-            <span class="feature">Ordonnances judiciaires</span>
-            <span class="feature">Réseau d'alertes</span>
-            <span class="feature">Formations</span>
+            <span class="feature">Urgent reports</span>
+            <span class="feature">Case management</span>
+            <span class="feature">Field visits</span>
+            <span class="feature">Court orders</span>
+            <span class="feature">Alert network</span>
+            <span class="feature">Training</span>
           </div>
           <div class="app-impact">
-            <div class="app-impact-label">En pratique</div>
+            <div class="app-impact-label">In practice</div>
             <div class="app-impact-text">
-              « Un référent communautaire signale un enfant en danger à 9h.
-              Un travailleur social est assigné à 9h05. La famille est visitée
-              dans la journée. Le dossier est ouvert, suivi, coordonné. »
+              "A community referent reports a child in danger at 9 AM.
+              A social worker is assigned at 9:05 AM. The family is visited
+              within the day. The case is opened, monitored, coordinated."
             </div>
           </div>
         </div>
@@ -1043,37 +1024,37 @@
         <div class="app-card-accent" style="background: linear-gradient(90deg, #0d9488, #14b8a6, #2dd4bf)"></div>
         <div class="app-card-body">
           <div class="app-card-header">
-            <div class="app-icon" style="background: linear-gradient(135deg, #00853F, #14b8a6)">📜</div>
+            <div class="app-icon" style="background: linear-gradient(135deg, #00853F, #14b8a6)">&#128220;</div>
             <div class="app-meta">
-              <div class="app-pillar">État civil national</div>
+              <div class="app-pillar">National civil registry</div>
               <div class="app-name" style="color: #0d9488">SunuEtatCivil</div>
             </div>
           </div>
-          <div class="app-tagline" style="color: #14b8a6">L'identité de chaque Sénégalais, numérisée</div>
+          <div class="app-tagline" style="color: #14b8a6">Every Senegalese citizen's identity, digitized</div>
           <p class="app-desc">
-            <strong>Pas seulement pour les enfants — pour tout le Sénégal.</strong>
-            SunuEtatCivil est le registre national d'état civil numérique pour toutes les mairies.
-            Naissances, mariages, décès, reconnaissances, adoptions, livrets de famille.
-            Il donne à chaque citoyen une <strong>identité officielle numérique</strong>
-            et permet la numérisation des archives historiques.
+            <strong>Not just for children — for all of Senegal.</strong>
+            SunuEtatCivil is the national digital civil registry for all municipalities.
+            Births, marriages, deaths, acknowledgments, adoptions, family record books.
+            It gives every citizen an <strong>official digital identity</strong>
+            and enables the digitization of historical archives.
             <br><br>
-            Les informations de chaque parent y sont essentielles — car pour protéger un enfant
-            efficacement, il faut connaître sa famille.
+            Each parent's information is essential — because to effectively protect a child,
+            you need to know their family.
           </p>
           <div class="app-features">
-            <span class="feature">Naissances</span>
-            <span class="feature">Mariages & décès</span>
-            <span class="feature">Filiation complète</span>
-            <span class="feature">Livrets de famille</span>
-            <span class="feature">Archives numériques</span>
-            <span class="feature">Tous les citoyens</span>
+            <span class="feature">Births</span>
+            <span class="feature">Marriages & deaths</span>
+            <span class="feature">Full lineage</span>
+            <span class="feature">Family record books</span>
+            <span class="feature">Digital archives</span>
+            <span class="feature">All citizens</span>
           </div>
           <div class="app-impact">
-            <div class="app-impact-label">Dimension nationale</div>
+            <div class="app-impact-label">National scope</div>
             <div class="app-impact-text">
-              « Il manquait un système d'état civil numérique unifié au Sénégal.
-              SunuEtatCivil connecte toutes les mairies et donne à chaque citoyen,
-              enfant comme adulte, une existence officielle dans le système. »
+              "Senegal was missing a unified digital civil registry system.
+              SunuEtatCivil connects all municipalities and gives every citizen,
+              child and adult alike, an official existence in the system."
             </div>
           </div>
         </div>
@@ -1084,37 +1065,37 @@
         <div class="app-card-accent" style="background: linear-gradient(90deg, #78350f, #b45309, #d97706)"></div>
         <div class="app-card-body">
           <div class="app-card-header">
-            <div class="app-icon" style="background: linear-gradient(135deg, #78350f, #d97706)">⚖️</div>
+            <div class="app-icon" style="background: linear-gradient(135deg, #78350f, #d97706)">&#9878;&#65039;</div>
             <div class="app-meta">
-              <div class="app-pillar">Droits & prestations</div>
+              <div class="app-pillar">Rights & benefits</div>
               <div class="app-name" style="color: #92400e">SunuDroits</div>
             </div>
           </div>
-          <div class="app-tagline" style="color: #b45309">Chaque droit, chaque prestation, pour chaque famille</div>
+          <div class="app-tagline" style="color: #b45309">Every right, every benefit, for every family</div>
           <p class="app-desc">
-            <strong>Pour chaque famille sénégalaise, pas seulement les enfants.</strong>
-            SunuDroits est le registre national des droits sociaux :
-            bourses scolaires, aides alimentaires, couverture maladie universelle (CMU),
-            logement social, accès aux loisirs et à la culture.
+            <strong>For every Senegalese family, not just children.</strong>
+            SunuDroits is the national social rights registry:
+            school scholarships, food aid, universal health coverage (CMU),
+            social housing, access to leisure and culture.
             <br><br>
-            Les parents, les familles monoparentales, les personnes âgées — tous les citoyens
-            qui ont droit à des prestations les trouvent ici. <strong>Les aides trouvent
-            les familles</strong>, pas l'inverse.
+            Parents, single-parent families, the elderly — all citizens
+            entitled to benefits can find them here. <strong>Benefits find
+            families</strong>, not the other way around.
           </p>
           <div class="app-features">
-            <span class="feature">Bourses scolaires</span>
-            <span class="feature">Aides alimentaires</span>
-            <span class="feature">Couverture CMU</span>
-            <span class="feature">Logement social</span>
-            <span class="feature">Loisirs & culture</span>
-            <span class="feature">Toutes les familles</span>
+            <span class="feature">School scholarships</span>
+            <span class="feature">Food aid</span>
+            <span class="feature">CMU coverage</span>
+            <span class="feature">Social housing</span>
+            <span class="feature">Leisure & culture</span>
+            <span class="feature">All families</span>
           </div>
           <div class="app-impact">
-            <div class="app-impact-label">Dimension nationale</div>
+            <div class="app-impact-label">National scope</div>
             <div class="app-impact-text">
-              « Une famille des Parcelles Assainies soumet une demande de bourse.
-              Le système identifie automatiquement les autres aides auxquelles elle a droit
-              et pré-remplit les formulaires. Notification dès que c'est accordé. »
+              "A family from Parcelles Assainies submits a scholarship application.
+              The system automatically identifies other benefits they are entitled to
+              and pre-fills the forms. Notification as soon as it's approved."
             </div>
           </div>
         </div>
@@ -1128,33 +1109,33 @@
     <!-- Referentiel Commun -->
     <div class="ref-card">
       <div>
-        <h3>🗄️ Référentiel <span>Commun</span></h3>
-        <div class="ref-sub">Le socle de données partagées par toutes les applications</div>
+        <h3>&#128452;&#65039; Shared <span>Reference System</span></h3>
+        <div class="ref-sub">The shared data foundation for all applications</div>
         <p>
-          Le Référentiel Commun centralise toutes les données de référence du Sénégal :
-          les 14 régions, 45 départements, 557 communes, les établissements scolaires,
-          les niveaux d'enseignement et les années scolaires.
+          The Shared Reference System centralizes all of Senegal's reference data:
+          14 regions, 45 departments, 557 municipalities, schools,
+          education levels and school years.
           <br><br>
-          Chaque modification est <strong>automatiquement propagée</strong> aux cinq applications.
-          Aucune donnée n'est dupliquée — une seule source de vérité pour tout l'écosystème.
+          Every change is <strong>automatically propagated</strong> to all five applications.
+          No data is duplicated — a single source of truth for the entire ecosystem.
         </p>
       </div>
       <div class="ref-data-grid">
         <div class="ref-data-item">
           <div class="ref-data-val">14</div>
-          <div class="ref-data-label">Régions</div>
+          <div class="ref-data-label">Regions</div>
         </div>
         <div class="ref-data-item">
           <div class="ref-data-val">45</div>
-          <div class="ref-data-label">Départements</div>
+          <div class="ref-data-label">Departments</div>
         </div>
         <div class="ref-data-item">
           <div class="ref-data-val">557</div>
-          <div class="ref-data-label">Communes</div>
+          <div class="ref-data-label">Municipalities</div>
         </div>
         <div class="ref-data-item">
           <div class="ref-data-val">16</div>
-          <div class="ref-data-label">Niveaux scolaires</div>
+          <div class="ref-data-label">School levels</div>
         </div>
         <div class="ref-data-item">
           <div class="ref-data-val">5</div>
@@ -1162,7 +1143,7 @@
         </div>
         <div class="ref-data-item">
           <div class="ref-data-val">5</div>
-          <div class="ref-data-label">Apps connectées</div>
+          <div class="ref-data-label">Connected apps</div>
         </div>
       </div>
     </div>
@@ -1170,223 +1151,214 @@
   </div>
 </section>
 
-<!-- ═══════ COMMENT CA MARCHE ═══════ -->
-<section class="schema-section" id="comment">
+<!-- ═══════ HOW IT WORKS ═══════ -->
+<section class="schema-section" id="how-it-works">
   <div class="section">
     <div class="section-header">
-      <div class="section-eyebrow">Comment ça fonctionne</div>
-      <h2 class="section-title">Des applications qui communiquent entre elles</h2>
+      <div class="section-eyebrow">How it works</div>
+      <h2 class="section-title">Applications that communicate with each other</h2>
       <p class="section-desc">
-        Chaque application est indépendante mais connectée aux autres.
-        Un événement dans une application déclenche automatiquement
-        des actions dans les autres — sans intervention humaine.
+        Each application is independent but connected to the others.
+        An event in one application automatically triggers
+        actions in the others — without human intervention.
       </p>
     </div>
 
-    <!-- Schema visuel -->
+    <!-- Visual schema -->
     <div class="schema-diagram">
-      <div class="schema-title">L'écosystème Sénégal Kawé</div>
-      <div class="schema-subtitle">Chaque application partage un identifiant citoyen unique</div>
+      <div class="schema-title">The Senegal Kawe Ecosystem</div>
+      <div class="schema-subtitle">Every application shares a unique citizen identifier</div>
       <div class="schema-container">
         <svg viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
 
-          <!-- Central hub — Citoyen -->
+          <!-- Central hub -->
           <circle cx="400" cy="210" r="55" fill="rgba(0,133,63,.06)" stroke="var(--green)" stroke-width="2"/>
-          <text x="400" y="195" text-anchor="middle" fill="var(--green)" font-size="13" font-weight="900">Identité</text>
-          <text x="400" y="212" text-anchor="middle" fill="var(--green)" font-size="13" font-weight="900">du citoyen</text>
-          <text x="400" y="232" text-anchor="middle" fill="var(--gray-400)" font-size="10">Identifiant unique</text>
-          <text x="400" y="245" text-anchor="middle" fill="var(--gray-400)" font-size="10">partagé par tous</text>
+          <text x="400" y="195" text-anchor="middle" fill="var(--green)" font-size="13" font-weight="900">Citizen</text>
+          <text x="400" y="212" text-anchor="middle" fill="var(--green)" font-size="13" font-weight="900">Identity</text>
+          <text x="400" y="232" text-anchor="middle" fill="var(--gray-400)" font-size="10">Unique identifier</text>
+          <text x="400" y="245" text-anchor="middle" fill="var(--gray-400)" font-size="10">shared by all</text>
 
-          <!-- EtatCivil (source — bottom center, prominent) -->
+          <!-- EtatCivil -->
           <rect x="300" y="345" width="200" height="75" rx="16" fill="rgba(13,148,136,.06)" stroke="#0d9488" stroke-width="2"/>
-          <text x="400" y="374" text-anchor="middle" fill="#0d9488" font-size="14" font-weight="800">📜 SunuEtatCivil</text>
-          <text x="400" y="394" text-anchor="middle" fill="var(--gray-500)" font-size="10">Source de l'identité</text>
-          <text x="400" y="408" text-anchor="middle" fill="var(--gray-400)" font-size="9">Naissances · Mariages · Décès</text>
-          <!-- Arrow up to hub -->
+          <text x="400" y="374" text-anchor="middle" fill="#0d9488" font-size="14" font-weight="800">&#128220; SunuEtatCivil</text>
+          <text x="400" y="394" text-anchor="middle" fill="var(--gray-500)" font-size="10">Identity source</text>
+          <text x="400" y="408" text-anchor="middle" fill="var(--gray-400)" font-size="9">Births &middot; Marriages &middot; Deaths</text>
           <line x1="400" y1="345" x2="400" y2="265" stroke="#0d9488" stroke-width="2"/>
           <polygon points="400,265 395,275 405,275" fill="#0d9488"/>
-          <text x="420" y="310" fill="#0d9488" font-size="9" font-weight="700">crée l'identité</text>
+          <text x="420" y="310" fill="#0d9488" font-size="9" font-weight="700">creates identity</text>
 
-          <!-- MedSen (top left) -->
+          <!-- MedSen -->
           <rect x="60" y="55" width="180" height="65" rx="14" fill="rgba(26,124,62,.05)" stroke="#1A7C3E" stroke-width="1.5"/>
-          <text x="150" y="82" text-anchor="middle" fill="#1A7C3E" font-size="13" font-weight="800">🩺 MedSen</text>
-          <text x="150" y="100" text-anchor="middle" fill="var(--gray-400)" font-size="10">Santé scolaire</text>
-          <!-- Line to hub -->
+          <text x="150" y="82" text-anchor="middle" fill="#1A7C3E" font-size="13" font-weight="800">&#129658; MedSen</text>
+          <text x="150" y="100" text-anchor="middle" fill="var(--gray-400)" font-size="10">School health</text>
           <line x1="210" y1="120" x2="355" y2="185" stroke="var(--gray-300)" stroke-width="1.5" stroke-dasharray="5 4"/>
 
-          <!-- Education (top right) -->
+          <!-- Education -->
           <rect x="560" y="55" width="180" height="65" rx="14" fill="rgba(30,64,175,.05)" stroke="#1e40af" stroke-width="1.5"/>
-          <text x="650" y="82" text-anchor="middle" fill="#1e40af" font-size="13" font-weight="800">🎓 LeerEducation</text>
-          <text x="650" y="100" text-anchor="middle" fill="var(--gray-400)" font-size="10">Éducation</text>
-          <!-- Line to hub -->
+          <text x="650" y="82" text-anchor="middle" fill="#1e40af" font-size="13" font-weight="800">&#127891; LeerEducation</text>
+          <text x="650" y="100" text-anchor="middle" fill="var(--gray-400)" font-size="10">Education</text>
           <line x1="590" y1="120" x2="445" y2="185" stroke="var(--gray-300)" stroke-width="1.5" stroke-dasharray="5 4"/>
 
-          <!-- Protection (left) -->
+          <!-- Protection -->
           <rect x="30" y="185" width="180" height="65" rx="14" fill="rgba(6,95,70,.05)" stroke="#065f46" stroke-width="1.5"/>
-          <text x="120" y="212" text-anchor="middle" fill="#065f46" font-size="13" font-weight="800">🛡️ NdawProtect</text>
+          <text x="120" y="212" text-anchor="middle" fill="#065f46" font-size="13" font-weight="800">&#128737;&#65039; NdawProtect</text>
           <text x="120" y="230" text-anchor="middle" fill="var(--gray-400)" font-size="10">Protection</text>
-          <!-- Line to hub -->
           <line x1="210" y1="215" x2="345" y2="210" stroke="var(--gray-300)" stroke-width="1.5" stroke-dasharray="5 4"/>
 
-          <!-- Droits (right) -->
+          <!-- Droits -->
           <rect x="590" y="185" width="180" height="65" rx="14" fill="rgba(180,83,9,.05)" stroke="#b45309" stroke-width="1.5"/>
-          <text x="680" y="212" text-anchor="middle" fill="#92400e" font-size="13" font-weight="800">⚖️ SunuDroits</text>
-          <text x="680" y="230" text-anchor="middle" fill="var(--gray-400)" font-size="10">Droits & prestations</text>
-          <!-- Line to hub -->
+          <text x="680" y="212" text-anchor="middle" fill="#92400e" font-size="13" font-weight="800">&#9878;&#65039; SunuDroits</text>
+          <text x="680" y="230" text-anchor="middle" fill="var(--gray-400)" font-size="10">Rights & benefits</text>
           <line x1="590" y1="215" x2="455" y2="210" stroke="var(--gray-300)" stroke-width="1.5" stroke-dasharray="5 4"/>
 
-          <!-- Referentiel (bottom left) -->
+          <!-- Referentiel -->
           <rect x="60" y="345" width="180" height="65" rx="14" fill="rgba(59,130,246,.05)" stroke="#3b82f6" stroke-width="1.5"/>
-          <text x="150" y="372" text-anchor="middle" fill="#3b82f6" font-size="13" font-weight="800">🗄️ Référentiel</text>
-          <text x="150" y="390" text-anchor="middle" fill="var(--gray-400)" font-size="10">Données partagées</text>
-          <!-- Lines to all apps -->
+          <text x="150" y="372" text-anchor="middle" fill="#3b82f6" font-size="13" font-weight="800">&#128452;&#65039; Reference System</text>
+          <text x="150" y="390" text-anchor="middle" fill="var(--gray-400)" font-size="10">Shared data</text>
           <line x1="150" y1="345" x2="150" y2="250" stroke="rgba(59,130,246,.2)" stroke-width="1" stroke-dasharray="3 3"/>
           <line x1="240" y1="360" x2="300" y2="365" stroke="rgba(59,130,246,.2)" stroke-width="1" stroke-dasharray="3 3"/>
-          <text x="150" y="330" text-anchor="middle" fill="rgba(59,130,246,.5)" font-size="8">alimente toutes les apps</text>
+          <text x="150" y="330" text-anchor="middle" fill="rgba(59,130,246,.5)" font-size="8">feeds all apps</text>
 
-          <!-- Cross-app flow arrows (key ones) -->
-          <!-- EtatCivil → Droits -->
+          <!-- Cross-app flows -->
           <path d="M 500 380 Q 560 380 590 240" stroke="#b45309" stroke-width="1.5" stroke-dasharray="5 3" opacity=".5"/>
-          <text x="560" y="320" fill="#b45309" font-size="8" font-weight="600" opacity=".6" transform="rotate(-60 560 320)">naissance → droits</text>
+          <text x="560" y="320" fill="#b45309" font-size="8" font-weight="600" opacity=".6" transform="rotate(-60 560 320)">birth &rarr; rights</text>
 
-          <!-- MedSen → Protection -->
           <path d="M 100 120 Q 80 150 100 185" stroke="#065f46" stroke-width="1" stroke-dasharray="4 3" opacity=".35"/>
-          <text x="60" y="155" fill="#065f46" font-size="7" font-weight="600" opacity=".5">alerte santé</text>
+          <text x="60" y="155" fill="#065f46" font-size="7" font-weight="600" opacity=".5">health alert</text>
 
-          <!-- Education ↔ MedSen -->
           <line x1="240" y1="80" x2="560" y2="80" stroke="var(--gray-300)" stroke-width="1" stroke-dasharray="3 3" opacity=".3"/>
 
         </svg>
       </div>
     </div>
 
-    <!-- Flux concrets -->
+    <!-- Concrete flows -->
     <div style="margin-top: 48px;">
       <h3 style="text-align:center; font-size:20px; font-weight:800; color:var(--gray-900); margin-bottom:8px;">
-        Des scénarios concrets, de bout en bout
+        Concrete scenarios, end to end
       </h3>
       <p style="text-align:center; font-size:15px; color:var(--gray-500); margin-bottom:32px; max-width:600px; margin-left:auto; margin-right:auto;">
-        Un événement dans une application déclenche automatiquement
-        des actions dans les autres.
+        An event in one application automatically triggers
+        actions in the others.
       </p>
       <div class="flux-grid">
 
-        <!-- Flux 1 -->
+        <!-- Flow 1 -->
         <div class="flux-card">
           <div class="flux-header">
-            <div class="flux-icon" style="background: rgba(13,148,136,.1);">📜</div>
+            <div class="flux-icon" style="background: rgba(13,148,136,.1);">&#128220;</div>
             <div>
-              <div class="flux-title">Naissance enregistrée</div>
-              <div class="flux-subtitle">Le citoyen entre dans l'écosystème</div>
+              <div class="flux-title">Birth registered</div>
+              <div class="flux-subtitle">The citizen enters the ecosystem</div>
             </div>
           </div>
           <ol class="flux-steps">
             <li>
               <span class="flux-step-num" style="background:#0d9488">1</span>
-              <span>L'officier d'état civil enregistre la naissance dans <strong>SunuEtatCivil</strong>. Un identifiant unique est généré.</span>
+              <span>The civil registrar records the birth in <strong>SunuEtatCivil</strong>. A unique identifier is generated.</span>
             </li>
             <li>
               <span class="flux-step-num" style="background:#b45309">2</span>
-              <span><strong>SunuDroits</strong> crée automatiquement le profil et vérifie l'éligibilité aux aides familiales.</span>
+              <span><strong>SunuDroits</strong> automatically creates the profile and checks eligibility for family benefits.</span>
             </li>
             <li>
               <span class="flux-step-num" style="background:#1A7C3E">3</span>
-              <span>À l'inscription scolaire, <strong>MedSen</strong> planifie les vaccinations et bilans de santé obligatoires.</span>
+              <span>At school enrollment, <strong>MedSen</strong> schedules mandatory vaccinations and health check-ups.</span>
             </li>
           </ol>
           <div class="flux-apps">
-            <span class="flux-app-tag" style="background:#0d9488">EtatCivil</span>
-            <span class="flux-app-tag" style="background:#b45309">Droits</span>
+            <span class="flux-app-tag" style="background:#0d9488">CivilRegistry</span>
+            <span class="flux-app-tag" style="background:#b45309">Rights</span>
             <span class="flux-app-tag" style="background:#1A7C3E">MedSen</span>
           </div>
         </div>
 
-        <!-- Flux 2 -->
+        <!-- Flow 2 -->
         <div class="flux-card">
           <div class="flux-header">
             <div class="flux-icon" style="background: rgba(26,124,62,.1); padding:6px; overflow:hidden;"><img src="logos/medsen.jpg" alt="MedSen" style="width:100%;height:100%;object-fit:cover;border-radius:8px"></div>
             <div>
-              <div class="flux-title">Problème de santé détecté</div>
-              <div class="flux-subtitle">Du médical au social</div>
+              <div class="flux-title">Health problem detected</div>
+              <div class="flux-subtitle">From medical to social</div>
             </div>
           </div>
           <ol class="flux-steps">
             <li>
               <span class="flux-step-num" style="background:#1A7C3E">1</span>
-              <span>L'infirmier scolaire détecte un problème de nutrition ou de santé dans <strong>MedSen</strong>.</span>
+              <span>The school nurse detects a nutrition or health problem in <strong>MedSen</strong>.</span>
             </li>
             <li>
               <span class="flux-step-num" style="background:#065f46">2</span>
-              <span><strong>NdawProtect</strong> reçoit l'alerte, un travailleur social est assigné pour visiter la famille.</span>
+              <span><strong>NdawProtect</strong> receives the alert, a social worker is assigned to visit the family.</span>
             </li>
             <li>
               <span class="flux-step-num" style="background:#b45309">3</span>
-              <span><strong>SunuDroits</strong> vérifie les aides existantes. Si la famille n'en bénéficie pas, une demande est pré-remplie.</span>
+              <span><strong>SunuDroits</strong> checks existing benefits. If the family doesn't receive any, an application is pre-filled.</span>
             </li>
           </ol>
           <div class="flux-apps">
             <span class="flux-app-tag" style="background:#1A7C3E">MedSen</span>
             <span class="flux-app-tag" style="background:#065f46">Protection</span>
-            <span class="flux-app-tag" style="background:#b45309">Droits</span>
+            <span class="flux-app-tag" style="background:#b45309">Rights</span>
           </div>
         </div>
 
-        <!-- Flux 3 -->
+        <!-- Flow 3 -->
         <div class="flux-card">
           <div class="flux-header">
-            <div class="flux-icon" style="background: rgba(6,95,70,.1);">🛡️</div>
+            <div class="flux-icon" style="background: rgba(6,95,70,.1);">&#128737;&#65039;</div>
             <div>
-              <div class="flux-title">Enfant non scolarisé signalé</div>
-              <div class="flux-subtitle">De l'alerte à la réinsertion</div>
+              <div class="flux-title">Out-of-school child reported</div>
+              <div class="flux-subtitle">From alert to reintegration</div>
             </div>
           </div>
           <ol class="flux-steps">
             <li>
               <span class="flux-step-num" style="background:#065f46">1</span>
-              <span>Un référent communautaire signale un enfant non scolarisé via <strong>NdawProtect</strong>.</span>
+              <span>A community referent reports an out-of-school child via <strong>NdawProtect</strong>.</span>
             </li>
             <li>
               <span class="flux-step-num" style="background:#0d9488">2</span>
-              <span><strong>SunuEtatCivil</strong> vérifie l'identité. Si l'enfant n'a pas d'acte de naissance, un jugement supplétif est initié.</span>
+              <span><strong>SunuEtatCivil</strong> verifies the identity. If the child has no birth certificate, a substitute ruling is initiated.</span>
             </li>
             <li>
               <span class="flux-step-num" style="background:#b45309">3</span>
-              <span><strong>SunuDroits</strong> identifie les aides disponibles : bourse, kit scolaire, allocation familiale.</span>
+              <span><strong>SunuDroits</strong> identifies available benefits: scholarship, school kit, family allowance.</span>
             </li>
           </ol>
           <div class="flux-apps">
             <span class="flux-app-tag" style="background:#065f46">Protection</span>
-            <span class="flux-app-tag" style="background:#0d9488">EtatCivil</span>
-            <span class="flux-app-tag" style="background:#b45309">Droits</span>
+            <span class="flux-app-tag" style="background:#0d9488">CivilRegistry</span>
+            <span class="flux-app-tag" style="background:#b45309">Rights</span>
           </div>
         </div>
 
-        <!-- Flux 4 -->
+        <!-- Flow 4 -->
         <div class="flux-card">
           <div class="flux-header">
-            <div class="flux-icon" style="background: rgba(180,83,9,.1);">⚫</div>
+            <div class="flux-icon" style="background: rgba(180,83,9,.1);">&#9899;</div>
             <div>
-              <div class="flux-title">Décès d'un parent</div>
-              <div class="flux-subtitle">Protection automatique de l'orphelin</div>
+              <div class="flux-title">Death of a parent</div>
+              <div class="flux-subtitle">Automatic protection for the orphan</div>
             </div>
           </div>
           <ol class="flux-steps">
             <li>
               <span class="flux-step-num" style="background:#0d9488">1</span>
-              <span>Le décès est enregistré dans <strong>SunuEtatCivil</strong>. Les enfants du défunt sont identifiés par la filiation.</span>
+              <span>The death is recorded in <strong>SunuEtatCivil</strong>. The deceased's children are identified through lineage records.</span>
             </li>
             <li>
               <span class="flux-step-num" style="background:#b45309">2</span>
-              <span><strong>SunuDroits</strong> déclenche l'éligibilité aux allocations orphelin et à la CMU gratuite.</span>
+              <span><strong>SunuDroits</strong> triggers eligibility for orphan allowances and free universal health coverage.</span>
             </li>
             <li>
               <span class="flux-step-num" style="background:#065f46">3</span>
-              <span><strong>NdawProtect</strong> ouvre un dossier de suivi pour s'assurer que l'enfant est pris en charge.</span>
+              <span><strong>NdawProtect</strong> opens a follow-up case to ensure the child is being cared for.</span>
             </li>
           </ol>
           <div class="flux-apps">
-            <span class="flux-app-tag" style="background:#0d9488">EtatCivil</span>
-            <span class="flux-app-tag" style="background:#b45309">Droits</span>
+            <span class="flux-app-tag" style="background:#0d9488">CivilRegistry</span>
+            <span class="flux-app-tag" style="background:#b45309">Rights</span>
             <span class="flux-app-tag" style="background:#065f46">Protection</span>
           </div>
         </div>
@@ -1400,11 +1372,11 @@
 <section class="demo-section" id="demo">
   <div class="section">
     <div class="section-header">
-      <div class="section-eyebrow">Démonstration</div>
-      <h2 class="section-title">Prêt à tester, prêt à déployer</h2>
+      <div class="section-eyebrow">Demonstration</div>
+      <h2 class="section-title">Ready to test, ready to deploy</h2>
       <p class="section-desc">
-        Les applications sont fonctionnelles et disponibles en démonstration.
-        Partenaires, institutions et bailleurs peuvent les tester immédiatement.
+        The applications are functional and available for demonstration.
+        Partners, institutions and donors can test them immediately.
       </p>
     </div>
 
@@ -1413,72 +1385,72 @@
       <!-- MedSen -->
       <div class="demo-card">
         <div class="demo-screen">
-          <img src="screenshots/medsen.png" alt="MedSen - Page d'accueil" style="width:100%; height:100%; object-fit:cover; object-position:top;">
+          <img src="screenshots/medsen.png" alt="MedSen - Home page" style="width:100%; height:100%; object-fit:cover; object-position:top;">
         </div>
         <div class="demo-card-body">
           <div class="demo-card-name" style="color:#1A7C3E">MedSen</div>
-          <div class="demo-card-desc">Tableau de bord santé scolaire, campagnes, dépistages, suivi élèves.</div>
-          <div class="demo-card-roles"><strong>Rôles :</strong> Admin MedSen, Admin IME, Infirmier, Directeur</div>
+          <div class="demo-card-desc">School health dashboard, campaigns, screenings, student follow-up.</div>
+          <div class="demo-card-roles"><strong>Roles:</strong> MedSen Admin, IME Admin, Nurse, Principal</div>
         </div>
       </div>
 
       <!-- NdawProtect -->
       <div class="demo-card">
         <div class="demo-screen">
-          <img src="screenshots/protection.png" alt="NdawProtect - Page d'accueil" style="width:100%; height:100%; object-fit:cover; object-position:top;">
+          <img src="screenshots/protection.png" alt="NdawProtect - Home page" style="width:100%; height:100%; object-fit:cover; object-position:top;">
         </div>
         <div class="demo-card-body">
           <div class="demo-card-name" style="color:#065f46">NdawProtect</div>
-          <div class="demo-card-desc">Signalements, gestion des cas, visites terrain, réseau de vigilance.</div>
-          <div class="demo-card-roles"><strong>Rôles :</strong> Coordinateur, Travailleur social, Référent, Juge</div>
+          <div class="demo-card-desc">Reports, case management, field visits, vigilance network.</div>
+          <div class="demo-card-roles"><strong>Roles:</strong> Coordinator, Social Worker, Referent, Judge</div>
         </div>
       </div>
 
       <!-- SunuDroits -->
       <div class="demo-card">
         <div class="demo-screen">
-          <img src="screenshots/droits.png" alt="SunuDroits - Page d'accueil" style="width:100%; height:100%; object-fit:cover; object-position:top;">
+          <img src="screenshots/droits.png" alt="SunuDroits - Home page" style="width:100%; height:100%; object-fit:cover; object-position:top;">
         </div>
         <div class="demo-card-body">
           <div class="demo-card-name" style="color:#92400e">SunuDroits</div>
-          <div class="demo-card-desc">Bourses, aides sociales, couverture maladie, logement, loisirs.</div>
-          <div class="demo-card-roles"><strong>Rôles :</strong> Admin, Gestionnaire, Agent état civil, ONG, Famille</div>
+          <div class="demo-card-desc">Scholarships, social aid, health coverage, housing, leisure.</div>
+          <div class="demo-card-roles"><strong>Roles:</strong> Admin, Manager, Civil Registry Agent, NGO, Family</div>
         </div>
       </div>
 
       <!-- SunuEtatCivil -->
       <div class="demo-card">
         <div class="demo-screen">
-          <img src="screenshots/etatcivil.png" alt="SunuEtatCivil - Page d'accueil" style="width:100%; height:100%; object-fit:cover; object-position:top;">
+          <img src="screenshots/etatcivil.png" alt="SunuEtatCivil - Home page" style="width:100%; height:100%; object-fit:cover; object-position:top;">
         </div>
         <div class="demo-card-body">
           <div class="demo-card-name" style="color:#0d9488">SunuEtatCivil</div>
-          <div class="demo-card-desc">Naissances, mariages, décès, filiation, livrets de famille, citoyens.</div>
-          <div class="demo-card-roles"><strong>Rôles :</strong> Admin, Officier, Agent, Superviseur, Juge, Citoyen</div>
+          <div class="demo-card-desc">Births, marriages, deaths, lineage, family record books, citizens.</div>
+          <div class="demo-card-roles"><strong>Roles:</strong> Admin, Registrar, Agent, Supervisor, Judge, Citizen</div>
         </div>
       </div>
 
       <!-- LeerEducation -->
       <div class="demo-card">
         <div class="demo-screen">
-          <img src="screenshots/education.png" alt="LeerEducation - Page d'accueil" style="width:100%; height:100%; object-fit:cover; object-position:top;">
+          <img src="screenshots/education.png" alt="LeerEducation - Home page" style="width:100%; height:100%; object-fit:cover; object-position:top;">
         </div>
         <div class="demo-card-body">
           <div class="demo-card-name" style="color:#1e40af">LeerEducation</div>
-          <div class="demo-card-desc">Gestion scolaire complète, pédagogie par la conscience, examens.</div>
-          <div class="demo-card-roles"><strong>Rôles :</strong> Ministère, Inspection, Directeur, Enseignant, Élève, Parent</div>
+          <div class="demo-card-desc">Complete school management, consciousness-based pedagogy, exams.</div>
+          <div class="demo-card-roles"><strong>Roles:</strong> Ministry, Inspection, Principal, Teacher, Student, Parent</div>
         </div>
       </div>
 
       <!-- Referentiel -->
       <div class="demo-card">
         <div class="demo-screen">
-          <img src="screenshots/referentiel.png" alt="Référentiel Commun - Tableau de bord" style="width:100%; height:100%; object-fit:cover; object-position:top;">
+          <img src="screenshots/referentiel.png" alt="Shared Reference System - Dashboard" style="width:100%; height:100%; object-fit:cover; object-position:top;">
         </div>
         <div class="demo-card-body">
-          <div class="demo-card-name" style="color:#1e3a5f">Référentiel Commun</div>
-          <div class="demo-card-desc">Régions, départements, communes, établissements, niveaux scolaires.</div>
-          <div class="demo-card-roles"><strong>Rôle :</strong> Administrateur national</div>
+          <div class="demo-card-name" style="color:#1e3a5f">Shared Reference System</div>
+          <div class="demo-card-desc">Regions, departments, municipalities, schools, education levels.</div>
+          <div class="demo-card-roles"><strong>Role:</strong> National administrator</div>
         </div>
       </div>
 
@@ -1486,9 +1458,9 @@
 
     <div class="demo-note">
       <p>
-        <strong>Toutes les applications sont fonctionnelles et prêtes pour un déploiement pilote.</strong><br>
-        Contactez-nous pour organiser une démonstration en direct
-        ou pour discuter d'un partenariat.
+        <strong>All applications are functional and ready for pilot deployment.</strong><br>
+        Contact us to schedule a live demonstration
+        or to discuss a partnership.
       </p>
     </div>
 
@@ -1499,56 +1471,56 @@
 <section class="vision-section" id="vision">
   <div class="vision-inner">
     <div class="vision-header">
-      <div class="vision-eyebrow">La vision</div>
-      <h2 class="vision-title">Un citoyen, un identifiant,<br>une vie accompagnée</h2>
+      <div class="vision-eyebrow">The vision</div>
+      <h2 class="vision-title">One citizen, one identifier,<br>a lifetime of support</h2>
       <p class="vision-desc">
-        Kawé — ce qui est élevé. L'objectif est simple : qu'aucun enfant
-        ne passe à travers les mailles du filet, qu'aucune famille
-        ne soit oubliée par le système.
+        Kawe — that which is elevated. The goal is simple: that no child
+        falls through the cracks, that no family
+        is forgotten by the system.
       </p>
     </div>
 
     <div class="vision-quote">
       <p>
-        « Il faut un village pour élever un enfant. Sénégal Kawé est ce village —
-        numérisé, coordonné, vigilant. Ce que le médecin découvre éclaire l'enseignant.
-        Ce que l'enseignant observe protège l'enfant. Ce que le travailleur social
-        signale débloque une aide. Ce que l'officier d'état civil enregistre
-        ouvre toutes les portes. »
+        "It takes a village to raise a child. Senegal Kawe is that village —
+        digitized, coordinated, vigilant. What the doctor discovers informs the teacher.
+        What the teacher observes protects the child. What the social worker
+        reports unlocks aid. What the civil registrar records
+        opens every door."
       </p>
-      <cite>— Vision Sénégal Kawé, 2026</cite>
+      <cite>— Senegal Kawe Vision, 2026</cite>
     </div>
 
     <div class="pillars-grid">
       <div class="pillar">
-        <div class="pillar-emoji">👶</div>
-        <div class="pillar-name">Exister</div>
-        <div class="pillar-sub">Acte de naissance · Identité officielle</div>
+        <div class="pillar-emoji">&#128118;</div>
+        <div class="pillar-name">Exist</div>
+        <div class="pillar-sub">Birth certificate &middot; Official identity</div>
       </div>
       <div class="pillar">
         <div class="pillar-emoji" style="display:flex;align-items:center;justify-content:center"><img src="logos/medsen.jpg" alt="MedSen" style="width:36px;height:36px;object-fit:cover;border-radius:8px"></div>
-        <div class="pillar-name">Être en bonne santé</div>
-        <div class="pillar-sub">Bilans · Dépistages · Suivi complet</div>
+        <div class="pillar-name">Be healthy</div>
+        <div class="pillar-sub">Check-ups &middot; Screenings &middot; Full follow-up</div>
       </div>
       <div class="pillar">
-        <div class="pillar-emoji">🎓</div>
-        <div class="pillar-name">Apprendre</div>
-        <div class="pillar-sub">École · Conscience · Créativité</div>
+        <div class="pillar-emoji">&#127891;</div>
+        <div class="pillar-name">Learn</div>
+        <div class="pillar-sub">School &middot; Consciousness &middot; Creativity</div>
       </div>
       <div class="pillar">
-        <div class="pillar-emoji">🛡️</div>
-        <div class="pillar-name">Être protégé</div>
-        <div class="pillar-sub">Vigilance · Intervention · Justice</div>
+        <div class="pillar-emoji">&#128737;&#65039;</div>
+        <div class="pillar-name">Be protected</div>
+        <div class="pillar-sub">Vigilance &middot; Intervention &middot; Justice</div>
       </div>
       <div class="pillar">
-        <div class="pillar-emoji">⚖️</div>
-        <div class="pillar-name">Avoir ses droits</div>
-        <div class="pillar-sub">Bourses · Aides · CMU · Logement</div>
+        <div class="pillar-emoji">&#9878;&#65039;</div>
+        <div class="pillar-name">Have rights</div>
+        <div class="pillar-sub">Scholarships &middot; Aid &middot; CMU &middot; Housing</div>
       </div>
       <div class="pillar">
-        <div class="pillar-emoji">🤝</div>
-        <div class="pillar-name">Grandir dignement</div>
-        <div class="pillar-sub">Famille · Communauté · Avenir</div>
+        <div class="pillar-emoji">&#129309;</div>
+        <div class="pillar-name">Grow with dignity</div>
+        <div class="pillar-sub">Family &middot; Community &middot; Future</div>
       </div>
     </div>
   </div>
@@ -1558,25 +1530,25 @@
 <section class="contact-section" id="contact">
   <div class="section">
     <div class="contact-inner">
-      <div class="contact-icon">📬</div>
-      <h2 class="contact-title">Intéressé ? Contactez-nous</h2>
+      <div class="contact-icon">&#128236;</div>
+      <h2 class="contact-title">Interested? Get in touch</h2>
       <p class="contact-desc">
-        Vous êtes une institution, un bailleur, un partenaire technique
-        ou simplement curieux ? Nous serions ravis de vous faire une
-        démonstration complète de l'écosystème.
+        Are you an institution, a donor, a technical partner
+        or simply curious? We would be delighted to give you a
+        full demonstration of the ecosystem.
       </p>
       <a href="mailto:senegalkawe@gmail.com" class="contact-email">
         senegalkawe@gmail.com
       </a>
-      <div class="contact-or">ou</div>
+      <div class="contact-or">or</div>
       <div class="contact-details">
-        <a href="tel:+221785636428" style="color:inherit;text-decoration:none" title="Appeler">📞</a>
+        <a href="tel:+221785636428" style="color:inherit;text-decoration:none" title="Call">&#128222;</a>
         <a href="https://wa.me/221785636428" target="_blank" style="text-decoration:none" title="WhatsApp">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#25D366" style="vertical-align:middle"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         </a>
         &nbsp;+221 78 563 64 28<br>
-        Dakar, Sénégal<br>
-        Prêt pour un déploiement pilote
+        Dakar, Senegal<br>
+        Ready for pilot deployment
       </div>
     </div>
   </div>
@@ -1588,7 +1560,7 @@
 <!-- ═══════ FOOTER ═══════ -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-text">Sénégal Kawé · Écosystème numérique · 2026</div>
+    <div class="footer-text">Senegal Kawe &middot; Digital Ecosystem &middot; 2026</div>
     <div class="footer-flag">
       <div style="background: var(--green)"></div>
       <div style="background: var(--gold)"></div>
