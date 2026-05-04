@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kawe Invest — Pitchdeck investisseur</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/invest-style.css">
+  <style>
+    /* ═════════ INVEST PITCHDECK — overrides minimal ═════════ */
+    :root {
+      --gold-soft: #d4a534;       /* or replaces flashy --gold for investor pitchdeck */
+      --gold-soft-bg: rgba(212,165,52,.12);
+    }
+    body { background: #f8fafc; }
+    .main { margin-left: 0 !important; }
+
+    /* Header */
+    .invest-header {
+      position: sticky; top: 0; z-index: 30;
+      background: var(--kawe-950); color: white;
+      padding: 12px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(0,133,63,.3);
+    }
+    .invest-header .ih-logo { font-weight: 800; font-size: 16px; letter-spacing: -0.3px; }
+    .invest-header .ih-logo span { color: var(--gold-soft); }
+    .invest-header .ih-meta { font-size: 12px; color: var(--gray-400); }
+    .invest-header .ih-conf {
+      font-size: 10px; font-weight: 700; padding: 4px 8px;
+      background: rgba(227,27,35,.15); color: #fca5a5; border-radius: 4px;
+      letter-spacing: 0.5px; text-transform: uppercase;
+    }
+
+    /* Executive Summary */
+    .exec-summary {
+      background: linear-gradient(135deg, var(--kawe-950) 0%, var(--kawe-800) 100%);
+      color: white;
+      padding: 48px 24px 56px;
+    }
+    .exec-inner { max-width: 1200px; margin: 0 auto; }
+    .exec-eyebrow {
+      display: inline-block; padding: 6px 14px;
+      background: var(--gold-soft-bg); color: var(--gold-soft);
+      border-radius: 20px; font-size: 11px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;
+    }
+    .exec-title {
+      font-size: clamp(28px, 4.5vw, 42px); font-weight: 900;
+      line-height: 1.15; letter-spacing: -1px; margin-bottom: 12px;
+    }
+    .exec-title em { color: var(--gold-soft); font-style: normal; }
+    .exec-tagline {
+      font-size: 18px; color: rgba(255,255,255,.85); max-width: 720px;
+      line-height: 1.5; margin-bottom: 32px;
+    }
+    .exec-kpis {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 12px; margin-bottom: 36px;
+    }
+    .exec-kpi {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px; padding: 16px;
+    }
+    .exec-kpi .ek-val { font-size: 26px; font-weight: 900; color: var(--gold-soft); line-height: 1; }
+    .exec-kpi .ek-lbl { font-size: 11px; color: rgba(255,255,255,.7); margin-top: 6px; }
+    @media (max-width: 720px) {
+      .exec-kpis { grid-template-columns: repeat(2, 1fr); }
+      .exec-kpi .ek-val { font-size: 22px; }
+    }
+
+    .ask-block {
+      background: linear-gradient(135deg, var(--gold-soft-bg), rgba(0,133,63,.05));
+      border: 1.5px solid var(--gold-soft); border-radius: 16px;
+      padding: 24px; margin-top: 16px;
+    }
+    .ask-block .ab-label {
+      font-size: 11px; font-weight: 700; color: var(--gold-soft);
+      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .ask-block .ab-amount {
+      font-size: clamp(28px, 5vw, 40px); font-weight: 900;
+      color: white; line-height: 1.1; margin-bottom: 6px;
+    }
+    .ask-block .ab-amount .ab-eur { color: var(--gold-soft); }
+    .ask-block .ab-runway { font-size: 14px; color: rgba(255,255,255,.85); margin-bottom: 16px; }
+    .ask-uof { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .ask-uof-item {
+      background: rgba(0,0,0,.25); padding: 10px 12px; border-radius: 8px;
+      border-left: 3px solid var(--gold-soft);
+    }
+    .ask-uof-pct { font-size: 18px; font-weight: 800; color: var(--gold-soft); }
+    .ask-uof-lbl { font-size: 10px; color: rgba(255,255,255,.7); margin-top: 2px; }
+    @media (max-width: 720px) { .ask-uof { grid-template-columns: repeat(2, 1fr); } }
+
+    .exec-cta {
+      margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+    }
+    .exec-cta .btn-primary {
+      background: var(--gold-soft); color: var(--kawe-950); padding: 12px 24px;
+      border-radius: 8px; font-weight: 700; font-size: 14px;
+    }
+    .exec-cta .btn-secondary {
+      color: white; padding: 12px 20px; border: 1px solid rgba(255,255,255,.3);
+      border-radius: 8px; font-weight: 600; font-size: 13px;
+    }
+
+    /* Pitchdeck container */
+    .pitch-container {
+      max-width: 1100px; margin: 0 auto; padding: 32px 24px;
+    }
+    .pitch-section-label {
+      font-size: 11px; font-weight: 800; color: var(--green);
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 12px 0 8px; border-top: 2px solid var(--green);
+      margin-top: 32px;
+    }
+    .pitch-section-label:first-child { margin-top: 0; }
+
+    /* Collapsible <details> */
+    details.pitch-card {
+      background: white; border-radius: 12px;
+      border: 1px solid var(--gray-200); margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.04);
+      overflow: hidden;
+    }
+    details.pitch-card[open] { box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+    details.pitch-card > summary {
+      list-style: none; cursor: pointer;
+      padding: 18px 24px; display: flex; align-items: center; gap: 12px;
+      user-select: none;
+    }
+    details.pitch-card > summary::-webkit-details-marker { display: none; }
+    details.pitch-card .pc-num {
+      flex: 0 0 32px; height: 32px; border-radius: 8px;
+      background: var(--gray-100); color: var(--gray-600);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 13px;
+    }
+    details.pitch-card[open] .pc-num { background: var(--green); color: white; }
+    details.pitch-card .pc-title {
+      flex: 1; font-size: 16px; font-weight: 700; color: var(--gray-900);
+    }
+    details.pitch-card .pc-sub {
+      font-size: 12px; color: var(--gray-500); margin-left: 12px;
+    }
+    details.pitch-card .pc-arrow {
+      width: 20px; height: 20px; transition: transform .2s;
+      color: var(--gray-400);
+    }
+    details.pitch-card[open] .pc-arrow { transform: rotate(180deg); color: var(--green); }
+    details.pitch-card .pc-body {
+      padding: 0 24px 24px 68px;
+      border-top: 1px solid var(--gray-100); padding-top: 20px;
+    }
+    @media (max-width: 600px) {
+      details.pitch-card .pc-body { padding-left: 24px; }
+      details.pitch-card .pc-sub { display: none; }
+    }
+
+    /* Product card variant */
+    details.pitch-card.prod summary { padding: 16px 20px; }
+    details.pitch-card.prod .pc-num {
+      width: 8px; height: 32px; border-radius: 4px; background: var(--medsen);
+    }
+    details.pitch-card.prod[data-app="medsen"] .pc-num { background: var(--medsen); }
+    details.pitch-card.prod[data-app="education"] .pc-num { background: var(--education); }
+    details.pitch-card.prod[data-app="protection"] .pc-num { background: var(--protection); }
+    details.pitch-card.prod[data-app="droits"] .pc-num { background: var(--droits); }
+    details.pitch-card.prod[data-app="etatcivil"] .pc-num { background: var(--etatcivil); }
+    details.pitch-card.prod[data-app="moat"] .pc-num { background: var(--core); }
+    details.pitch-card.prod .pc-body { padding-left: 40px; padding-top: 16px; }
+
+    /* Source citations */
+    .src {
+      font-size: 10px; color: var(--gray-400);
+      vertical-align: super; cursor: help;
+      padding: 0 2px;
+    }
+    .src::before { content: '['; }
+    .src::after { content: ']'; }
+
+    /* Mini grids */
+    .pc-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 12px 0; }
+    .pc-stat { background: var(--gray-50); padding: 10px 12px; border-radius: 8px; }
+    .pc-stat-val { font-size: 18px; font-weight: 800; color: var(--gray-900); }
+    .pc-stat-lbl { font-size: 10px; color: var(--gray-500); margin-top: 2px; text-transform: uppercase; letter-spacing: .5px; }
+
+    /* Tables compact */
+    .pc-body table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; }
+    .pc-body table th, .pc-body table td { padding: 8px 10px; border-bottom: 1px solid var(--gray-100); text-align: left; }
+    .pc-body table th { background: var(--gray-50); font-weight: 700; color: var(--gray-700); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+    .pc-body table td.num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+
+    /* Bullets */
+    .pc-body ul { padding-left: 18px; margin: 8px 0; }
+    .pc-body ul li { margin: 4px 0; color: var(--gray-700); }
+
+    /* Definition list (product cards) */
+    .pc-body dl.prod-fiche {
+      display: grid; grid-template-columns: 130px 1fr;
+      gap: 8px 16px; margin: 4px 0;
+      font-size: 13px;
+    }
+    .pc-body dl.prod-fiche dt {
+      font-weight: 700; color: var(--gray-700);
+      padding: 6px 0; border-bottom: 1px solid var(--gray-100);
+    }
+    .pc-body dl.prod-fiche dd {
+      color: var(--gray-700); padding: 6px 0;
+      border-bottom: 1px solid var(--gray-100);
+      margin: 0;
+    }
+    .pc-body dl.prod-fiche dt:last-of-type,
+    .pc-body dl.prod-fiche dd:last-of-type { border-bottom: none; }
+    @media (max-width: 600px) {
+      .pc-body dl.prod-fiche { grid-template-columns: 1fr; gap: 2px; }
+      .pc-body dl.prod-fiche dt { padding-bottom: 0; border: none; }
+      .pc-body dl.prod-fiche dd { padding-top: 2px; padding-bottom: 12px; }
+    }
+
+    /* Color emphasis tags */
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+    .tag-green { background: rgba(0,133,63,.1); color: var(--green); }
+    .tag-red { background: rgba(227,27,35,.1); color: var(--red); }
+    .tag-blue { background: rgba(59,130,246,.1); color: var(--education); }
+    .tag-amber { background: rgba(245,158,11,.1); color: var(--droits); }
+
+    /* Footer */
+    .invest-footer {
+      background: var(--kawe-950); color: rgba(255,255,255,.7);
+      padding: 32px 24px; margin-top: 48px;
+    }
+    .invest-footer .if-inner { max-width: 1100px; margin: 0 auto; }
+    .invest-footer h4 { color: white; font-size: 13px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .invest-footer ol { padding-left: 18px; font-size: 11px; line-height: 1.6; }
+    .invest-footer ol li { margin: 4px 0; }
+    .invest-footer a { color: var(--gold-soft); text-decoration: underline; }
+    .invest-footer .if-contact {
+      margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.1);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      font-size: 12px;
+    }
+
+    /* ═════════ MOBILE RESPONSIVE ═════════ */
+    @media (max-width: 768px) {
+      /* Header */
+      .invest-header { padding: 10px 14px; flex-wrap: wrap; gap: 6px; }
+      .invest-header .ih-logo { font-size: 14px; }
+      .invest-header .ih-meta { font-size: 10px; }
+      .invest-header .ih-conf { font-size: 9px; padding: 3px 6px; }
+
+      /* Exec summary */
+      .exec-summary { padding: 32px 16px 40px; }
+      .exec-eyebrow { font-size: 9px; padding: 4px 10px; letter-spacing: .5px; }
+      .exec-title { font-size: 26px; line-height: 1.15; margin-bottom: 10px; }
+      .exec-tagline { font-size: 14px; margin-bottom: 24px; }
+      .exec-kpis { gap: 8px; margin-bottom: 24px; }
+      .exec-kpi { padding: 12px; }
+      .exec-kpi .ek-val { font-size: 20px; }
+      .exec-kpi .ek-lbl { font-size: 10px; }
+      .ask-block { padding: 16px; }
+      .ask-block .ab-amount { font-size: 22px; }
+      .ask-block .ab-runway { font-size: 12px; }
+      .ask-uof { gap: 6px; }
+      .ask-uof-item { padding: 8px 10px; }
+      .ask-uof-pct { font-size: 14px; }
+      .ask-uof-lbl { font-size: 9px; }
+      .exec-cta { gap: 8px; }
+      .exec-cta .btn-primary,
+      .exec-cta .btn-secondary { padding: 10px 16px; font-size: 12px; flex: 1; text-align: center; min-width: 130px; }
+
+      /* Pitch container */
+      .pitch-container { padding: 20px 14px; }
+      .pitch-section-label { font-size: 10px; padding: 10px 0 6px; margin-top: 24px; }
+
+      /* Pitch cards */
+      details.pitch-card > summary { padding: 14px 16px; gap: 10px; }
+      details.pitch-card .pc-num { flex: 0 0 28px; height: 28px; font-size: 12px; }
+      details.pitch-card .pc-title { font-size: 14px; line-height: 1.3; }
+      details.pitch-card .pc-body { padding: 16px 16px 18px; font-size: 13px; }
+      details.pitch-card .pc-body p { font-size: 13px; }
+      details.pitch-card.prod .pc-body { padding-left: 16px; }
+
+      /* Tables — scroll horizontal */
+      details.pitch-card .pc-body { overflow-x: hidden; }
+      details.pitch-card .pc-body table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        max-width: 100%;
+        font-size: 11px;
+      }
+      details.pitch-card .pc-body table th,
+      details.pitch-card .pc-body table td {
+        padding: 6px 8px; white-space: normal;
+      }
+      details.pitch-card .pc-body table th {
+        white-space: nowrap;
+      }
+
+      /* PC stats */
+      .pc-stats { gap: 8px; }
+      .pc-stat { padding: 8px 10px; }
+      .pc-stat-val { font-size: 14px; }
+      .pc-stat-lbl { font-size: 9px; }
+
+      /* Footer */
+      .invest-footer { padding: 24px 14px; }
+      .invest-footer .if-contact { flex-direction: column; gap: 8px; font-size: 11px; }
+      .invest-footer ol { font-size: 10px; }
+    }
+
+    @media (max-width: 480px) {
+      .exec-title { font-size: 22px; }
+      .exec-tagline { font-size: 13px; }
+      .exec-kpis { grid-template-columns: 1fr 1fr; }
+      .ask-block .ab-amount { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═════════ Password Gate (existing logic) ═════════ -->
+<div id="auth-gate" style="position:fixed;inset:0;z-index:9999;background:#0a0a0f;display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;max-width:360px;padding:2rem;">
+    <div style="font-size:2rem;font-weight:800;color:#fff;margin-bottom:.25rem;">Kawe <span style="color:#d4a534;">Invest</span></div>
+    <p style="color:#cbd5e1;font-size:.875rem;margin-bottom:1.5rem;">Accès restreint aux investisseurs autorisés</p>
+    <form id="auth-form" onsubmit="return checkAccess()">
+      <input id="auth-input" type="password" placeholder="Code d'accès" autocomplete="off"
+        style="width:100%;padding:.75rem 1rem;border-radius:8px;border:1px solid #334155;background:#1e1e2e;color:#fff;font-size:1rem;margin-bottom:.75rem;outline:none;">
+      <button type="submit"
+        style="width:100%;padding:.75rem;border-radius:8px;border:none;background:#d4a534;color:#0a0a0f;font-weight:700;font-size:.9rem;cursor:pointer;">
+        Accéder
+      </button>
+      <p id="auth-error" style="color:#ef4444;font-size:.8rem;margin-top:.75rem;display:none;">Code incorrect</p>
+    </form>
+  </div>
+</div>
+<script>
+var AUTH_KEY=atob("a2F3ZTIwMjY=");
+function checkAccess(){
+  var code=document.getElementById("auth-input").value;
+  if(code===AUTH_KEY){
+    document.getElementById("auth-gate").style.display="none";
+    sessionStorage.setItem("kawe-auth","1");
+  } else {
+    document.getElementById("auth-error").style.display="block";
+    document.getElementById("auth-input").style.borderColor="#ef4444";
+    setTimeout(function(){
+      document.getElementById("auth-error").style.display="none";
+      document.getElementById("auth-input").style.borderColor="#334155";
+    },2000);
+  }
+  return false;
+}
+if(sessionStorage.getItem("kawe-auth")==="1"){
+  document.getElementById("auth-gate").style.display="none";
+}
+</script>
+
+<div class="main">
+
+<!-- ═════════ Header ═════════ -->
+<header class="invest-header">
+  <div class="ih-logo">Kawe <span>Invest</span></div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <span class="ih-meta">Pitchdeck · Mai 2026 · MEDSEN SARL</span>
+    <span class="ih-conf">Confidentiel</span>
+  </div>
+</header>
+
+<!-- ═════════ EXECUTIVE SUMMARY ═════════ -->
+<section class="exec-summary">
+  <div class="exec-inner">
+    <span class="exec-eyebrow">Startup privée sénégalaise · MEDSEN SARL · Écosystème Kawe</span>
+    <h1 class="exec-title">Une infrastructure numérique<br/>pour <em>l'enfant africain</em>.</h1>
+    <p class="exec-tagline">
+      MEDSEN est une startup privée sénégalaise qui édite l'écosystème Kawe : 7 produits B2G
+      intégrés via un identifiant enfant unique. Charte de projet signée avec la DCMS au Sénégal.
+      Levée Seed pour 24 mois de runway.
+    </p>
+
+    <div class="exec-kpis">
+      <div class="exec-kpi">
+        <div class="ek-val">184 M+</div>
+        <div class="ek-lbl">Enfants 0-14 en CEDEAO<sup class="src">1</sup></div>
+      </div>
+      <div class="exec-kpi">
+        <div class="ek-val">3,21 M</div>
+        <div class="ek-lbl">Élèves au Sénégal<sup class="src">2</sup></div>
+      </div>
+      <div class="exec-kpi">
+        <div class="ek-val">7</div>
+        <div class="ek-lbl">Produits intégrés</div>
+      </div>
+      <div class="exec-kpi">
+        <div class="ek-val">DCMS</div>
+        <div class="ek-lbl">Charte de projet signée</div>
+      </div>
+    </div>
+
+    <div class="ask-block">
+      <div class="ab-label">Ce que nous recherchons</div>
+      <div class="ab-amount">1,2 Mds XOF <span class="ab-eur">≈ 1,8 M€</span></div>
+      <div class="ab-runway">Tour Seed · 24 mois de runway · Couverture 5 régions du Sénégal</div>
+      <div class="ask-uof">
+        <div class="ask-uof-item"><div class="ask-uof-pct">60 %</div><div class="ask-uof-lbl">Équipe tech</div></div>
+        <div class="ask-uof-item"><div class="ask-uof-pct">15 %</div><div class="ask-uof-lbl">Infra cloud</div></div>
+        <div class="ask-uof-item"><div class="ask-uof-pct">15 %</div><div class="ask-uof-lbl">Go-to-market</div></div>
+        <div class="ask-uof-item"><div class="ask-uof-pct">10 %</div><div class="ask-uof-lbl">Juridique / ISO 27001</div></div>
+      </div>
+    </div>
+
+    <div class="exec-cta">
+      <a href="mailto:invest@kawe.sn" class="btn-primary">invest@kawe.sn</a>
+      <a href="#produits" class="btn-secondary">Voir les produits</a>
+      <a href="#projections" class="btn-secondary">Voir les projections</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ PITCHDECK GLOBAL ═════════ -->
+<div class="pitch-container">
+
+  <div class="pitch-section-label">Pitchdeck global · Écosystème Kawe</div>
+
+  <details class="pitch-card" open>
+    <summary>
+      <div class="pc-num">1</div>
+      <div class="pc-title">Le problème</div>
+      <div class="pc-sub">L'enfant africain est invisible</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <p style="font-size:15px;color:var(--gray-700);margin-bottom:14px"><strong>Aucun pays d'Afrique francophone ne dispose d'un système intégré de suivi de l'enfant.</strong> Les données santé, scolarité, protection et droits sont fragmentées entre ministères, sans identifiant commun. Conséquence : des enfants passent entre les mailles.</p>
+      <ul>
+        <li><strong>Au Sénégal, &lt; 60 %</strong> des enfants achèvent l'école primaire à temps<sup class="src">3</sup></li>
+        <li><strong>Aucun dossier santé scolaire numérique unifié</strong> à l'échelle nationale</li>
+        <li><strong>Campagnes de vaccination & dépistage</strong> non tracées de bout en bout</li>
+        <li><strong>État civil partiellement numérisé</strong> — birth registration 73 % au SN<sup class="src">4</sup></li>
+        <li><strong>Pas d'interopérabilité</strong> entre santé scolaire, éducation, protection, état civil, droits sociaux</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="pitch-card">
+    <summary>
+      <div class="pc-num">2</div>
+      <div class="pc-title">La solution Kawe</div>
+      <div class="pc-sub">7 produits, 1 identifiant enfant, 1 plateforme mutualisée</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <p style="margin-bottom:14px;color:var(--gray-700)">Un écosystème B2G de 7 produits partageant un <strong>identifiant enfant unique</strong> (UUID v4 généré à la naissance), avec une plateforme transversale qui mutualise paiements, audit, billing et consentements.</p>
+      <table>
+        <thead><tr><th>Domaine</th><th>Produit</th><th>Cible métier</th></tr></thead>
+        <tbody>
+          <tr><td>État civil</td><td><strong>SunuEtatCivil</strong></td><td>Communes (registres naissance, mariage, décès)</td></tr>
+          <tr><td>Droits sociaux</td><td><strong>SunuDroits</strong></td><td>Bourses, aides, couverture maladie enfant</td></tr>
+          <tr><td>Santé scolaire</td><td><strong>MedSen</strong></td><td>IME, ministères Santé/Éducation</td></tr>
+          <tr><td>Éducation</td><td><strong>LeerEducation</strong></td><td>Inspections, écoles, ministère Éducation</td></tr>
+          <tr><td>Protection</td><td><strong>NdawProtect</strong></td><td>ONG, travailleurs sociaux, autorités</td></tr>
+          <tr><td colspan="2" style="background:var(--gray-50)"><em>Infrastructure mutualisée</em></td><td></td></tr>
+          <tr><td>Référentiel</td><td><strong>Référentiel commun</strong></td><td>Source unique régions/communes/écoles</td></tr>
+          <tr><td>Transversal</td><td><strong>Kawe Core</strong></td><td>Paiements, audit, billing, consentements, partenaires</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <details class="pitch-card">
+    <summary>
+      <div class="pc-num">3</div>
+      <div class="pc-title">Marché</div>
+      <div class="pc-sub">TAM Afrique · SAM CEDEAO · SOM Sénégal</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <table>
+        <thead><tr><th>Niveau</th><th>Donnée</th><th class="num">Valeur</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr style="background:var(--gray-50)"><td colspan="4"><strong>TAM — Continent africain</strong></td></tr>
+          <tr><td>Démographie</td><td>Population enfants 0-14 Afrique subsaharienne</td><td class="num">~ 500 M</td><td>UN WPP 2024</td></tr>
+          <tr><td>EdTech</td><td>Marché EdTech Afrique 2025</td><td class="num">7,3 Mds USD</td><td>IMARC<sup class="src">5</sup></td></tr>
+          <tr><td>EdTech</td><td>Projection 2034 (CAGR 11,3 %)</td><td class="num">19,2 Mds USD</td><td>IMARC<sup class="src">5</sup></td></tr>
+          <tr><td>Health</td><td>Marché Digital Health Afrique 2024</td><td class="num">4,69 Mds USD</td><td>Grand View<sup class="src">6</sup></td></tr>
+          <tr><td>Health</td><td>Projection 2030 (CAGR 23,4 %)</td><td class="num">16,6 Mds USD</td><td>Grand View<sup class="src">6</sup></td></tr>
+
+          <tr style="background:var(--gray-50)"><td colspan="4"><strong>SAM — CEDEAO (15 pays Afrique de l'Ouest)</strong></td></tr>
+          <tr><td>Démographie</td><td>Population totale CEDEAO</td><td class="num">424 M</td><td>ECOWAS<sup class="src">1</sup></td></tr>
+          <tr><td>Démographie</td><td>dont 0-14 ans (43,4 %)</td><td class="num">~ 184 M</td><td>ECOWAS<sup class="src">1</sup></td></tr>
+          <tr><td>Capital</td><td>Equity VC Francophone Afrique 2025 (hors Big 4)</td><td class="num">252 M USD</td><td>Partech<sup class="src">7</sup></td></tr>
+
+          <tr style="background:var(--gray-50)"><td colspan="4"><strong>SOM — Sénégal (marché initial)</strong></td></tr>
+          <tr><td>Démographie</td><td>Population totale</td><td class="num">18,5 M</td><td>World Bank 2024</td></tr>
+          <tr><td>Démographie</td><td>0-14 ans (38 %)</td><td class="num">~ 7 M</td><td>World Bank<sup class="src">8</sup></td></tr>
+          <tr><td>Éducation</td><td>Élèves scolarisés (primaire + secondaire)</td><td class="num">3,21 M</td><td>UNESCO UIS<sup class="src">2</sup></td></tr>
+          <tr><td>Économie</td><td>PIB 2024</td><td class="num">32,3 Mds USD</td><td>World Bank<sup class="src">9</sup></td></tr>
+          <tr><td>Dépenses publiques</td><td>Éducation (6,16 % PIB)</td><td class="num">~ 2 Mds USD/an</td><td>World Bank<sup class="src">10</sup></td></tr>
+          <tr><td>Dépenses publiques</td><td>Santé (1,3 % PIB)</td><td class="num">~ 420 M USD/an</td><td>UN/WHO</td></tr>
+          <tr><td>Connectivité</td><td>Pénétration internet 2024</td><td class="num">60 % (10,8 M)</td><td>DataReportal<sup class="src">11</sup></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <details class="pitch-card">
+    <summary>
+      <div class="pc-num">4</div>
+      <div class="pc-title">Business model</div>
+      <div class="pc-sub">B2G récurrent · Transactionnel · APIs B2B</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <table>
+        <thead><tr><th>Stream</th><th>Payeur</th><th>Mécanique</th><th>Récurrence</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Licences B2G</strong></td><td>Ministères, IME, communes</td><td>Abonnement SaaS pluriannuel par tenant</td><td>Annuelle</td></tr>
+          <tr><td><strong>Cofinancement bailleurs</strong></td><td>Bailleurs internationaux</td><td>Dotation projet (1 à 3 ans)</td><td>Programme</td></tr>
+          <tr><td><strong>Transactionnel</strong></td><td>Familles, écoles privées</td><td>Certificats, abonnement diaspora, micro-assurance</td><td>À l'usage</td></tr>
+          <tr><td><strong>APIs B2B</strong></td><td>Banques, telcos, ONG, scale-ups</td><td>Appel API (KYC, vérification identité, données agrégées)</td><td>À l'usage</td></tr>
+          <tr><td><strong>Marketplace</strong></td><td>Pharmacies, mutuelles</td><td>Commission sur prescriptions/orientations (Phase 2)</td><td>Variable</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px;font-size:12px;color:var(--gray-500)">→ Hypothèse : <strong>50 % des revenus</strong> An 5 viennent du B2G récurrent (forte prévisibilité), <strong>30 %</strong> transactionnel, <strong>20 %</strong> APIs B2B.</p>
+    </div>
+  </details>
+
+  <details class="pitch-card">
+    <summary>
+      <div class="pc-num">5</div>
+      <div class="pc-title">Traction</div>
+      <div class="pc-sub">Pilote Sénégal validé institutionnellement</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <div class="pc-stats">
+        <div class="pc-stat"><div class="pc-stat-val">DCMS</div><div class="pc-stat-lbl">Charte signée</div></div>
+        <div class="pc-stat"><div class="pc-stat-val">7/7</div><div class="pc-stat-lbl">Produits en MVP</div></div>
+        <div class="pc-stat"><div class="pc-stat-val">IME-DK</div><div class="pc-stat-lbl">Échanges nourris</div></div>
+        <div class="pc-stat"><div class="pc-stat-val">Prêt</div><div class="pc-stat-lbl">Pour pilote terrain</div></div>
+      </div>
+      <ul>
+        <li><strong>Charte de projet signée</strong> avec la <strong>Division du Contrôle Médical Scolaire (DCMS)</strong> du Ministère de l'Éducation Nationale du Sénégal</li>
+        <li><strong>Collaboration nourrie</strong> avec l'Inspection Médicale des Écoles de Dakar (Dr Fatou Fall SYLLA), permettant de concevoir les produits au plus près des besoins terrain</li>
+        <li><strong>7 produits en MVP fonctionnel</strong>, validés en environnement de test interne</li>
+        <li><strong>Référentiel et données seed</strong> en environnement de validation (régions, départements, niveaux scolaires, vaccins PEV Sénégal)</li>
+        <li><strong>Pilote terrain prêt à démarrer</strong> dès la levée — déploiement réel à financer par le tour</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="pitch-card">
+    <summary>
+      <div class="pc-num">6</div>
+      <div class="pc-title">Concurrence & moat</div>
+      <div class="pc-sub">Marché fragmenté, aucun acteur intégré sur l'enfant</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <p style="margin-bottom:14px"><strong>Le paysage actuel : des solutions verticales isolées.</strong> Acteurs locaux par segment (état civil, EMR hôpital, paie écolage), mais <strong>aucun acteur n'unifie le parcours enfant</strong> de la naissance à 18 ans.</p>
+      <table>
+        <thead><tr><th>Comparable</th><th>Pays</th><th>Tour</th><th class="num">Montant</th><th>Domaine</th></tr></thead>
+        <tbody>
+          <tr><td>Reliance Health</td><td>Nigeria</td><td>Series B (2022)</td><td class="num">40 M USD</td><td>Healthtech B2C</td></tr>
+          <tr><td>Reliance Health</td><td>Nigeria</td><td>Series A (2020)</td><td class="num">6 M USD</td><td>Healthtech B2C</td></tr>
+          <tr><td>Helium Health</td><td>Nigeria</td><td>Series B</td><td class="num">30 M USD</td><td>EMR hôpital</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:14px"><strong>Notre moat (3 couches) :</strong></p>
+      <ul>
+        <li><strong>Identifiant enfant unique</strong> partagé entre 7 apps, généré à la naissance dans SunuEtatCivil — barrière à l'entrée structurelle</li>
+        <li><strong>Made in Sénégal, conformité souveraineté</strong> — exigence implicite des marchés publics africains</li>
+        <li><strong>Partenariat institutionnel établi</strong> (DCMS, IME) — accès direct aux décideurs publics</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="pitch-card">
+    <summary>
+      <div class="pc-num">7</div>
+      <div class="pc-title">Go-to-market</div>
+      <div class="pc-sub">Sénégal pilote → CEDEAO → Afrique francophone</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <table>
+        <thead><tr><th>Phase</th><th>Période</th><th>Périmètre</th><th>Cible</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Seed</strong></td><td>An 1 (M1-M12)</td><td>Dakar pilote</td><td>50 établissements, 10 K élèves</td></tr>
+          <tr><td><strong>A — Régional</strong></td><td>An 2 (M13-M24)</td><td>5 régions Sénégal</td><td>800 établissements, 600 K élèves</td></tr>
+          <tr><td><strong>B — National</strong></td><td>An 3 (M25-M36)</td><td>14 régions Sénégal</td><td>3 000 étab., 3 M élèves · break-even visé</td></tr>
+          <tr><td><strong>Growth</strong></td><td>An 4-5 (M37-M60)</td><td>CEDEAO (CIV, Mali, BF)</td><td>Auto-financé · 5 M+ enfants</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <details class="pitch-card">
+    <summary>
+      <div class="pc-num">8</div>
+      <div class="pc-title">Équipe</div>
+      <div class="pc-sub">À compléter avec profils fondateurs / advisors</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <div style="background:var(--gray-50);border-left:4px solid var(--green);padding:18px 20px;border-radius:8px;margin-bottom:16px">
+        <div style="font-size:11px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">Fondatrice & CEO</div>
+        <div style="font-size:20px;font-weight:800;color:var(--gray-900);margin-bottom:4px">Ndeye Talla DIOUM</div>
+        <div style="font-size:13px;color:var(--gray-600);margin-bottom:10px">Ingénieure diplômée de <strong>CentraleSupélec</strong> (France)</div>
+        <p style="font-size:13px;color:var(--gray-700);line-height:1.55">
+          Expérience internationale en santé numérique et systèmes d'information.
+          Expertise : <strong>e-santé, interopérabilité, standards IHE</strong>.
+          A fondé MEDSEN avec la vision de moderniser la santé scolaire — puis l'écosystème
+          complet des droits de l'enfant — au Sénégal et en Afrique.
+        </p>
+      </div>
+
+      <p style="font-weight:700;color:var(--gray-900);margin-bottom:8px">Équipe à structurer avec le tour</p>
+      <ul>
+        <li><strong>An 1</strong> : recrutement de l'équipe noyau (~10 personnes) — leads tech NestJS/Next.js, DevOps, Product, premier commercial B2G</li>
+        <li><strong>An 2</strong> : montée en charge à ~22 personnes pour expansion régionale</li>
+        <li><strong>An 3</strong> : ~35 personnes pour couverture nationale</li>
+      </ul>
+      <p style="font-weight:700;color:var(--gray-900);margin:14px 0 8px">Advisors & gouvernance recherchés</p>
+      <ul>
+        <li>Profil santé publique africaine (médecin senior, expert OMS/UNICEF)</li>
+        <li>Profil govtech / e-administration Afrique francophone</li>
+        <li>Profil investisseur impact (board) — venture capital africain</li>
+        <li>Profil juridique souveraineté données / marchés publics</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="pitch-card" id="projections">
+    <summary>
+      <div class="pc-num">9</div>
+      <div class="pc-title">Projections financières</div>
+      <div class="pc-sub">3 scénarios sur 5 ans · break-even M28 (base)</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <table>
+        <thead><tr><th>Métrique</th><th class="num">Conservateur</th><th class="num">Base</th><th class="num">Optimiste</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Tour MEDSEN à lever</strong></td><td class="num">1,5 Mds XOF</td><td class="num"><strong>1,2 Mds XOF</strong></td><td class="num">900 M XOF</td></tr>
+          <tr><td><strong>Élèves couverts An 3</strong></td><td class="num">1,5 M</td><td class="num">3 M</td><td class="num">3,5 M</td></tr>
+          <tr><td><strong>Établissements An 3</strong></td><td class="num">1 500</td><td class="num">3 000</td><td class="num">4 000</td></tr>
+          <tr><td><strong>Revenus 5 ans cumulés</strong></td><td class="num">3,2 Mds XOF</td><td class="num">4,2 Mds XOF</td><td class="num">6,1 Mds XOF</td></tr>
+          <tr><td><strong>Break-even</strong></td><td class="num">M35</td><td class="num">M28</td><td class="num">M22</td></tr>
+          <tr><td><strong>ROI à 5 ans</strong></td><td class="num">+80 %</td><td class="num">+150 %</td><td class="num">+250 %</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:14px;font-size:12px;color:var(--gray-500)"><strong>Hypothèses clés du scénario base</strong> : adoption 10 K élèves An 1 → 3 M An 3 (sur 3,5 M élèves SN total), répartition revenus B2G 50 % / Transactionnel 30 % / B2B 20 %, taux conversion abo famille 5 %, micro-assurance 12 % An 3 (commission 25 %).</p>
+    </div>
+  </details>
+
+  <details class="pitch-card">
+    <summary>
+      <div class="pc-num">10</div>
+      <div class="pc-title">Demande & use of funds</div>
+      <div class="pc-sub">Stratégie 3 enveloppes distinctes</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <p style="margin-bottom:14px;color:var(--gray-700)">L'écosystème Kawe au plein potentiel national mobilise 3 enveloppes <strong>strictement distinctes</strong>. Le tour MEDSEN ne finance que l'enveloppe société.</p>
+
+      <table>
+        <thead><tr><th>Enveloppe</th><th class="num">Montant</th><th>Source</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr style="background:rgba(0,133,63,.05)">
+            <td><strong>1 · Tour MEDSEN SARL</strong><br/><span class="tag tag-green">À LEVER MAINTENANT</span></td>
+            <td class="num"><strong>1,2 Mds XOF<br/>≈ 1,8 M€</strong></td>
+            <td>Equity VC + grants impact</td>
+            <td>Équipe tech, infra cloud, GTM, juridique. <strong>24 mois runway.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>2 · Cofinancement déploiement État</strong><br/><span class="tag tag-blue">EN PARALLÈLE</span></td>
+            <td class="num">6 - 10 Mds XOF<br/>≈ 9 - 15 M€</td>
+            <td>BAD, BID, UNICEF, GIZ/AFD, État SN</td>
+            <td>Salaires personnel terrain (infirmiers, médecins IME, agents EC), équipement État, formation utilisateurs publics.</td>
+          </tr>
+          <tr>
+            <td><strong>3 · Apports en nature</strong><br/><span class="tag tag-amber">PARTENAIRES</span></td>
+            <td class="num">~ 700 M XOF<br/>≈ 1 M€</td>
+            <td><strong>Sonatel/Orange, Senum SA, ADIE</strong> (hébergement souverain), Microsoft, Huawei, Starlink</td>
+            <td>Hébergement local Sénégal, backbone fibre, tablettes, serveurs edge, kits Starlink zones rurales.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top:18px;font-weight:700;color:var(--gray-900)">Use of funds — Enveloppe 1 (1,2 Mds XOF)</p>
+      <table>
+        <thead><tr><th>Poste</th><th class="num">Part</th><th class="num">Montant</th></tr></thead>
+        <tbody>
+          <tr><td>Équipe tech (dev, devops, product, data)</td><td class="num">60 %</td><td class="num">~ 720 M XOF</td></tr>
+          <tr><td>Infrastructure cloud (AWS/Azure, BDD, monitoring, sécurité)</td><td class="num">15 %</td><td class="num">~ 180 M XOF</td></tr>
+          <tr><td>Go-to-market (commercial B2G, marketing, événements)</td><td class="num">15 %</td><td class="num">~ 180 M XOF</td></tr>
+          <tr><td>Juridique & conformité (cabinet santé, audits, ISO 27001)</td><td class="num">10 %</td><td class="num">~ 120 M XOF</td></tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top:18px;font-weight:700;color:var(--gray-900)">Milestones liés au tour</p>
+      <ul>
+        <li><strong>M6</strong> : Couverture Dakar consolidée, 50 établissements actifs, 10 K élèves dans le système</li>
+        <li><strong>M12</strong> : Extension à 5 régions amorcée, premiers contrats licence B2G signés</li>
+        <li><strong>M18</strong> : Cofinancement bailleurs activé (enveloppe 2), pipeline CEDEAO ouvert</li>
+        <li><strong>M24</strong> : 5 régions opérationnelles, candidature ouverte au tour Series A</li>
+      </ul>
+    </div>
+  </details>
+
+
+  <!-- ═════════ PITCHDECK PAR PRODUIT ═════════ -->
+  <div class="pitch-section-label" id="produits">Pitchdeck par produit · 5 apps métier + infrastructure</div>
+
+  <details class="pitch-card prod" data-app="etatcivil">
+    <summary>
+      <div class="pc-num"></div>
+      <div class="pc-title" style="color:var(--etatcivil-dark)">SunuEtatCivil</div>
+      <div class="pc-sub">Modernisation registre national</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <dl class="prod-fiche">
+        <dt>Pitch</dt><dd>Plateforme nationale d'état civil pour les communes - naissances, mariages, décès, actes officiels.</dd>
+        <dt>Cible payeur</dt><dd>Ministère de l'Intérieur, communes (557 au Sénégal), Ministère de la Famille.</dd>
+        <dt>Marché cible</dt><dd>557 communes Sénégal · ~3 M actes/an · taux birth registration 73 % (2023, à porter à 95 %+)<sup class="src">4</sup></dd>
+        <dt>Stade actuel</dt><dd>MVP fonctionnel - 21 modules backend, 56 routes frontend. Données seed validées en interne.</dd>
+        <dt>Synergie écosystème</dt><dd><strong>Source primaire de l'identifiant enfant</strong> - l'acte de naissance crée l'UUID v4 partagé avec les 6 autres apps.</dd>
+      </dl>
+    </div>
+  </details>
+
+  <details class="pitch-card prod" data-app="droits">
+    <summary>
+      <div class="pc-num"></div>
+      <div class="pc-title" style="color:var(--droits-dark)">SunuDroits</div>
+      <div class="pc-sub">Bourses, aides, couverture maladie enfant</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <dl class="prod-fiche">
+        <dt>Pitch</dt><dd>Gestion unifiée des droits de l'enfant : bourses scolaires, aides familiales, logement, couverture maladie.</dd>
+        <dt>Cible payeur</dt><dd>Ministère de la Famille, Ministère de la Solidarité, communes, ONG bailleurs.</dd>
+        <dt>Marché cible</dt><dd>~7 M enfants 0-14 au Sénégal éligibles à au moins un dispositif d'aide. World Bank IDA "Investing in Early Years" : 75 M USD<sup class="src">12</sup></dd>
+        <dt>Stade actuel</dt><dd>MVP fonctionnel - 12 modules backend, frontend, intégration Wave/OM prête.</dd>
+        <dt>Synergie écosystème</dt><dd>Reçoit identifiant de SunuEtatCivil. Alimente MedSen (couverture maladie) et NdawProtect (aides urgentes).</dd>
+      </dl>
+    </div>
+  </details>
+
+  <details class="pitch-card prod" data-app="medsen">
+    <summary>
+      <div class="pc-num"></div>
+      <div class="pc-title" style="color:var(--medsen-dark)">MedSen</div>
+      <div class="pc-sub">Plateforme nationale de santé scolaire</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <dl class="prod-fiche">
+        <dt>Pitch</dt><dd>Pilotage de la santé scolaire à l'échelle nationale : dossier santé unique, campagnes vaccination/dépistage, workflow école-IME.</dd>
+        <dt>Cible payeur</dt><dd>Ministères Éducation/Santé, Inspections Médicales des Écoles (14 régionales + 120+ locales), écoles privées (contribution 2 %).</dd>
+        <dt>Marché cible</dt><dd>3,21 M élèves Sénégal<sup class="src">2</sup> · &lt; 10 % couverture santé scolaire actuelle.</dd>
+        <dt>Stade actuel</dt><dd>MVP fonctionnel · <strong>Charte DCMS signée</strong> · Échanges intensifs IME Dakar (Dr SYLLA) · Pilote terrain à démarrer.</dd>
+        <dt>Synergie écosystème</dt><dd>Dossier santé alimente le profil enfant. Délivre certificats médicaux pour LeerEducation. Signale anomalies à NdawProtect.</dd>
+      </dl>
+    </div>
+  </details>
+
+  <details class="pitch-card prod" data-app="education">
+    <summary>
+      <div class="pc-num"></div>
+      <div class="pc-title" style="color:var(--education-dark)">LeerEducation</div>
+      <div class="pc-sub">SI éducation — suivi scolarité</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <dl class="prod-fiche">
+        <dt>Pitch</dt><dd>Système d'information éducation : inscriptions, présences, notes, parcours scolaire continu de la maternelle au lycée.</dd>
+        <dt>Cible payeur</dt><dd>Ministère de l'Éducation Nationale, inspections d'académie. <strong>Écoles publiques (~75 % du parc) et privées (~25 %)</strong>, réseaux confessionnels.</dd>
+        <dt>Marché cible</dt><dd>3,21 M élèves Sénégal<sup class="src">2</sup> · ~16 K écoles · taux complétion primaire 60 %<sup class="src">3</sup>. Marché EdTech Afrique 7,3 Mds USD<sup class="src">5</sup>.</dd>
+        <dt>Stade actuel</dt><dd>MVP fonctionnel - architecture validée, modules de base opérationnels.</dd>
+        <dt>Synergie écosystème</dt><dd>Identifiant partagé. Inscription validée par certificat MedSen. Absentéisme prolongé déclenche alerte NdawProtect.</dd>
+      </dl>
+    </div>
+  </details>
+
+  <details class="pitch-card prod" data-app="protection">
+    <summary>
+      <div class="pc-num"></div>
+      <div class="pc-title" style="color:var(--protection-dark)">NdawProtect</div>
+      <div class="pc-sub">Vigilance communautaire & protection enfance</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <dl class="prod-fiche">
+        <dt>Pitch</dt><dd>Signalement, suivi de cas, coordination des acteurs de protection de l'enfance (travailleurs sociaux, autorités, ONG).</dd>
+        <dt>Cible payeur</dt><dd>Ministère de la Famille, ONG protection enfance, collectivités locales.</dd>
+        <dt>Marché cible</dt><dd>Sénégal : phénomène talibés / enfants des rues, violences, mariages précoces. Aucun outil national de coordination existant.</dd>
+        <dt>Stade actuel</dt><dd>MVP fonctionnel - 14 modules backend, comptes test (admin, coordinateurs, travailleurs sociaux, juges, familles).</dd>
+        <dt>Synergie écosystème</dt><dd>Reçoit signaux de LeerEducation (absentéisme), MedSen (anomalies), SunuEtatCivil. Déclenche aides urgentes via SunuDroits.</dd>
+      </dl>
+    </div>
+  </details>
+
+  <details class="pitch-card prod" data-app="moat">
+    <summary>
+      <div class="pc-num"></div>
+      <div class="pc-title" style="color:var(--core-dark)">Infrastructure mutualisée — moat techno</div>
+      <div class="pc-sub">Kawe Core + Référentiel commun + ID enfant</div>
+      <svg class="pc-arrow" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 5 5-5z"/></svg>
+    </summary>
+    <div class="pc-body">
+      <p style="margin-bottom:14px;color:var(--gray-700)"><strong>Notre avantage compétitif structurel.</strong> Aucun concurrent ne peut répliquer rapidement la combinaison de ces 3 briques transversales.</p>
+      <table>
+        <thead><tr><th>Brique</th><th>Rôle</th><th>Valeur écosystème</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Kawe Core</strong></td>
+            <td>Paiements (Wave/OM), audit hash chain SHA-256, billing partenaires, consentements RGPD-like, registry partenaires API</td>
+            <td>Mutualise les coûts d'infrastructure critique sur les 5 apps métier — économie d'échelle structurelle</td>
+          </tr>
+          <tr>
+            <td><strong>Référentiel commun</strong></td>
+            <td>Source unique de vérité : 14 régions, 45 départements, communes, niveaux scolaires, vaccins PEV. Webhooks HMAC-SHA256.</td>
+            <td>Cohérence inter-apps garantie. Une modification se propage à tout l'écosystème.</td>
+          </tr>
+          <tr>
+            <td><strong>Identifiant enfant unique</strong></td>
+            <td>UUID v4 généré à la naissance par SunuEtatCivil, partagé avec les 6 autres apps</td>
+            <td><strong>Barrière à l'entrée structurelle.</strong> Tout nouveau concurrent doit refaire 7 produits.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:14px;font-size:12px;color:var(--gray-500)"><strong>Lignes rouges câblées en dur</strong> : services vitaux (signalement enfance, hotline) jamais bloqués pour défaut de paiement. Données sensibles (journal émotionnel, mentorat qualitatif, dossier judiciaire en cours) non monétisables.</p>
+    </div>
+  </details>
+
+</div>
+
+<!-- ═════════ FOOTER avec sources ═════════ -->
+<footer class="invest-footer">
+  <div class="if-inner">
+    <h4>Sources citées</h4>
+    <ol>
+      <li>ECOWAS — population totale 424 M, 0-14 ans 43,4 %. <a href="https://en.wikipedia.org/wiki/ECOWAS" target="_blank" rel="noopener">Wikipedia/ECOWAS</a></li>
+      <li>UNESCO UIS — 3,21 M élèves Sénégal scolarisés (primaire + secondaire), 2,13 M en primaire. <a href="https://uis.unesco.org/country/SN" target="_blank" rel="noopener">UNESCO UIS Senegal</a></li>
+      <li>UNESCO — taux complétion primaire SN 60 % (filles), 55 % (garçons). <a href="https://download.uis.unesco.org/SDG4/SDG4-Profile-Senegal.pdf" target="_blank" rel="noopener">SDG4 Profile Senegal</a></li>
+      <li>World Bank — Senegal birth registration 73 % (2023, vs 43 % en 2018). <a href="https://www.worldbank.org/en/results/2024/04/09/combining-childhood-education-and-nutrition-to-cultivate-bright-futures-in-senegal" target="_blank" rel="noopener">World Bank Senegal Early Years results</a></li>
+      <li>IMARC Group — Africa EdTech market 7,3 Mds USD (2025) → 19,2 Mds (2034), CAGR 11,3 %. <a href="https://www.imarcgroup.com/africa-edtech-market" target="_blank" rel="noopener">IMARC Africa EdTech Market</a></li>
+      <li>Grand View Research — Africa Digital Health 4,69 Mds USD (2024) → 16,6 Mds (2030), CAGR 23,4 %. <a href="https://www.grandviewresearch.com/industry-analysis/africa-digital-health-market-report" target="_blank" rel="noopener">Africa Digital Health Market</a></li>
+      <li>Partech Africa Tech VC Report 2025 — 4,1 Mds USD funding, Francophone Africa 252 M USD equity. <a href="https://partechpartners.com/news/2025-partech-africa-tech-vc-report-african-tech-funding-rebounds-to-us41b-driven-by-record-debt-activity-and-disciplined-equity-growth" target="_blank" rel="noopener">Partech 2025 Report</a></li>
+      <li>World Bank — Senegal population ages 0-14 (% of total). <a href="https://data.worldbank.org/indicator/SP.POP.0014.TO.ZS?locations=SN" target="_blank" rel="noopener">World Bank SP.POP.0014.TO.ZS</a></li>
+      <li>World Bank — Senegal GDP 2024 : 32,3 Mds USD. <a href="https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=SN" target="_blank" rel="noopener">World Bank GDP Senegal</a></li>
+      <li>World Bank — Senegal Government expenditure on education 6,16 % GDP (2023). <a href="https://data.worldbank.org/indicator/SE.XPD.TOTL.GD.ZS?locations=SN" target="_blank" rel="noopener">World Bank SE.XPD.TOTL.GD.ZS</a></li>
+      <li>DataReportal Digital 2024 Senegal — internet penetration 60 %, 10,79 M users. <a href="https://datareportal.com/reports/digital-2024-senegal" target="_blank" rel="noopener">DataReportal Senegal 2024</a></li>
+      <li>World Bank — Investing in Early Years for Human Development Project Senegal, 75 M USD IDA grant. <a href="https://www.worldbank.org/en/results/2024/04/09/combining-childhood-education-and-nutrition-to-cultivate-bright-futures-in-senegal" target="_blank" rel="noopener">World Bank Senegal Early Years</a></li>
+    </ol>
+    <div class="if-contact">
+      <span>MEDSEN SARL · Pitchdeck investisseur · Mai 2026 · Document confidentiel</span>
+      <span>Contact : <a href="mailto:invest@kawe.sn">invest@kawe.sn</a></span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /.main -->
+
+</body>
+</html>
