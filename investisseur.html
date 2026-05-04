@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kawe Invest - Plateforme Investisseur</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/invest-style.css">
+</head>
+<body>
+<!-- Password Gate -->
+<div id="auth-gate" style="position:fixed;inset:0;z-index:9999;background:#0a0a0f;display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;max-width:360px;padding:2rem;">
+    <div style="font-size:2rem;font-weight:800;color:#fff;margin-bottom:.25rem;">Kawe <span style="color:#6366f1;">Invest</span></div>
+    <p style="color:#94a3b8;font-size:.875rem;margin-bottom:1.5rem;">Acces restreint aux investisseurs autorises</p>
+    <form id="auth-form" onsubmit="return checkAccess()">
+      <input id="auth-input" type="password" placeholder="Code d'acces" autocomplete="off"
+        style="width:100%;padding:.75rem 1rem;border-radius:8px;border:1px solid #334155;background:#1e1e2e;color:#fff;font-size:1rem;margin-bottom:.75rem;outline:none;">
+      <button type="submit"
+        style="width:100%;padding:.75rem;border-radius:8px;border:none;background:#6366f1;color:#fff;font-weight:600;font-size:.9rem;cursor:pointer;">
+        Acceder
+      </button>
+      <p id="auth-error" style="color:#ef4444;font-size:.8rem;margin-top:.75rem;display:none;">Code incorrect</p>
+    </form>
+  </div>
+</div>
+<script>
+// Mot de passe: "kawe2026" (changer ici pour modifier l'acces)
+var AUTH_KEY=atob("a2F3ZTIwMjY=");
+function checkAccess(){
+  var code=document.getElementById("auth-input").value;
+  if(code===AUTH_KEY){
+    document.getElementById("auth-gate").style.display="none";
+    sessionStorage.setItem("kawe-auth","1");
+  } else {
+    document.getElementById("auth-error").style.display="block";
+    document.getElementById("auth-input").style.borderColor="#ef4444";
+    setTimeout(function(){
+      document.getElementById("auth-error").style.display="none";
+      document.getElementById("auth-input").style.borderColor="#334155";
+    },2000);
+  }
+  return false;
+}
+if(sessionStorage.getItem("kawe-auth")==="1"){
+  document.getElementById("auth-gate").style.display="none";
+}
+</script>
+<div class="mobile-header">
+  <button class="hamburger" onclick="toggleSidebar()">&#9776;</button>
+  <div class="mobile-title">Kawe <span>Invest</span></div>
+</div>
+<div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-row">
+      <div class="logo-icon">&#9889;</div>
+      <div>
+        <div class="logo-text">Kawe <span>Invest</span></div>
+        <div class="logo-sub">Plateforme Investisseur</div>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-section-label">Vue globale</div>
+  <div class="nav-item active" data-panel="ecosysteme" onclick="showPanel('ecosysteme', this)">
+    <div class="nav-dot" style="background:var(--green)"></div>
+    <div class="nav-label">Vue d&#8217;ensemble</div>
+    <div class="nav-revenue">69,9M</div>
+  </div>
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-section-label">Produits</div>
+  <div class="nav-item" data-panel="medsen" onclick="showPanel('medsen', this)">
+    <div class="nav-dot" style="background:var(--medsen)"></div>
+    <div class="nav-label">MedSen</div>
+    <div class="nav-revenue">16,2M</div>
+  </div>
+  <div class="nav-item" data-panel="education" onclick="showPanel('education', this)">
+    <div class="nav-dot" style="background:var(--education)"></div>
+    <div class="nav-label">LeerEducation</div>
+    <div class="nav-revenue">12,1M</div>
+  </div>
+  <div class="nav-item" data-panel="etatcivil" onclick="showPanel('etatcivil', this)">
+    <div class="nav-dot" style="background:var(--etatcivil)"></div>
+    <div class="nav-label">SunuEtatCivil</div>
+    <div class="nav-revenue">22,8M</div>
+  </div>
+  <div class="nav-item" data-panel="protection" onclick="showPanel('protection', this)">
+    <div class="nav-dot" style="background:var(--protection)"></div>
+    <div class="nav-label">NdawProtect</div>
+    <div class="nav-revenue">4,7M</div>
+  </div>
+  <div class="nav-item" data-panel="droits" onclick="showPanel('droits', this)">
+    <div class="nav-dot" style="background:var(--droits)"></div>
+    <div class="nav-label">SunuDroits</div>
+    <div class="nav-revenue">4,4M</div>
+  </div>
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-section-label">Infrastructure</div>
+  <div class="nav-item" data-panel="core" onclick="showPanel('core', this)">
+    <div class="nav-dot" style="background:var(--core)"></div>
+    <div class="nav-label">Kawe Core</div>
+    <div class="nav-revenue">9,7M</div>
+  </div>
+  <div class="sidebar-summary">
+    <div class="summary-label">Revenu total (base)</div>
+    <div class="summary-value">69,9M <span style="font-size:12px;font-weight:600;color:rgba(255,255,255,.4)">XOF/mois</span></div>
+    <div class="summary-sub">7 applications &middot; 30+ flux de revenus</div>
+    <div class="sidebar-health"><div class="health-fill" style="width:100%"></div></div>
+    <div class="sidebar-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    <div class="sidebar-version">Kawe Invest - v1.0</div>
+  </div>
+</nav>
+
+<div class="main">
+
+<!-- PANEL ECOSYSTEME -->
+<div class="panel active" id="ecosysteme">
+  <div class="panel-header eco">
+    <div class="header-top">
+      <div><h1>&#201;cosyst&#232;me Kawe</h1><div class="header-sub">7 applications, 1 mission : chaque enfant compte</div></div>
+      <div class="header-badges"><span class="badge badge-apps">7 apps actives</span><span class="badge badge-live">Live</span></div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-value kawe">69,9M</div><div class="kpi-label">Revenu mensuel (base)</div></div>
+      <div class="kpi-card"><div class="kpi-value kawe">7</div><div class="kpi-label">Applications</div></div>
+      <div class="kpi-card"><div class="kpi-value kawe">30+</div><div class="kpi-label">Flux de revenus</div></div>
+      <div class="kpi-card"><div class="kpi-value kawe">M28</div><div class="kpi-label">Break-even</div></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-card-header"><div><h2>Parcours de l&#8217;enfant</h2><div class="subtitle">De la naissance &#224; l&#8217;&#226;ge adulte, chaque &#233;tape est couverte</div></div></div>
+      <div class="section-card-body">
+        <div class="eco-flow">
+          <div class="eco-flow-step" style="border-color:var(--etatcivil)"><div class="step-dot" style="background:var(--etatcivil)"></div><div class="step-num">&#201;tape 1</div><div class="step-name">Naissance</div><div class="step-app" style="color:var(--etatcivil)">SunuEtatCivil</div></div>
+          <div class="eco-flow-arrow">&#8594;</div>
+          <div class="eco-flow-step" style="border-color:var(--droits)"><div class="step-dot" style="background:var(--droits)"></div><div class="step-num">&#201;tape 2</div><div class="step-name">Droits &amp; Aides</div><div class="step-app" style="color:var(--droits)">SunuDroits</div></div>
+          <div class="eco-flow-arrow">&#8594;</div>
+          <div class="eco-flow-step" style="border-color:var(--medsen)"><div class="step-dot" style="background:var(--medsen)"></div><div class="step-num">&#201;tape 3</div><div class="step-name">Sant&#233; scolaire</div><div class="step-app" style="color:var(--medsen)">MedSen</div></div>
+          <div class="eco-flow-arrow">&#8594;</div>
+          <div class="eco-flow-step" style="border-color:var(--education)"><div class="step-dot" style="background:var(--education)"></div><div class="step-num">&#201;tape 4</div><div class="step-name">&#201;ducation</div><div class="step-app" style="color:var(--education)">LeerEducation</div></div>
+          <div class="eco-flow-arrow">&#8594;</div>
+          <div class="eco-flow-step" style="border-color:var(--protection)"><div class="step-dot" style="background:var(--protection)"></div><div class="step-num">Continu</div><div class="step-name">Protection</div><div class="step-app" style="color:var(--protection)">NdawProtect</div></div>
+        </div>
+        <div style="text-align:center;margin-top:8px;font-size:12px;color:var(--gray-400)">Kawe Core assure les paiements, l&#8217;identit&#233; et l&#8217;interop&#233;rabilit&#233;</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-card-header"><div><h2>Synergies inter-applications</h2><div class="subtitle">Chaque application alimente les autres</div></div></div>
+      <div class="section-card-body">
+        <div class="synergy-grid">
+          <div class="synergy-item"><span style="font-weight:700;color:var(--etatcivil)">EtatCivil</span><span class="synergy-arrow">&#8594;</span><span class="synergy-text">Acte naissance &#8594; Dossier droits</span><span style="font-weight:700;color:var(--droits)">Droits</span><span class="synergy-volume">2 400/mois</span></div>
+          <div class="synergy-item"><span style="font-weight:700;color:var(--droits)">Droits</span><span class="synergy-arrow">&#8594;</span><span class="synergy-text">Couverture maladie &#8594; Consultations</span><span style="font-weight:700;color:var(--medsen)">MedSen</span><span class="synergy-volume">1 800/mois</span></div>
+          <div class="synergy-item"><span style="font-weight:700;color:var(--medsen)">MedSen</span><span class="synergy-arrow">&#8594;</span><span class="synergy-text">Certificat m&#233;dical &#8594; Inscription</span><span style="font-weight:700;color:var(--education)">Education</span><span class="synergy-volume">3 200/mois</span></div>
+          <div class="synergy-item"><span style="font-weight:700;color:var(--education)">Education</span><span class="synergy-arrow">&#8594;</span><span class="synergy-text">Absent&#233;isme &#8594; Signal vigilance</span><span style="font-weight:700;color:var(--protection)">Protection</span><span class="synergy-volume">450/mois</span></div>
+          <div class="synergy-item"><span style="font-weight:700;color:var(--protection)">Protection</span><span class="synergy-arrow">&#8594;</span><span class="synergy-text">Cas signal&#233; &#8594; Aide urgente</span><span style="font-weight:700;color:var(--droits)">Droits</span><span class="synergy-volume">280/mois</span></div>
+          <div class="synergy-item"><span style="font-weight:700;color:var(--etatcivil)">EtatCivil</span><span class="synergy-arrow">&#8594;</span><span class="synergy-text">API v&#233;rification identit&#233; (KYC)</span><span style="font-weight:700;color:var(--core)">Core</span><span class="synergy-volume">3 500/mois</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-card-header"><h2>Revenus par cat&#233;gorie</h2></div>
+      <div class="section-card-body">
+        <div class="rev-bar-row"><div class="rev-label">Transactionnel</div><div class="rev-track"><div class="rev-fill" style="width:41%;background:var(--green)">22,3M</div></div><div class="rev-pct">41%</div></div>
+        <div class="rev-bar-row"><div class="rev-label">Diaspora</div><div class="rev-track"><div class="rev-fill" style="width:21%;background:var(--education)">11,5M</div></div><div class="rev-pct">21%</div></div>
+        <div class="rev-bar-row"><div class="rev-label">B2B / APIs</div><div class="rev-track"><div class="rev-fill" style="width:18%;background:var(--etatcivil)">9,8M</div></div><div class="rev-pct">18%</div></div>
+        <div class="rev-bar-row"><div class="rev-label">Institutionnel</div><div class="rev-track"><div class="rev-fill" style="width:13%;background:var(--protection)">7,2M</div></div><div class="rev-pct">13%</div></div>
+        <div class="rev-bar-row"><div class="rev-label">Solidarit&#233;</div><div class="rev-track"><div class="rev-fill" style="width:7%;background:var(--droits)">3,5M</div></div><div class="rev-pct">7%</div></div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-card-header"><h2>Revenus par application (base, An 3)</h2></div>
+      <div class="section-card-body">
+        <div class="rev-bar-row"><div class="rev-label">SunuEtatCivil</div><div class="rev-track"><div class="rev-fill" style="width:33%;background:var(--etatcivil)">22,8M</div></div><div class="rev-pct">33%</div></div>
+        <div class="rev-bar-row"><div class="rev-label">MedSen</div><div class="rev-track"><div class="rev-fill" style="width:23%;background:var(--medsen)">16,2M</div></div><div class="rev-pct">23%</div></div>
+        <div class="rev-bar-row"><div class="rev-label">LeerEducation</div><div class="rev-track"><div class="rev-fill" style="width:17%;background:var(--education)">12,1M</div></div><div class="rev-pct">17%</div></div>
+        <div class="rev-bar-row"><div class="rev-label">Kawe Core</div><div class="rev-track"><div class="rev-fill" style="width:12%;background:var(--core)">8,5M</div></div><div class="rev-pct">12%</div></div>
+        <div class="rev-bar-row"><div class="rev-label">NdawProtect</div><div class="rev-track"><div class="rev-fill" style="width:7%;background:var(--protection)">4,7M</div></div><div class="rev-pct">7%</div></div>
+        <div class="rev-bar-row"><div class="rev-label">SunuDroits</div><div class="rev-track"><div class="rev-fill" style="width:6%;background:var(--droits)">4,4M</div></div><div class="rev-pct">6%</div></div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-card-header"><h2>Plan d&#8217;investissement</h2></div>
+      <div class="section-card-body">
+        <div class="kpi-grid" style="margin-bottom:20px">
+          <div class="kpi-card"><div class="kpi-value kawe">900M</div><div class="kpi-label">XOF n&#233;cessaires</div></div>
+          <div class="kpi-card"><div class="kpi-value kawe">M28</div><div class="kpi-label">Point mort</div></div>
+          <div class="kpi-card"><div class="kpi-value kawe">4,2 Mds</div><div class="kpi-label">Revenus 5 ans</div></div>
+          <div class="kpi-card"><div class="kpi-value kawe">150%</div><div class="kpi-label">ROI &#224; 5 ans</div></div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item active"><div class="tl-header"><h4>Seed - Pilote Dakar + 7 apps MVP</h4><span class="tl-period">M1-M12</span></div><div class="tl-details"><span class="tl-tag">180M XOF</span><span class="tl-tag">10K enfants</span><span class="tl-tag">50 &#233;tablissements</span></div></div>
+          <div class="timeline-item"><div class="tl-header"><h4>Phase A - 5 r&#233;gions, SaaS + APIs</h4><span class="tl-period">M13-M24</span></div><div class="tl-details"><span class="tl-tag">280M XOF</span><span class="tl-tag">600K enfants</span><span class="tl-tag">800 &#233;tablissements</span></div></div>
+          <div class="timeline-item"><div class="tl-header"><h4>Phase B - 14 r&#233;gions, break-even</h4><span class="tl-period">M25-M36</span></div><div class="tl-details"><span class="tl-tag">450M XOF</span><span class="tl-tag">3M enfants</span><span class="tl-tag">3 000 &#233;tablissements</span></div></div>
+          <div class="timeline-item"><div class="tl-header"><h4>Growth - Expansion CEDEAO</h4><span class="tl-period">M37-M60</span></div><div class="tl-details"><span class="tl-tag">Auto-financ&#233;</span><span class="tl-tag">5M+ enfants</span><span class="tl-tag">5 000+ &#233;tablissements</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-card-header"><h2>Sc&#233;narios &#224; 5 ans</h2></div>
+      <div class="section-card-body" style="padding:0;overflow-x:auto">
+        <table class="data-table">
+          <thead><tr><th>M&#233;trique</th><th style="color:var(--conservateur)">Conservateur</th><th style="color:var(--base)">Base</th><th style="color:var(--optimiste)">Optimiste</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Investissement</strong></td><td>1,15 Mds XOF</td><td class="highlight">900M XOF</td><td>720M XOF</td></tr>
+            <tr><td><strong>Utilisateurs An 3</strong></td><td>105K</td><td class="highlight">192,5K</td><td>280K</td></tr>
+            <tr><td><strong>Revenus 5 ans</strong></td><td>3,2 Mds XOF</td><td class="highlight">4,2 Mds XOF</td><td>6,1 Mds XOF</td></tr>
+            <tr><td><strong>Break-even</strong></td><td>Mois 35</td><td class="highlight">Mois 28</td><td>Mois 22</td></tr>
+            <tr><td><strong>ROI 5 ans</strong></td><td>+80%</td><td class="highlight">+150%</td><td>+250%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Investir dans l&#8217;&#233;cosyst&#232;me Kawe</h2>
+      <p>7 applications &middot; 3,5M d&#8217;enfants &middot; 14 r&#233;gions &middot; Premier GovTech enfant d&#8217;Afrique de l&#8217;Ouest</p>
+      <a href="mailto:invest@kawe.sn" class="btn">invest@kawe.sn</a>
+      <div class="tricolor-bar" style="margin-top:20px"><span style="background:var(--green-light)"></span><span style="background:var(--gold)"></span><span style="background:var(--red)"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL MEDSEN (contenu complet) -->
+<div class="panel" id="medsen">
+  <div class="panel-header medsen">
+    <div class="header-top">
+      <div><h1>MedSen</h1><div class="header-sub">Sant&#233; scolaire du S&#233;n&#233;gal - Un &#233;l&#232;ve en bonne sant&#233;, un avenir assur&#233;</div></div>
+      <div class="header-badges"><span class="badge badge-production">En production</span><span class="badge badge-live">Live</span></div>
+    </div>
+  </div>
+  <div class="panel-body">
+
+    <!-- KPIs -->
+    <div class="kpi-grid kpi-grid-6">
+      <div class="kpi-card"><div class="kpi-value green">3,5M</div><div class="kpi-label">&#201;l&#232;ves cibles</div></div>
+      <div class="kpi-card"><div class="kpi-value green">&lt;10%</div><div class="kpi-label">Suivis aujourd&#8217;hui</div></div>
+      <div class="kpi-card"><div class="kpi-value green">14</div><div class="kpi-label">IME actuelles</div></div>
+      <div class="kpi-card"><div class="kpi-value green">14</div><div class="kpi-label">R&#233;gions</div></div>
+      <div class="kpi-card"><div class="kpi-value green">8</div><div class="kpi-label">Flux de revenus</div></div>
+      <div class="kpi-card"><div class="kpi-value green">MVP</div><div class="kpi-label">En production</div></div>
+    </div>
+
+    <!-- Probl&#232;me / Solution -->
+    <div class="two-col">
+      <div class="section-card">
+        <div class="section-card-header"><h2 style="color:var(--red)">Le probl&#232;me</h2></div>
+        <div class="section-card-body" style="display:flex;flex-direction:column;gap:10px">
+          <div class="module-item" style="border-left:3px solid var(--red);background:rgba(227,27,35,.03)"><div class="module-dot" style="background:var(--red)"></div><div><div class="module-name">Moins de 10% des &#233;l&#232;ves ont un suivi m&#233;dical &#224; l&#8217;&#233;cole</div></div></div>
+          <div class="module-item" style="border-left:3px solid var(--red);background:rgba(227,27,35,.03)"><div class="module-dot" style="background:var(--red)"></div><div><div class="module-name">30% des enfants de moins de 5 ans souffrent de malnutrition chronique</div></div></div>
+          <div class="module-item" style="border-left:3px solid var(--red);background:rgba(227,27,35,.03)"><div class="module-dot" style="background:var(--red)"></div><div><div class="module-name">100 000 enfants mendient dans les rues</div></div></div>
+          <div class="module-item" style="border-left:3px solid var(--red);background:rgba(227,27,35,.03)"><div class="module-dot" style="background:var(--red)"></div><div><div class="module-name">40% d&#8217;abandon scolaire avant la fin du primaire</div></div></div>
+          <div class="module-item" style="border-left:3px solid var(--red);background:rgba(227,27,35,.03)"><div class="module-dot" style="background:var(--red)"></div><div><div class="module-name">Aucun syst&#232;me unifi&#233; de sant&#233; scolaire n&#8217;existe</div></div></div>
+        </div>
+      </div>
+      <div class="section-card">
+        <div class="section-card-header"><h2 style="color:var(--medsen-dark)">&#10003; La solution MedSen</h2></div>
+        <div class="section-card-body" style="display:flex;flex-direction:column;gap:10px">
+          <div class="module-item" style="border-left:3px solid var(--medsen);background:rgba(16,185,129,.03)"><div class="module-dot"></div><div><div class="module-name">Chaque enfant a un dossier m&#233;dical qui le suit de 3 &#224; 18 ans</div></div></div>
+          <div class="module-item" style="border-left:3px solid var(--medsen);background:rgba(16,185,129,.03)"><div class="module-dot"></div><div><div class="module-name">Les probl&#232;mes de sant&#233; sont d&#233;tect&#233;s avant qu&#8217;ils n&#8217;impactent la scolarit&#233;</div></div></div>
+          <div class="module-item" style="border-left:3px solid var(--medsen);background:rgba(16,185,129,.03)"><div class="module-dot"></div><div><div class="module-name">L&#8217;&#201;tat sait exactement o&#249; en est la sant&#233; de ses &#233;l&#232;ves, r&#233;gion par r&#233;gion</div></div></div>
+          <div class="module-item" style="border-left:3px solid var(--medsen);background:rgba(16,185,129,.03)"><div class="module-dot"></div><div><div class="module-name">La sant&#233; scolaire passe d&#8217;un syst&#232;me fragment&#233; &#224; une politique nationale structur&#233;e</div></div></div>
+          <div class="module-item" style="border-left:3px solid var(--medsen);background:rgba(16,185,129,.03)"><div class="module-dot"></div><div><div class="module-name">Le mod&#232;le se finance seul d&#232;s l&#8217;an 3 - sans d&#233;pendre du budget de l&#8217;&#201;tat</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proposition de valeur condensee -->
+    <div class="section-card">
+      <div class="section-card-header"><h2>Proposition de valeur</h2></div>
+      <div class="section-card-body">
+        <div class="three-col">
+          <div style="padding:16px;background:var(--gray-50);border-radius:var(--radius);border-top:3px solid var(--medsen)">
+            <div style="font-size:15px;font-weight:800;color:var(--medsen-dark);margin-bottom:8px">Familles</div>
+            <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--gray-600)">
+              <div>&#8594; D&#233;tection pr&#233;coce vue, audition, croissance</div>
+              <div>&#8594; Dossier m&#233;dical continu de 3 &#224; 18 ans</div>
+              <div>&#8594; Alertes en temps r&#233;el sur l&#8217;&#233;tat de sant&#233;</div>
+              <div>&#8594; M&#234;me couverture public et priv&#233;</div>
+            </div>
+          </div>
+          <div style="padding:16px;background:var(--gray-50);border-radius:var(--radius);border-top:3px solid var(--green)">
+            <div style="font-size:15px;font-weight:800;color:var(--green);margin-bottom:8px">&#201;tat</div>
+            <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--gray-600)">
+              <div>&#8594; Vision nationale en temps r&#233;el (3,5M &#233;l&#232;ves)</div>
+              <div>&#8594; Campagnes pilot&#233;es du national au local</div>
+              <div>&#8594; D&#233;cisions bas&#233;es sur des donn&#233;es, pas des estimations</div>
+              <div>&#8594; Conformit&#233; Convention Droits de l&#8217;Enfant (Art. 24)</div>
+            </div>
+          </div>
+          <div style="padding:16px;background:var(--gray-50);border-radius:var(--radius);border-top:3px solid var(--education)">
+            <div style="font-size:15px;font-weight:800;color:var(--education-dark);margin-bottom:8px">&#201;tablissements</div>
+            <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--gray-600)">
+              <div>&#8594; Personnel IME intervient - aucune charge pour l&#8217;&#233;cole</div>
+              <div>&#8594; Bilans, vaccinations, d&#233;pistages organis&#233;s</div>
+              <div>&#8594; Enfants en danger identifi&#233;s et orient&#233;s</div>
+              <div>&#8594; Certificats d&#233;livr&#233;s en un clic</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Organisation IME -->
+    <div class="section-card">
+      <div class="section-card-header"><div><h2>Organisation IME - 3 niveaux</h2><div class="subtitle">Aujourd&#8217;hui 14 IME isol&#233;es sans coordination. MedSen restructure en pyramide.</div></div></div>
+      <div class="section-card-body">
+        <div class="ime-grid">
+          <div class="ime-card level-1"><div class="ime-level">National</div><div class="ime-title">IME National</div><div class="ime-scope">Politique sanitaire, campagnes nationales, indicateurs par r&#233;gion</div></div>
+          <div class="ime-card level-2"><div class="ime-level">R&#233;gional (14)</div><div class="ime-title">IME R&#233;gional</div><div class="ime-scope">Coordination locale, planification terrain, rapports r&#233;gionaux</div></div>
+          <div class="ime-card level-3"><div class="ime-level">Local (120+)</div><div class="ime-title">IME Locale</div><div class="ime-scope">Suivi &#233;l&#232;ves, d&#233;pistages, vaccinations, certificats sur place</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Business Model -->
+    <div class="section-card">
+      <div class="section-card-header"><h2>Business Model</h2></div>
+      <div class="section-card-body" style="padding:0;overflow-x:auto">
+        <table class="data-table">
+          <thead><tr><th>#</th><th>Flux</th><th>Payeur</th><th>M&#233;canique</th><th>Statut</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><strong>Licences SaaS</strong></td><td>&#201;tat (B2G)</td><td>IME paie pour l&#8217;outil de pilotage</td><td><span class="badge badge-active">Actif</span></td></tr>
+            <tr><td>2</td><td><strong>Contribution 2%</strong></td><td>&#201;coles priv&#233;es</td><td>Pr&#233;lev&#233; &#224; l&#8217;inscription, finance le suivi m&#233;dical annuel</td><td><span class="badge badge-active">Actif</span></td></tr>
+            <tr><td>3</td><td><strong>Certificats</strong></td><td>Parents</td><td>Aptitude sportive, absence, vaccination - en ligne</td><td><span class="badge badge-active">Actif</span></td></tr>
+            <tr><td>4</td><td><strong>Abo famille</strong></td><td>Parents</td><td>Acc&#232;s dossier enfant, alertes, historique</td><td><span class="badge badge-active">Actif</span></td></tr>
+            <tr><td>5</td><td><strong>Pack Diaspora</strong></td><td>Parents &#233;tranger</td><td>Suivi sant&#233; &#224; distance de l&#8217;enfant rest&#233; au S&#233;n&#233;gal</td><td><span class="badge badge-active">Actif</span></td></tr>
+            <tr><td>6</td><td><strong>Assurance</strong></td><td>Familles</td><td>Distribution marque blanche - commission 25%</td><td><span class="badge badge-active">Actif</span></td></tr>
+            <tr><td>7</td><td><strong>Dons</strong></td><td>ONG / Donateurs</td><td>Cagnottes cibl&#233;es pour soins d&#8217;enfants identifi&#233;s</td><td><span class="badge badge-active">Actif</span></td></tr>
+            <tr style="opacity:.6"><td>8</td><td><strong>Abo pro</strong></td><td>M&#233;decins</td><td>Acc&#232;s dossiers enfants suivis hors &#233;cole</td><td><span class="badge badge-inactive">Phase 2</span></td></tr>
+            <tr style="opacity:.6"><td>9</td><td><strong>Marketplace</strong></td><td>Pharmacies</td><td>Commandes issues des d&#233;pistages - commission</td><td><span class="badge badge-inactive">Phase 2</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Projections & Hypotheses -->
+    <div class="section-card">
+      <div class="section-card-header"><div><h2 style="color:var(--medsen-dark)">Projections - Hypoth&#232;ses explicites</h2><div class="subtitle">Chaque chiffre repose sur des hypoth&#232;ses v&#233;rifiables. Voici la logique derri&#232;re les projections.</div></div></div>
+      <div class="section-card-body">
+
+        <!-- Hypotheses cles -->
+        <div style="margin-bottom:24px">
+          <div style="font-size:13px;font-weight:700;color:var(--gray-700);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">Hypoth&#232;ses cl&#233;s par phase</div>
+          <div style="overflow-x:auto">
+            <table class="data-table">
+              <thead><tr><th>Hypoth&#232;se</th><th>An 1 (Pilote)</th><th>An 2 (5 r&#233;gions)</th><th>An 3 (National)</th><th>Source / Justification</th></tr></thead>
+              <tbody>
+                <tr><td><strong>&#201;l&#232;ves dans le syst&#232;me</strong></td><td>10 000</td><td>600 000</td><td>3 000 000</td><td>3,5M &#233;l&#232;ves au S&#233;n&#233;gal - objectif couverture nationale</td></tr>
+                <tr><td><strong>&#201;coles partenaires</strong></td><td>50</td><td>800</td><td>3 000</td><td>~16 000 &#233;coles au S&#233;n&#233;gal (MEN 2024)</td></tr>
+                <tr><td><strong>dont &#233;coles priv&#233;es</strong></td><td>20</td><td>300</td><td>1 500</td><td>~25% du parc scolaire est priv&#233;</td></tr>
+                <tr><td><strong>Taux conversion abo famille</strong></td><td>5%</td><td>6%</td><td>5%</td><td>Conservateur - app sant&#233; B2C Afrique</td></tr>
+                <tr><td><strong>Familles diaspora actives</strong></td><td>200</td><td>5 000</td><td>12 000</td><td>~600K S&#233;n&#233;galais &#224; l&#8217;&#233;tranger, ~15% parents</td></tr>
+                <tr><td><strong>Certificats m&#233;dicaux/mois</strong></td><td>100</td><td>5 000</td><td>12 000</td><td>~1 certif/&#233;l&#232;ve/an, liss&#233; sur 10 mois</td></tr>
+                <tr><td><strong>Taux souscription assurance</strong></td><td>3%</td><td>10%</td><td>12%</td><td>Micro-assurance propos&#233;e &#224; l&#8217;inscription - commission 25%</td></tr>
+                <tr><td><strong>Inscription moy. &#233;cole priv&#233;e</strong></td><td colspan="3" style="text-align:center">100 000 XOF/an</td><td>Fourchette 50K-250K selon niveau</td></tr>
+                <tr><td><strong>IME d&#233;ploy&#233;es</strong></td><td>1 r&#233;g. + 3 loc.</td><td>5 r&#233;g. + 50 loc.</td><td>14 r&#233;g. + 120 loc.</td><td>Structure 3 niveaux d&#233;ploy&#233;e progressivement</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Revenus par phase -->
+        <div style="margin-bottom:24px">
+          <div style="font-size:13px;font-weight:700;color:var(--gray-700);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">Revenus mensuels par phase (XOF)</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+            <div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:14px">
+              <div style="font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase">An 1 - Pilote</div>
+              <div style="font-size:22px;font-weight:900;color:var(--gray-700);margin:4px 0">~5M</div>
+              <div style="font-size:11px;color:var(--gray-400)">10K &#233;l&#232;ves &middot; 50 &#233;coles</div>
+            </div>
+            <div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:14px">
+              <div style="font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase">An 2 - 5 r&#233;gions</div>
+              <div style="font-size:22px;font-weight:900;color:var(--gray-700);margin:4px 0">~160M</div>
+              <div style="font-size:11px;color:var(--gray-400)">600K &#233;l&#232;ves &middot; 800 &#233;coles</div>
+            </div>
+            <div style="background:rgba(0,133,63,.03);border:2px solid var(--green);border-radius:var(--radius);padding:14px">
+              <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase">An 3 - National</div>
+              <div style="font-size:22px;font-weight:900;color:var(--green);margin:4px 0">~519M</div>
+              <div style="font-size:11px;color:var(--gray-400)">3M &#233;l&#232;ves &middot; 3 000 &#233;coles</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formules de calcul -->
+        <div style="margin-bottom:16px">
+          <div style="font-size:13px;font-weight:700;color:var(--gray-700);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">D&#233;tail des calculs (An 3, sc&#233;nario base)</div>
+          <div style="overflow-x:auto">
+            <table class="data-table">
+              <thead><tr><th>Flux</th><th>Formule</th><th>Volume</th><th>Prix unit.</th><th>R&#233;sultat</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Licences SaaS</strong></td><td>IME R&#233;gionaux + Locaux &#215; tarif</td><td>14 r&#233;g. + 120 locaux</td><td>150K / 50K</td><td class="highlight">8M</td></tr>
+                <tr><td><strong>Contribution 2%</strong></td><td>&#201;l&#232;ves priv&#233; &#215; inscription moy. &#215; 2%</td><td>750 000 &#233;l&#232;ves</td><td>100K &#215; 2%</td><td class="highlight">125M</td></tr>
+                <tr><td><strong>Certificats</strong></td><td>Certif/mois &#215; prix unitaire</td><td>12 000/mois</td><td>5 000 XOF</td><td class="highlight">60M</td></tr>
+                <tr><td><strong>Abo familles</strong></td><td>&#201;l&#232;ves &#215; taux conversion &#215; prix</td><td>3M &#215; 5%</td><td>1 500 XOF</td><td class="highlight">225M</td></tr>
+                <tr><td><strong>Diaspora</strong></td><td>Familles diaspora actives &#215; prix</td><td>12 000</td><td>3 000 XOF</td><td class="highlight">36M</td></tr>
+                <tr><td><strong>Assurance</strong></td><td>&#201;l&#232;ves &#215; taux &#215; prime &#215; commission 25%</td><td>3M &#215; 12%</td><td>500 &#215; 25%</td><td class="highlight">45M</td></tr>
+                <tr><td><strong>Dons &amp; parrainages</strong></td><td>ONG + micro-dons + parrainages</td><td>Forfait</td><td>-</td><td class="highlight">20M</td></tr>
+                <tr style="background:rgba(0,133,63,.04)"><td><strong>TOTAL</strong></td><td colspan="3"></td><td class="highlight" style="font-size:15px">~519M/mois</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Sensibilite -->
+        <div style="padding:16px 20px;background:rgba(245,158,11,.04);border-left:3px solid var(--droits);border-radius:var(--radius-sm)">
+          <div style="font-size:13px;font-weight:700;color:var(--droits-dark);margin-bottom:8px">Sensibilit&#233; - Ce qui fait varier le r&#233;sultat</div>
+          <div style="font-size:13px;color:var(--gray-600);display:flex;flex-direction:column;gap:4px">
+            <div>&bull; <strong>Taux conversion abo famille</strong> : si 3% au lieu de 5% &#8594; 135M au lieu de 225M (-40%)</div>
+            <div>&bull; <strong>Couverture nationale</strong> : si 2M au lieu de 3M &#233;l&#232;ves &#8594; assurance et abo r&#233;duits d'un tiers</div>
+            <div>&bull; <strong>Diaspora</strong> : segment incertain - peut varier de 5K &#224; 20K familles</div>
+            <div>&bull; <strong>Assurance</strong> : commission n&#233;gociable (20-30%) - si 20% au lieu de 25% &#8594; 36M au lieu de 45M</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Structure de couts -->
+    <div class="section-card">
+      <div class="section-card-header"><div><h2 style="color:var(--gray-800)">Structure de co&#251;ts</h2><div class="subtitle">D&#233;penses pr&#233;vues par phase - &#233;quipe, infrastructure, d&#233;ploiement</div></div></div>
+      <div class="section-card-body">
+        <div class="kpi-grid" style="margin-bottom:20px">
+          <div class="kpi-card"><div class="kpi-value" style="color:var(--red)">~12M</div><div class="kpi-label">Co&#251;t/mois An 1</div></div>
+          <div class="kpi-card"><div class="kpi-value" style="color:var(--red)">~85M</div><div class="kpi-label">Co&#251;t/mois An 3</div></div>
+          <div class="kpi-card"><div class="kpi-value green">6,1x</div><div class="kpi-label">Ratio revenus/co&#251;ts An 3</div></div>
+          <div class="kpi-card"><div class="kpi-value green">M18</div><div class="kpi-label">Break-even MedSen</div></div>
+        </div>
+
+        <!-- Repartition par poste -->
+        <div style="margin-bottom:20px">
+          <div style="font-size:13px;font-weight:700;color:var(--gray-700);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">R&#233;partition An 3 - 85M XOF/mois</div>
+          <div style="display:flex;height:8px;border-radius:4px;overflow:hidden;margin-bottom:12px">
+            <div style="width:29%;background:#3B82F6" title="&#201;quipe tech"></div>
+            <div style="width:12%;background:#8B5CF6" title="Infrastructure"></div>
+            <div style="width:18%;background:#10B981" title="D&#233;ploiement terrain"></div>
+            <div style="width:18%;background:#F59E0B" title="Commercial + Acquisition"></div>
+            <div style="width:12%;background:#EF4444" title="Support + Ops"></div>
+            <div style="width:6%;background:#EC4899" title="Paiements (frais)"></div>
+            <div style="width:5%;background:#6B7280" title="Autre"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+            <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--gray-50);border-radius:var(--radius-sm)"><div style="width:8px;height:8px;border-radius:50%;background:#3B82F6;flex-shrink:0"></div><div><div style="font-size:12px;font-weight:600;color:var(--gray-700)">&#201;quipe tech</div><div style="font-size:11px;color:var(--gray-400)">8 devs + 2 product + 2 devops + 1 data</div></div><div style="margin-left:auto;font-size:13px;font-weight:700">25M</div></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--gray-50);border-radius:var(--radius-sm)"><div style="width:8px;height:8px;border-radius:50%;background:#8B5CF6;flex-shrink:0"></div><div><div style="font-size:12px;font-weight:600;color:var(--gray-700)">Infrastructure</div><div style="font-size:11px;color:var(--gray-400)">Cloud, CDN, stockage, backup</div></div><div style="margin-left:auto;font-size:13px;font-weight:700">10M</div></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--gray-50);border-radius:var(--radius-sm)"><div style="width:8px;height:8px;border-radius:50%;background:#10B981;flex-shrink:0"></div><div><div style="font-size:12px;font-weight:600;color:var(--gray-700)">D&#233;ploiement terrain</div><div style="font-size:11px;color:var(--gray-400)">Formateurs, tablettes, d&#233;placements</div></div><div style="margin-left:auto;font-size:13px;font-weight:700">15M</div></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--gray-50);border-radius:var(--radius-sm)"><div style="width:8px;height:8px;border-radius:50%;background:#F59E0B;flex-shrink:0"></div><div><div style="font-size:12px;font-weight:600;color:var(--gray-700)">Commercial + Acquisition</div><div style="font-size:11px;color:var(--gray-400)">BD &#233;coles, partenaires, marketing</div></div><div style="margin-left:auto;font-size:13px;font-weight:700">15M</div></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--gray-50);border-radius:var(--radius-sm)"><div style="width:8px;height:8px;border-radius:50%;background:#EF4444;flex-shrink:0"></div><div><div style="font-size:12px;font-weight:600;color:var(--gray-700)">Support + Ops</div><div style="font-size:11px;color:var(--gray-400)">Hotline, SLA, maintenance</div></div><div style="margin-left:auto;font-size:13px;font-weight:700">10M</div></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--gray-50);border-radius:var(--radius-sm)"><div style="width:8px;height:8px;border-radius:50%;background:#EC4899;flex-shrink:0"></div><div><div style="font-size:12px;font-weight:600;color:var(--gray-700)">Frais paiement</div><div style="font-size:11px;color:var(--gray-400)">Wave/OM ~2% sur transactions</div></div><div style="margin-left:auto;font-size:13px;font-weight:700">5M</div></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--gray-50);border-radius:var(--radius-sm)"><div style="width:8px;height:8px;border-radius:50%;background:#6B7280;flex-shrink:0"></div><div><div style="font-size:12px;font-weight:600;color:var(--gray-700)">Autre</div><div style="font-size:11px;color:var(--gray-400)">Juridique, audit, conformit&#233;</div></div><div style="margin-left:auto;font-size:13px;font-weight:700">5M</div></div>
+          </div>
+        </div>
+
+        <!-- Evolution par phase -->
+        <div style="overflow-x:auto">
+          <table class="data-table">
+            <thead><tr><th>Poste</th><th>An 1 (Pilote)</th><th>An 2 (5 r&#233;gions)</th><th>An 3 (National)</th><th>Justification</th></tr></thead>
+            <tbody>
+              <tr><td><strong>&#201;quipe tech</strong></td><td>5M</td><td>15M</td><td>25M</td><td>3 &#8594; 8 &#8594; 13 personnes (salaires Dakar + 35% charges)</td></tr>
+              <tr><td><strong>Infrastructure</strong></td><td>800K</td><td>5M</td><td>10M</td><td>500 &#8594; 600K &#8594; 3M utilisateurs actifs</td></tr>
+              <tr><td><strong>D&#233;ploiement terrain</strong></td><td>2M</td><td>8M</td><td>15M</td><td>Formateurs r&#233;gionaux, tablettes, v&#233;hicules, d&#233;placements</td></tr>
+              <tr><td><strong>Commercial + Acquisition</strong></td><td>1,5M</td><td>8M</td><td>15M</td><td>BD &#233;coles priv&#233;es, partenaires assurance, marketing terrain</td></tr>
+              <tr><td><strong>Support + Ops</strong></td><td>500K</td><td>5M</td><td>10M</td><td>Hotline, SLA, gestion incidents, formation continue</td></tr>
+              <tr><td><strong>Frais paiement</strong></td><td>100K</td><td>2M</td><td>5M</td><td>~2% sur transactions mobile money (Wave, Orange Money)</td></tr>
+              <tr><td><strong>Autre</strong></td><td>500K</td><td>2M</td><td>5M</td><td>Juridique, conformit&#233; donn&#233;es sant&#233;, audit, assurances</td></tr>
+              <tr style="background:rgba(0,133,63,.04)"><td><strong>TOTAL</strong></td><td class="highlight">~12M</td><td class="highlight">~45M</td><td class="highlight">~85M</td><td>Marge nette An 3 : 519M - 85M = <strong>434M/mois</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="margin-top:16px;padding:12px 16px;background:rgba(16,185,129,.04);border-left:3px solid var(--medsen);border-radius:var(--radius-sm);font-size:12px;color:var(--gray-600)">
+          <strong>Note :</strong> Les co&#251;ts sont mutualis&#233;s avec l&#8217;&#233;cosyst&#232;me Kawe (infrastructure partag&#233;e, &#233;quipe DevOps commune, passerelle de paiement unique). Chiffres affich&#233;s = part allou&#233;e &#224; MedSen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Grille tarifaire -->
+    <div class="section-card">
+      <div class="section-card-header"><h2>Grille tarifaire</h2></div>
+      <div class="section-card-body" style="padding:0;overflow-x:auto">
+        <table class="data-table">
+          <thead><tr><th>Client</th><th>Offre</th><th>Tarif</th></tr></thead>
+          <tbody>
+            <tr style="background:rgba(0,133,63,.03)"><td colspan="3" style="font-weight:700;color:var(--green);font-size:11px;text-transform:uppercase;letter-spacing:0.5px">B2G - Institutionnel</td></tr>
+            <tr><td>IME R&#233;gional</td><td>Licence r&#233;gionale</td><td class="highlight">150 000 XOF/mois</td></tr>
+            <tr><td>IME Local</td><td>Licence locale</td><td class="highlight">50 000 XOF/mois</td></tr>
+            <tr><td>&#201;cole priv&#233;e</td><td>Contribution sant&#233;</td><td class="highlight">2% inscriptions</td></tr>
+            <tr><td>&#201;cole publique</td><td>Acc&#232;s gratuit</td><td class="highlight">0 XOF</td></tr>
+            <tr style="background:rgba(16,185,129,.03)"><td colspan="3" style="font-weight:700;color:var(--medsen-dark);font-size:11px;text-transform:uppercase;letter-spacing:0.5px">B2C - Familles</td></tr>
+            <tr><td>Famille</td><td>Abo premium</td><td class="highlight">1 500 XOF/mois</td></tr>
+            <tr><td>Diaspora</td><td>Pack distance</td><td class="highlight">3 000 XOF/mois</td></tr>
+            <tr><td>Parent</td><td>Certificat m&#233;dical</td><td class="highlight">5 000 XOF/unit&#233;</td></tr>
+            <tr><td>Famille</td><td>Assurance scolaire</td><td class="highlight">500 XOF/mois</td></tr>
+            <tr style="background:rgba(139,92,246,.03)"><td colspan="3" style="font-weight:700;color:#7c3aed;font-size:11px;text-transform:uppercase;letter-spacing:0.5px">B2B - Phase 2</td></tr>
+            <tr><td>Professionnel sant&#233;</td><td>Abo pro</td><td class="highlight">25 000 XOF/mois</td></tr>
+            <tr><td>Pharmacie / Opticien</td><td>Marketplace</td><td class="highlight">10% commission</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <!-- Taille du march&#233; -->
+    <div class="section-card">
+      <div class="section-card-header"><h2>March&#233; adressable</h2></div>
+      <div class="section-card-body">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(0,133,63,.03);border-radius:var(--radius-sm)"><div style="width:10px;height:10px;border-radius:50%;background:rgba(0,133,63,.2);flex-shrink:0"></div><div style="flex:1"><span style="font-size:13px;font-weight:600;color:var(--gray-700)">TAM</span><span style="font-size:12px;color:var(--gray-500);margin-left:8px">e-Gov Afrique Ouest - 15 pays, 400M hab.</span></div><div style="font-size:16px;font-weight:800;color:var(--gray-600)">850 Mds</div></div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(0,133,63,.06);border-radius:var(--radius-sm)"><div style="width:10px;height:10px;border-radius:50%;background:rgba(0,133,63,.4);flex-shrink:0"></div><div style="flex:1"><span style="font-size:13px;font-weight:600;color:var(--gray-700)">SAM</span><span style="font-size:12px;color:var(--gray-500);margin-left:8px">Services num&#233;riques enfant S&#233;n&#233;gal - 3,5M &#233;l&#232;ves</span></div><div style="font-size:16px;font-weight:800;color:var(--gray-700)">45 Mds</div></div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(0,133,63,.1);border-radius:var(--radius-sm)"><div style="width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0"></div><div style="flex:1"><span style="font-size:13px;font-weight:600;color:var(--green)">SOM (3 ans)</span><span style="font-size:12px;color:var(--gray-500);margin-left:8px">14 r&#233;gions, 8 flux actifs</span></div><div style="font-size:16px;font-weight:800;color:var(--green)">2,5 Mds</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Go-to-Market + Moats -->
+    <div class="two-col">
+      <div class="section-card">
+        <div class="section-card-header"><h2>Go-to-Market</h2></div>
+        <div class="section-card-body">
+          <div class="timeline">
+            <div class="timeline-item active"><div class="tl-header"><h4>Pilote Dakar</h4><span class="tl-period">Mai&ndash;Oct 2026</span></div><div class="tl-details"><span class="tl-tag">4 &#233;tablissements</span><span class="tl-tag">~500 &#233;l&#232;ves</span><span class="tl-tag">Publics et priv&#233;s</span></div></div>
+            <div class="timeline-item"><div class="tl-header"><h4>Extension r&#233;gionale</h4><span class="tl-period">Nov 2026&ndash;Avr 2027</span></div><div class="tl-details"><span class="tl-tag">50 &#233;tablissements</span><span class="tl-tag">4 r&#233;gions</span><span class="tl-tag">~15 000 &#233;l&#232;ves</span></div></div>
+            <div class="timeline-item"><div class="tl-header"><h4>D&#233;ploiement national</h4><span class="tl-period">2027&ndash;2028</span></div><div class="tl-details"><span class="tl-tag">14 r&#233;gions</span><span class="tl-tag">557 communes</span><span class="tl-tag">3M &#233;l&#232;ves</span></div></div>
+            <div class="timeline-item"><div class="tl-header"><h4>Expansion CEDEAO</h4><span class="tl-period">2029+</span></div><div class="tl-details"><span class="tl-tag">C&#244;te d&#8217;Ivoire</span><span class="tl-tag">Mali</span><span class="tl-tag">Burkina Faso</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="section-card">
+        <div class="section-card-header"><h2>Pourquoi c&#8217;est d&#233;fendable</h2></div>
+        <div class="section-card-body" style="display:flex;flex-direction:column;gap:10px">
+          <div class="module-item"><div class="module-dot" style="background:var(--green)"></div><div><div class="module-name">Les donn&#233;es de sant&#233; appartiennent au S&#233;n&#233;gal</div><div class="module-desc">3,5M de dossiers enfants - aucun concurrent ne peut les reproduire</div></div></div>
+          <div class="module-item"><div class="module-dot" style="background:var(--green)"></div><div><div class="module-name">On ne vend pas un logiciel - on propose une politique publique</div><div class="module-desc">La nouvelle structure IME en 3 niveaux n&#8217;existe pas sans MedSen</div></div></div>
+          <div class="module-item"><div class="module-dot" style="background:var(--green)"></div><div><div class="module-name">Chaque &#233;cole qui rejoint renforce le syst&#232;me pour toutes les autres</div><div class="module-desc">Plus d&#8217;enfants suivis = meilleures donn&#233;es = meilleure pr&#233;vention</div></div></div>
+          <div class="module-item"><div class="module-dot" style="background:var(--green)"></div><div><div class="module-name">L&#8217;historique m&#233;dical d&#8217;un enfant ne se transf&#232;re pas</div><div class="module-desc">15 ans de donn&#233;es accumul&#233;es - le co&#251;t de sortie est maximal</div></div></div>
+          <div class="module-item"><div class="module-dot" style="background:var(--green)"></div><div><div class="module-name">Personne d&#8217;autre ne fait &#231;a en Afrique de l&#8217;Ouest</div><div class="module-desc">Premier GovTech de sant&#233; scolaire - avance de 2 ans minimum</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Risques -->
+    <div class="two-col">
+      <div class="section-card">
+        <div class="section-card-header"><h2>Impact &amp; ODD</h2></div>
+        <div class="section-card-body">
+          <div class="sdg-badges" style="margin-bottom:12px"><span class="sdg-badge sdg-3">ODD 3</span><span class="sdg-badge sdg-4">ODD 4</span><span class="sdg-badge sdg-10">ODD 10</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--gray-600)">
+            <div>&#8594; R&#233;duction in&#233;galit&#233; sant&#233; urbain/rural - m&#234;me couverture partout</div>
+            <div>&#8594; Souverainet&#233; des donn&#233;es - aucune exploitation commerciale</div>
+            <div>&#8594; Mod&#232;le reproductible CEDEAO (C&#244;te d&#8217;Ivoire, Mali, Burkina)</div>
+            <div>&#8594; Convention Droits de l&#8217;Enfant Art. 24 - ratifi&#233;e par le S&#233;n&#233;gal 1990</div>
+          </div>
+        </div>
+      </div>
+      <div class="section-card">
+        <div class="section-card-header"><h2>Risques &amp; Mitigations</h2></div>
+        <div class="section-card-body" style="padding:0">
+          <div class="risk-grid">
+            <div class="risk-header risk-h">Risque</div>
+            <div class="risk-header mitigation-h">Mitigation</div>
+            <div class="risk-cell risk-c">Adoption lente du public</div>
+            <div class="risk-cell">D&#233;marrage par le priv&#233; (plus agile) puis le minist&#232;re impose via circulaire - le public suit par obligation r&#233;glementaire, pas par choix</div>
+            <div class="risk-cell risk-c">D&#233;pendance politique</div>
+            <div class="risk-cell">Revenus propres d&#232;s An 1 (contribution 2%, abos familles) - le mod&#232;le tourne m&#234;me sans subvention publique</div>
+            <div class="risk-cell risk-c">Connectivit&#233; rurale</div>
+            <div class="risk-cell">Architecture offline-first avec sync diff&#233;rentielle - les agents IME saisissent sur tablette sans r&#233;seau, synchro automatique au retour en zone couverte</div>
+            <div class="risk-cell risk-c">Consentement parental</div>
+            <div class="risk-cell">Le cadre l&#233;gal sant&#233; scolaire autorise les actes de d&#233;pistage collectif sans consentement individuel (sant&#233; publique) - le consentement est requis uniquement pour les soins et le partage de donn&#233;es hors IME</div>
+            <div class="risk-cell risk-c">Concurrence GovTech</div>
+            <div class="risk-cell">Aucun acteur ne combine donn&#233;es sant&#233; + ancrage institutionnel IME + r&#233;seau d&#8217;&#233;tablissements - la barri&#232;re est r&#233;glementaire autant que technique</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA MedSen -->
+    <div class="cta-section">
+      <h2>Investir dans MedSen</h2>
+      <p>3,5M d&#8217;enfants &middot; 14 r&#233;gions &middot; 557 communes &middot; Premier GovTech sant&#233; scolaire d&#8217;Afrique de l&#8217;Ouest</p>
+      <a href="mailto:invest@kawe.sn" class="btn">invest@kawe.sn</a>
+      <div class="tricolor-bar" style="margin-top:20px"><span style="background:var(--green-light)"></span><span style="background:var(--gold)"></span><span style="background:var(--red)"></span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PANEL EDUCATION (contenu a venir) -->
+<div class="panel" id="education">
+  <div class="panel-header education">
+    <div class="header-top">
+      <div><h1>LeerEducation</h1><div class="header-sub">Gestion scolaire intelligente - De l&#8217;inscription au dipl&#244;me</div></div>
+      <div class="header-badges"><span class="badge badge-inactive">En d&#233;veloppement</span></div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="section-card"><div class="section-card-body" style="text-align:center;padding:60px 20px;color:var(--gray-400)"><div style="font-size:24px;font-weight:800;color:var(--education);margin-bottom:12px">&#8212;</div><div style="font-size:16px;font-weight:600">Contenu en cours de r&#233;daction</div><div style="font-size:13px;margin-top:4px">Le dossier investisseur LeerEducation sera disponible prochainement</div></div></div>
+  </div>
+</div>
+
+<!-- PANEL ETATCIVIL (contenu a venir) -->
+<div class="panel" id="etatcivil">
+  <div class="panel-header etatcivil">
+    <div class="header-top">
+      <div><h1>SunuEtatCivil</h1><div class="header-sub">Digitalisation de l&#8217;&#233;tat civil - Chaque naissance enregistr&#233;e</div></div>
+      <div class="header-badges"><span class="badge badge-inactive">En conception</span></div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="section-card"><div class="section-card-body" style="text-align:center;padding:60px 20px;color:var(--gray-400)"><div style="font-size:24px;font-weight:800;color:var(--etatcivil);margin-bottom:12px">&#8212;</div><div style="font-size:16px;font-weight:600">Contenu en cours de r&#233;daction</div><div style="font-size:13px;margin-top:4px">Le dossier investisseur SunuEtatCivil sera disponible prochainement</div></div></div>
+  </div>
+</div>
+
+<!-- PANEL PROTECTION (contenu a venir) -->
+<div class="panel" id="protection">
+  <div class="panel-header protection">
+    <div class="header-top">
+      <div><h1>NdawProtect</h1><div class="header-sub">Protection de l&#8217;enfance - Z&#233;ro enfant invisible</div></div>
+      <div class="header-badges"><span class="badge badge-inactive">En conception</span></div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="section-card"><div class="section-card-body" style="text-align:center;padding:60px 20px;color:var(--gray-400)"><div style="font-size:24px;font-weight:800;color:var(--protection);margin-bottom:12px">&#8212;</div><div style="font-size:16px;font-weight:600">Contenu en cours de r&#233;daction</div><div style="font-size:13px;margin-top:4px">Le dossier investisseur NdawProtect sera disponible prochainement</div></div></div>
+  </div>
+</div>
+
+<!-- PANEL DROITS (contenu a venir) -->
+<div class="panel" id="droits">
+  <div class="panel-header droits">
+    <div class="header-top">
+      <div><h1>SunuDroits</h1><div class="header-sub">Acc&#232;s aux droits &amp; aides sociales - Aucun droit non r&#233;clam&#233;</div></div>
+      <div class="header-badges"><span class="badge badge-inactive">En conception</span></div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="section-card"><div class="section-card-body" style="text-align:center;padding:60px 20px;color:var(--gray-400)"><div style="font-size:24px;font-weight:800;color:var(--droits);margin-bottom:12px">&#8212;</div><div style="font-size:16px;font-weight:600">Contenu en cours de r&#233;daction</div><div style="font-size:13px;margin-top:4px">Le dossier investisseur SunuDroits sera disponible prochainement</div></div></div>
+  </div>
+</div>
+
+<!-- PANEL CORE (contenu a venir) -->
+<div class="panel" id="core">
+  <div class="panel-header core">
+    <div class="header-top">
+      <div><h1>Kawe Core</h1><div class="header-sub">Infrastructure partag&#233;e - Paiements, identit&#233;, interop&#233;rabilit&#233;</div></div>
+      <div class="header-badges"><span class="badge badge-production">Actif</span></div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="section-card"><div class="section-card-body" style="text-align:center;padding:60px 20px;color:var(--gray-400)"><div style="font-size:24px;font-weight:800;color:var(--core);margin-bottom:12px">&#8212;</div><div style="font-size:16px;font-weight:600">Contenu en cours de r&#233;daction</div><div style="font-size:13px;margin-top:4px">Le dossier investisseur Kawe Core sera disponible prochainement</div></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="main-footer">
+  <div>Kawe Invest - Plateforme investisseur confidentielle</div>
+  <div style="margin-top:4px">&#169; 2026 Kawe &middot; <a href="mailto:invest@kawe.sn">invest@kawe.sn</a></div>
+  <div class="tricolor-bar"><span style="background:var(--green-light)"></span><span style="background:var(--gold)"></span><span style="background:var(--red)"></span></div>
+</footer>
+
+</div><!-- end .main -->
+
+<script>
+function showPanel(id, el) {
+  document.querySelectorAll(".panel").forEach(function(p) { p.classList.remove("active"); });
+  document.querySelectorAll(".nav-item").forEach(function(n) { n.classList.remove("active"); });
+  document.getElementById(id).classList.add("active");
+  if (el) el.classList.add("active");
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("overlay").classList.remove("open");
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("open");
+}
+window.addEventListener("hashchange", function() {
+  var id = location.hash.replace("#","");
+  if (id && document.getElementById(id)) {
+    var nav = document.querySelector("[data-panel=\""+id+"\"]");
+    showPanel(id, nav);
+  }
+});
+if (location.hash) {
+  var id = location.hash.replace("#","");
+  if (document.getElementById(id)) {
+    var nav = document.querySelector("[data-panel=\""+id+"\"]");
+    showPanel(id, nav);
+  }
+}
+</script>
+</body>
+</html>
